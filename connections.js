@@ -1,33 +1,24 @@
 const { MongoClient } = require("mongodb");
 
 // Replace the uri string with your MongoDB deployment's connection string.
-const uri = "mongodb+srv://nnhsAdmin:<jonjonjonjon>@cluster0.gnworbx.mongodb.net/?retryWrites=true&w=majority";
-console.log(uri)
+const uri = "mongodb+srv://${.env.ADMIN_USERNAME}:{.env.ADMIN_PASSWORD}@cluster0.gnworbx.mongodb.net/?retryWrites=true&w=majority";
 
 
+//Need to write class data in, then read it 
 
-
-/*
 const client = new MongoClient(uri);
 async function run() {
   try {
     await client.connect();
 
-    const db = client.db("sample_guides");
-    const coll = db.collection("comets");
+    const db = client.db("NNHS_DATA");
+    const coll = db.collection("Class_Data");
 
-    // delete code goes here
-    const doc = {
-    orbitalPeriod: {
-        $gt: 5,
-        $lt: 80
-    }
-    };
-
-    const result = await coll.deleteMany(doc);
-
-    // amount deleted code goes here
-    console.log("Number of documents deleted: " + result.deletedCount);
+    db.coll.insert([
+      {
+      class: "Software Engineering", room: 123, teacher: "Mr. Schmit"
+      }
+    ]);
 
     
 
@@ -39,7 +30,3 @@ async function run() {
 run().catch(console.dir);
 
 console.log("---------")
-
-
-*/
-
