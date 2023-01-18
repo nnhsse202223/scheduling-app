@@ -18,7 +18,6 @@ function downloadCSV() {
     var hiddenElement = document.createElement('a');  
     hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvString);  
     hiddenElement.target = '_blank';  
-    //provide the name for the CSV file to be downloaded  
     hiddenElement.download = 'classes.csv';  
     hiddenElement.click();  
 }
