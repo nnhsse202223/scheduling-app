@@ -1,3 +1,4 @@
+const { WorkingClass } = require("./WorkingClass");
 
 class DatabaseTest
 {
@@ -20,5 +21,23 @@ class DatabaseTest
         this.myRoomArray = [room1, room2, room3];
         this.myTeacherArray = [teacher1, teacher2, teacher3];
         this.myClassArray = [class1, class2, class3];
+        
+    }
+    //make getter methods for each array
+    get RoomArray()
+    {
+        return this.myRoomArray;
+    }
+    get TeacherArray()
+    {
+        return this.myTeacherArray;
+    }
+    get ClassArray()
+    {
+        return this.myClassArray;
     }
 }
+var testDatabase = new DatabaseTest();
+
+var testObj = new WorkingClass(testDatabase.RoomArray(), testDatabase.TeacherArray(), testDatabase.ClassArray());
+console.log(testObj.WorkingClass.fitness(this.scheduleArray));
