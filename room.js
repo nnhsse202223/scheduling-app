@@ -20,3 +20,5 @@ class Room
         return this.room_no;
     }
 }
+
+module.exports.Room = Room;

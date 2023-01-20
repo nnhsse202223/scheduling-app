@@ -19,3 +19,5 @@ class Teacher
         return this.type;
     }
 }
+
+module.exports.Teacher = Teacher;

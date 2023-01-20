@@ -19,3 +19,5 @@ class Classes
         return this.type;
     }
 }
+
+module.exports.Classes = Classes;

@@ -6,20 +6,23 @@ class WorkingClass
         this.teacherArray = teacherArray;
         this.classArray = classArray;
         this.scheduleArray;
-        this.fitness_value;
+        this.fitness_value = 0;
 
         this.block1;
         this.block2;
-        this.blcok3;
+        this.block3;
+
+        this.randomMutate();
     }
 
 
     randomMutate()
     {
-        block1 = [roomArray[0], teacherArray[0], classArray[0]];
-        block2 = [roomArray[1], teacherArray[1], classArray[1]];
-        block3 = [roomArray[2], teacherArray[2], classArray[2]];
-        this.scheduleArray = [block1, block2, block3];
+        this.block1 = [this.roomArray[0], this.teacherArray[0], this.classArray[0]];
+        this.block2 = [this.roomArray[1], this.teacherArray[1], this.classArray[1]];
+        this.block3 = [this.roomArray[2], this.teacherArray[2], this.classArray[2]];
+        this.scheduleArray = [this.block1, this.block2, this.block3];
+        console.log(this.scheduleArray);
     }
 
     fitness(array_moment)
@@ -33,8 +36,9 @@ class WorkingClass
             this.fitness_value++;
         }
 
-        return fitness_value;
+        return this.fitness_value;
+        //return 5;
     }
 }
 
-exports.WorkingClass = WorkingClass;
+module.exports.WorkingClass = WorkingClass;

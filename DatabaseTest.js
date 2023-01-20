@@ -1,5 +1,7 @@
-const { WorkingClass } = require("./WorkingClass");
-
+const { WorkingClass, test} = require("./WorkingClass.js");
+const {Room} = require("./Room.js");
+const {Teacher} = require("./Teacher.js");
+const {Classes} = require("./Classes.js");
 class DatabaseTest
 {
     constructor()
@@ -7,20 +9,20 @@ class DatabaseTest
         this.myRoomArray;
         this.myTeacherArray;
         this.myClassArray;
+        this.room1 = new Room("FACS", 129);
+        this.room2 = new Room("FACS", 130);
+        this.room3 = new Room("Tech", 121);
+        this.teacher1 = new Teacher("AgentP", "FACS");
+        this.teacher2 = new Teacher("AngelP","FACS");
+        this.teacher3 = new Teacher("Schmitt", "Tech");
+        this.class1 = new Classes("Senior_Foods", "FACS");
+        this.class2 = new Classes("Junior_Foods", "FACS");
+        this.class3 = new Classes("Software Engineering 1/2", "Tech");
 
-        this.room1 = Room("FACS", 129);
-        this.room2 = Room("FACS", 130);
-        this.room3 = Room("Tech", 121);
-        this.teacher1 = Teacher("AgentP", "FACS");
-        this.teacher2 = Teacher("AngelP","FACS");
-        this.teacher3 = Teacher("Schmitt", "Tech");
-        this.class1 = Classes("Senior_Foods", "FACS");
-        this.class2 = Classes("Junior_Foods", "FACS");
-        this.class3 = Classes("Software Engineering 1/2", "Tech");
-
-        this.myRoomArray = [room1, room2, room3];
-        this.myTeacherArray = [teacher1, teacher2, teacher3];
-        this.myClassArray = [class1, class2, class3];
+        this.myRoomArray = [this.room1, this.room2, this.room3];
+       // console.log(this.myRoomArray);
+        this.myTeacherArray = [this.teacher1, this.teacher2, this.teacher3];
+        this.myClassArray = [this.class1, this.class2, this.class3];
         
     }
     //make getter methods for each array
@@ -39,5 +41,5 @@ class DatabaseTest
 }
 var testDatabase = new DatabaseTest();
 
-var testObj = new WorkingClass(testDatabase.RoomArray(), testDatabase.TeacherArray(), testDatabase.ClassArray());
-console.log(testObj.WorkingClass.fitness(this.scheduleArray));
+var testObj = new WorkingClass(testDatabase.RoomArray, testDatabase.TeacherArray, testDatabase.ClassArray);
+console.log(testObj.fitness(testObj.scheduleArray));
