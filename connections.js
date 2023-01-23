@@ -15,17 +15,21 @@ async function run() {
     await client.connect();
 
     const database = client.db("NNHS_DATA");
-    console.log(database);
     const coll = database.collection("DATA");
 
-    const docs = [{
+    /*const docs = [{
       class: "Computer Programming", room: 121, teacher: "Mr. Callaghan"
       }];
+      */
+    const cursor = coll.find();
+    console.log(cursor.forEach);
+
+    var data = JSON.parse(cursor);
+    console.log(data.class);
 
 
-    const result = await coll.insertMany(docs);
 
-
+ 
     
 
   } finally {
