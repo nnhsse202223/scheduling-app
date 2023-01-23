@@ -22,10 +22,20 @@ async function run() {
       }];
       */
     const cursor = coll.find();
-    console.log(cursor.forEach);
+    await cursor.forEach( function(myDoc) {var data = myDoc.class });
+    console.log(data);
 
-    var data = JSON.parse(cursor);
-    console.log(data.class);
+
+
+
+
+
+
+
+
+
+    //var data = JSON.parse(cursor);
+    
 
 
 
