@@ -1,24 +1,30 @@
 const { MongoClient } = require("mongodb");
+require('dotenv').config();
+
 
 // Replace the uri string with your MongoDB deployment's connection string.
-const uri = "mongodb+srv://${.env.ADMIN_USERNAME}:{.env.ADMIN_PASSWORD}@cluster0.gnworbx.mongodb.net/?retryWrites=true&w=majority";
-
+const uri = "mongodb+srv://"+process.env.ADMIN_USERNAME+":"+process.env.ADMIN_PASSWORD+"@cluster0.gnworbx.mongodb.net/?retryWrites=true&w=majority";
+console.log(uri)
 
 //Need to write class data in, then read it 
+
 
 const client = new MongoClient(uri);
 async function run() {
   try {
     await client.connect();
 
-    const db = client.db("NNHS_DATA");
-    const coll = db.collection("Class_Data");
+    const database = client.db("NNHS_DATA");
+    console.log(database);
+    const coll = database.collection("DATA");
 
-    db.coll.insert([
-      {
-      class: "Software Engineering", room: 123, teacher: "Mr. Schmit"
-      }
-    ]);
+    const docs = [{
+      class: "Computer Programming", room: 121, teacher: "Mr. Callaghan"
+      }];
+
+
+    const result = await coll.insertMany(docs);
+
 
     
 
