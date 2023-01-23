@@ -14,25 +14,11 @@ let repDataTester = [
 // FIXME: update with the created classes
 // Currently [Period, Class, Room, Co-Teacher]
 
-
-document.getElementById("teacherName").innerHTML = teacherTester;
+//console.log(repDataTester);
+// This version lists it out in the same way that repDataTester is currently formatted above
 
 for(var i = 0 ; i < repDataTester.length ; i++){
     var repDataRows = repDataTester[i];
-    
-    //Java format, use   document.getElementById(id).innerHTML = ____;
-    //System.out.println(repDataRows.period);
-    //System.out.println(repDataRows.class);
-    //System.out.println(repDataRows.room);
-    //System.out.println(repDataRows.coTeacher);
-//https://stackoverflow.com/questions/6458128/accessing-javascript-variable-stored-in-an-array
-//https://stackoverflow.com/questions/35995273/how-to-run-html-file-using-node-js 
-//might help
+    console.log(`Period: ` + repDataRows.period + `\tClass: ` + repDataRows.class + `\tRoom: ` + repDataRows.room
+        + `\tCo-Teacher Name: ` + repDataRows.coTeacher);
 }
-/*
-document.getElementById("p1").innerHTML =
-document.getElementById("p2").innerHTML =
-document.getElementById("p4").innerHTML =
-document.getElementById("p7").innerHTML =
-document.getElementById("p8").innerHTML =
-*/
