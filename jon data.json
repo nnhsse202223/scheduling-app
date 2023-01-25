@@ -1,0 +1,569 @@
+[
+ {
+  "Course#,Business,Teachers,Room,Notes": "B10011,Introduction to Business,Jason Reid,\"128, 126, 120\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B10012,Introduction to Business,Jason Reid,\"128, 126, 120\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B100N1,Blended Intro to Business,Jason Reid,\"128, 126, 120\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B100N2,Blended Intro to Business,Jason Reid,\"128, 126, 120\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B12011,Tech Edge,\"Jen Betthauser"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Matt Callaghan\",\"121, 123\",Jen first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B12012,Tech Edge ,\"Jen Betthauser"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Matt Callaghan\",\"121, 123\",Jen first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B16011,Tech Edge +,\"Jen Betthauser"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Matt Callaghan\",\"121, 123\",Jen first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B16012,Tech Edge +,\"Jen Betthauser"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Matt Callaghan\",\"121, 123\",Jen first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B16021,Tech Edge +,\"Jen Betthauser"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Matt Callaghan\",\"121, 123\",Jen first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B16022,Tech Edge +,\"Jen Betthauser"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Matt Callaghan\",\"121, 123\",Jen first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B240B1-B2,Accounting 1,Terry Morenus,\"121, 123\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B260C1-C2,Honors Accounting,Terry Morenus,\"121, 123\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B30011,Marketing,\"Jen Betthauser"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Gene Nolan\",\"126, 128, 120\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B30012,Marketing,\"Jen Betthauser"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Gene Nolan\",\"126, 128, 120\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B34012,Advertising,\"Jen Betthauser"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Gene Nolan\",\"126, 128, 120\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B37011-12,Incubator,Gene Nolan,120,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B375G1-G2,ACCElerator,Gene Nolan,120,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B38011,Business Law,\"Jen Betthauser"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jason Reid\",\"126, 128, 120\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B38012,Business Law,\"Jen Betthauser"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jason Reid\",\"126, 128, 120\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B40011,International Business,Terry Morenus,\"126, 128, 120\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B40012,International Business,Terry Morenus,\"126, 128, 120\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B44011,Comp Programming 1,\"Geoff Schmit"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Matt Callaghan"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jen Betthauser"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jason Reid\",\"121, 123\",\"Matt first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jason second option\""
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B44012,Comp Programming 1,\"Geoff Schmit"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Matt Callaghan"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jen Betthauser"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jason Reid\",\"121,123\",\"Matt first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jason second option\""
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B46012,Comp Programming 2,\"Geoff Schmit"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Matt Callaghan"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jen Betthauser"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jason Reid\",\"121,123\",\"Matt first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jason second option\""
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B48012,Game Design,Matt Callaghan,114,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B52011,Web Page Design,\"Matt Callaghan"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jen Betthauser\",\"121,123\",Matt first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B54012,Adv. Web Page Design,\"Matt Callaghan"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jen Betthauser\",\"121,123\",Matt first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B560A1-A2,AP Computer Science ,\"Geoff Schmit"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Matt Callaghan\",\"121,123\",Geoff first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B580W1,Software Engineering ,\"Geoff Schmit"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Matt Callaghan\",\"121,123\",Geoff first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B590G2,Software Engineering 2,\"Geoff Schmit"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Matt Callaghan\",\"121,123\",Geoff first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B70011,Consumer Econ ,\"Terry Morenus"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Gene Nolan"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jen Betthauser"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jasmin Tuazon"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Angie Lewandowski"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Dana Klen"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Sara Willard"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jason Reid"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Ali Hillyer\",\"120, 126, 128, 119\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B70012,Consumer Econ ,\"Terry Morenus"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Gene Nolan"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jen Betthauser"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jasmin Tuazon"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Angie Lewandowski"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Dana Klen"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Sara Willard"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jason Reid"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Alli Hillyer\",\"120, 126, 128, 119\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B70021,Consumer Econ TT,\"Terry Morenus"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jen Betthauser"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jasmin Tuazon"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Dana Klen"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Sara Willard"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Alli Hillyer\",\"120, 126, 128, 119\",Terry first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B70022,Consumer Econ TT,\"Terry Morenus"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jen Betthauser"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jasmin Tuazon"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Dana Klen"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Sara Willard"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Alli Hillyer\",\"120, 126, 128, 119\",Terry first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B70091,Consumer Econ EL,Alli Hillyer,\"120, 126, 128, 119\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B70092,Consumer Econ EL,Alli Hillyer,\"120, 126, 128, 119\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B700M1,Online Consumer,\"Terry Morenus"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Alli Hillyer"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Angie Lewandowski\",125,Angie first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B700M2,Online Consumer,\"Terry Morenus"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Alli Hillyer"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Angie Lewandowski\",125,Angie first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B700N1,Blended Consumer,\"Sara Willard"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Angie Lewandowski\",\"120, 126, 128, 119\",Sara first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "B700N2,Blended Consumer,\"Sara Willard"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Angie Lewandowski\",\"120, 126, 128, 119\",Sara first option"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J11011,Plant Science,Dawn Ingram,132,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J13011,Food Science,Dawn Ingram,132,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J15012,Floral & Landscape Design,Dawn Ingram,132,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J17012,Aqua & Urban Food Prod.,Dawn Ingram,132,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J20011,Comp Animal 1,Dawn Ingram,132,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J20012,Comp Animal 1,Dawn Ingram,132,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J22012,Comp Animal 2,Dawn Ingram,132,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J23011-12,Vet Science,Dawn Ingram,132,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J30011,Graphics 1,Becky DiOrio,114,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J30012,Graphics 1,Becky DiOrio,114,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J32011,Graphics 2,Becky DiOrio,114,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J32012,Graphics 2,Becky DiOrio,114,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J34011,Graphics 3,Becky DiOrio,114,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J34012,Graphics 3,Becky DiOrio,114,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J420D1,Electronics,Dan Kischuk,138,\"Central teacher"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Would need to be first hour\""
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J420D2,Electronics,Dan Kischuk,138,\"Central teacher"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Would need to be first hour\""
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J450D1,ITS1,Matt Callaghan,138,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J450D2,ITS1,Matt Callaghan,138,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J470D2,ITS2,Matt Callaghan,138,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J490G1-G2,Cybersecurity,Geoff Schmit,138,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J50011,Workshop Elements,Henry Gleamza,134,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J50012,Workshop Elements,Henry Gleamza,134,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J53011,Workshop Studio,Henry Gleamza,134,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J55012,Geo in Construction,Henry Gleamza,134,\"2 period class"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Periods 4-5\""
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J57011,Drafting Studio 1,Becky DiOrio,115,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J57012,Drafting Studio 1,Becky DiOrio,115,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J57511-12,Drafting Studio 2,Becky DiOrio,138,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J59011,EDS,Jason Ryan,115/116,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J59012,EDS,Jason Ryan,115/116,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J64011-12,R&D,\"Jason Ryan"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Becky DiOrio"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Henry Gleamza\",115/116/134,\"Periods 2,3 or 6, 7"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "2 teachers in this class"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jason Ryan must be one of them\""
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J70011,Auto 1,Greg Ditch,139,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J70012,Auto 1,Greg Ditch,139,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J72011,Auto 2,Greg Ditch,139,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J72012,Auto 2,Greg Ditch,139,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "J74011-12,Auto 3,Greg Ditch,139,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F100D2,Fashion Merchandising,Angie Lewandowski,\"119,138\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F140D1,Fashion Design,Angie Lewandowski,119,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F140D2,Fashion Design,Angie Lewandowski,119,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F22011,Cul 1,\"Alli Hillyer"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jasmin Tuazon\",\"129, 130\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F22012,Cul 1,\"Alli Hillyer"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jasmin Tuazon\",\"129, 130\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F26011,Cul 2,\"Alli Hillyer"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jasmin Tuazon\",\"129, 130\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F26012,Cul 2,\"Alli Hillyer"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jasmin Tuazon\",\"129, 130\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F27011,Cul 3,Jasmin Tuazon,129,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F27012,Cul 3,Jasmin Tuazon,129,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F30011,Senior Foods,\"Alli Hillyer"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jasmin Tuazon"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Angie Lewandowski"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Dana Klen"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Sara Willard\",\"129, 130\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F30012,Senior Foods,\"Alli Hillyer"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Jasmin Tuazon"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Angie Lewandowski"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Dana Klen"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Sara Willard\",\"129, 130\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F34011,Interior Design,Alli Hillyer,138,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F42011,Human Growth and Dev,\"Dana Klen"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Sara Willard\",119,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F42012,Human Growth and Dev,\"Dana Klen"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Sara Willard\",119,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F460B1,ECE 1,Sara Willard,117,\"Periods 3, 4 or 6, 7"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "If 2 or 3 sections they should be all together"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "If 4 sections they should be 2, 3 and 6, 7\""
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F460B2,ECE 1,Sara Willard,117,\"Periods 3, 4 or 6, 7"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "If 2 or 3 sections they should be all together"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "If 4 sections they should be 2, 3 and 6, 7\""
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F500B2,ECE 2,Sara Willard,117,\"Periods 3, 4 or 6, 7"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "If 2 or 3 sections they should be all together"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "If 4 sections they should be 2, 3 and 6, 7\""
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F54011,Adult Living,Angie Lewandowski,\"120, 119, 126, 128, 138\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F54012,Adult Living,Angie Lewandowski,\"120, 119, 126, 128, 139\","
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F580D1,Intro to Teaching 1,Melissa Oskroba,126,\"Blocked class"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "periods 2-3\""
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F580D2,Intro to Teaching 2,Melissa Oskroba,126,\"Blocked class"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "periods 2-3\""
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F66011,Intro to Health Occ,\"Dana Klen"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Angie Lewandowski\",119,"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "F700D2,Health Occ,\"Dana Klen"
+ },
+ {
+  "Course#,Business,Teachers,Room,Notes": "Angie Lewandowski\",119,Blocked class periods 2-3"
+ }
+]
