@@ -1,11 +1,11 @@
-class Room
+class Room 
 {
     //constructor
-    constructor (type, room_no)
+    constructor (room_no, type)
     {
-        this.type = type;
         this.room_no = room_no;
-
+        this.type = type;
+        //JSON.stringify(this.type)
     }
 
 
@@ -19,6 +19,7 @@ class Room
     {
         return this.room_no;
     }
+
 }
 
 module.exports.Room = Room;
