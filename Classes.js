@@ -5,6 +5,7 @@ class Classes
     {
         this.name = name;
         this.type = type;
+        //JSON.stringify(this.type);
     }
     
     

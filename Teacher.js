@@ -5,6 +5,7 @@ class Teacher
     {
         this.name = name;
         this.type = type;
+        //JSON.stringify(this.type);
     }
 
     
