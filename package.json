@@ -1,0 +1,19 @@
+{
+  "name": "scheduling-app",
+  "version": "1.0.0",
+  "description": "The repository for the scheduling app.",
+  "main": "Classes.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nnhsse202223/scheduling-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nnhsse202223/scheduling-app/issues"
+  },
+  "homepage": "https://github.com/nnhsse202223/scheduling-app#readme"
+}
