@@ -4,7 +4,7 @@ let fs = require('fs');
 
 // let json = csvToJson.parseSubArray(',',',').getJsonFromCsv('CustomClassData.csv');
 let fileOutputName = 'data.json';
-let fileInputName = 'classDataBackup.csv'
+let fileInputName = '/Users/amnguyen2/Desktop/scheduling-app/CustomClassData.csv'
 
 let json = csvToJson.getJsonFromCsv(fileInputName);
 for(let i=0; i<json.length;i++){
