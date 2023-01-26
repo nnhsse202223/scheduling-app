@@ -4,15 +4,19 @@ let fs = require('fs');
 
 // let json = csvToJson.parseSubArray(',',',').getJsonFromCsv('CustomClassData.csv');
 let fileOutputName = 'data.json';
-let fileInputName = '/Users/amnguyen2/Desktop/scheduling-app/CustomClassData.csv'
+let fileInputName = 'CustomClassData.csv'
 
-let json = csvToJson.getJsonFromCsv(fileInputName);
+let json = csvToJson.parseSubArray('*','|').getJsonFromCsv(fileInputName);
 for(let i=0; i<json.length;i++){
    console.log(json[i]);
 }
 
 
-//console.log(json.toString);
 //json = JSON.stringify(json);
-//fs.writefile("data.json",json);
+//fs.writeFile("data.json",json,(err) => err && console.error(err));
+
+
+
+//need to add teacher subarrays, class types facs, tech
+
 

@@ -1,9 +1,9 @@
-Course;Business;Teachers;Room;Notes
+CourseID;Class;Teachers;Room;Notes
 B10011;Introduction to Business;Jason Reid;128| 126| 120;
 B10012;Introduction to Business;Jason Reid;128| 126| 120;
 B100N1;Blended Intro to Business;Jason Reid;128| 126| 120;
 B100N2;Blended Intro to Business;Jason Reid;128| 126| 120;
-B12011;Tech Edge;Jen Betthauser| Matt Callaghan;121| 123;Jen first option
+B12011;Tech Edge;*Jen Betthauser| Matt Callaghan*;121| 123;Jen first option
 B12012;Tech Edge ;Jen Betthauser| Matt Callaghan;121| 123;Jen first option
 B16011;Tech Edge +;Jen Betthauser| Matt Callaghan;121| 123;Jen first option
 B16012;Tech Edge +;Jen Betthauser| Matt Callaghan;121| 123;Jen first option
