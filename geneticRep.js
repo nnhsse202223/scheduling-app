@@ -3,22 +3,35 @@
         This includes the Teacher, Room, & Class classes
 */
 
-let teacherTester = 'Sissel';
-let repDataTester = [
-    {period: 1, class: 'Programming 1', room: '123', coTeacher: null},
-    {period: 2, class: 'Programming 1', room: '123', coTeacher: null},
-    {period: 4, class: 'Programming 2', room: '123', coTeacher: null},
-    {period: 7, class: 'AP Com Sci', room: '121', coTeacher: null},
-    {period: 8, class: 'Consumer Ec', room: '128', coTeacher: 'Lynne'}
-];
-// FIXME: update with the created classes
-// Currently [Period, Class, Room, Co-Teacher]
+const {WorkingClass, test} = require("./WorkingClass.js");
+const {Room} = require("./Room.js");
+const {Teacher} = require("./Teacher.js");
+const {Classes} = require("./Classes.js");
+// OLD!
+// periods are arrays
+// within each period arrays are another array saying room, teacher, classes
 
-//console.log(repDataTester);
-// This version lists it out in the same way that repDataTester is currently formatted above
+// NEW!
+// 2d array, X is room numbers, Y is period
+// within each array value another array is held that states the teacher and class
 
-for(var i = 0 ; i < repDataTester.length ; i++){
-    var repDataRows = repDataTester[i];
-    console.log(`Period: ` + repDataRows.period + `\tClass: ` + repDataRows.class + `\tRoom: ` + repDataRows.room
-        + `\tCo-Teacher Name: ` + repDataRows.coTeacher);
+class GeneticRepresentation
+{
+    constructor(schedules, teachers)
+    {
+        this.teachersSchedulesArray = schedules;
+        this.teachersArray = teachers;
+
+        for(var i = 0 ; i < this.teachersArray.length ; i++){
+            
+        }
+    }
+    
+    represent()
+    {
+        for(var i = 0; i < this.teachersSchedulesArray.length; i++){
+            //
+        }
+        //return 
+    }
 }
