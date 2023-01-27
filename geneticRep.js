@@ -21,7 +21,9 @@ class GeneticRepresentation
     {
         this.teachersSchedulesArray = schedules;
         this.teachersArray = teachers;
+        this.returnString = "";
 
+        //check how array.sort() works for a 3d array
         for(var i = 0 ; i < this.teachersArray.length ; i++){
             
         }
@@ -30,7 +32,14 @@ class GeneticRepresentation
     represent()
     {
         for(var i = 0; i < this.teachersSchedulesArray.length; i++){
-            //
+            // For an entire period
+            for(var j = 0; j < this.teachersSchedulesArray[i].length ; j++){
+                // For each room
+                this.returnString += "Name: " + this.teachersSchedulesArray[i][j][0].teacher_name() +
+                    "\tClass: " + this.teachersSchedulesArray[i][j][1].class_name() +
+                    "\tRoom: " + this.teachersSchedulesArray[i][j];
+            }
+            this.returnString += "\n";
         }
         //return 
     }
