@@ -34,7 +34,7 @@ for(let i=0; i<json.length;i++){
 }
 
 
-for(let i=0; i<json.length;i++){
+for(let i=0; i<3;i++){
    console.log(json[i]);
 }
 

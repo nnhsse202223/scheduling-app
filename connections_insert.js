@@ -1,5 +1,6 @@
 const { MongoClient } = require("mongodb");
 require('dotenv').config();
+const data = require(''); //ADD JSON DATA PATH
 
 
 // Replace the uri string with your MongoDB deployment's connection string.
@@ -17,30 +18,15 @@ async function run() {
     const database = client.db("NNHS_DATA");
     const coll = database.collection("DATA");
 
-    /*const docs = [{
-      class: "Computer Programming", room: 121, teacher: "Mr. Callaghan"
-      }];
-      */
-    const cursor = coll.find();
-    await cursor.forEach( function(myDoc) {var data = myDoc.class });
-    console.log(data);
-
-
-
-
-
-
-
-
-
-
-    //var data = JSON.parse(cursor);
     
-
-
-
- 
+    //const cursor = coll.find();
+    //await cursor.forEach( function(myDoc) {var data = myDoc.class });
+    //console.log(data);
     
+    const result = await coll.insertMany(data);
+
+    // display the results of your operation
+    console.log(result.insertedIds);
 
   } finally {
     // Ensures that the client will close when you finish/error
