@@ -31,14 +31,19 @@ class Room
         return this.classer;
     }
 
-    set room_teach(teach)
+    room_teach(teach)
     {
         this.teacher = teach;
     }
 
-    set room_classy(clash)
+    room_classy(clash)
     {
         this.classer = clash;
+    }
+
+    toString()
+    {
+        return "    Room " + this.room_no + ":  Teacher: " + this.room_teacher + "  Class: " + this.room_class;
     }
 
 }

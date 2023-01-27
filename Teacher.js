@@ -19,6 +19,12 @@ class Teacher
     {
         return this.type;
     }
+
+    toString()
+    {
+        return this.name;
+    }
+
 }
 
 module.exports.Teacher = Teacher;
