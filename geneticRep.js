@@ -35,9 +35,9 @@ class GeneticRepresentation
             // For an entire period
             for(var j = 0; j < this.teachersSchedulesArray[i].length ; j++){
                 // For each room
-                this.returnString += "Name: " + this.teachersSchedulesArray[i][j][0].teacher_name() +
-                    "\tClass: " + this.teachersSchedulesArray[i][j][1].class_name() +
-                    "\tRoom: " + this.teachersSchedulesArray[i][j];
+                this.returnString += "Name: " + this.teachersSchedulesArray[i][j].room_teacher() +
+                    "\tClass: " + this.teachersSchedulesArray[i][j].room_class() +
+                    "\tRoom: " + this.teachersSchedulesArray[i][j].room_number();
             }
             this.returnString += "\n";
         }
