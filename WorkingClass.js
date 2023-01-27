@@ -5,60 +5,83 @@ class WorkingClass
         this.roomArray = roomArray;
         this.teacherArray = teacherArray;
         this.classArray = classArray;
-        this.myFirstPeriodArray;
-        this.mySecondPeriodArray;
-        this.myThirdPeriodArray;
-        this.scheduleArray;
+        this.myClassPeriodArray = [];
+        this.scheduleArray = [];
         this.fitness_value = 0;
+        this.maxfitness = 0;
 
-        this.block1;
-        this.block2;
-        this.block3;
-        this.block4;
-        this.block5;
-        this.block6;
-        this.block7;
-        this.block8;
-        this.block9;
+        this.block;
 
-        this.randomMutate();
+        this.initialGeneration();
     }
 
 
-    randomMutate()
+    printer(array_thing)
     {
-        this.block1 = [this.roomArray[0], this.teacherArray[0], this.classArray[0]];
-        this.block2 = [this.roomArray[1], this.teacherArray[1], this.classArray[1]];
-        this.block3 = [this.roomArray[2], this.teacherArray[2], this.classArray[2]];
-        this.block4 = [this.roomArray[0], this.teacherArray[0], this.classArray[3]];
-        this.block5 = [this.roomArray[1], this.teacherArray[1], this.classArray[4]];
-        this.block6 = [this.roomArray[2], this.teacherArray[2], this.classArray[5]];
-        this.block7 = [this.roomArray[0], this.teacherArray[0], this.classArray[6]];
-        this.block8 = [this.roomArray[1], this.teacherArray[1], this.classArray[7]];
-        this.block9 = [this.roomArray[2], this.teacherArray[2], this.classArray[8]];
-
-        this.myFirstPeriodArray = [this.block1, this.block2, this.block3];
-        this.mySecondPeriodArray = [this.block4, this.block5, this.block6];
-        this.myThirdPeriodArray = [this.block7, this.block8, this.block9];
-
-        this.scheduleArray = [this.myFirstPeriodArray, this.mySecondPeriodArray, this.myThirdPeriodArray];
-        console.log(this.scheduleArray);
+        for (let i = 0; i < array_thing.length; i++)
+        {
+            console.log("Period " + (i+1) + ": " + array_thing[i]);
+        }
     }
 
+
+    /*
+        Make a random initial generation
+    */
+    initialGeneration()
+    {
+        for (let i = 0; i < this.roomArray.length; i++)
+        {
+            for (let j = 0; j < this.classArray.length/3; j++)
+                {
+                    this.block = [this.roomArray[j], this.teacherArray[j], this.classArray[3*j + i]];
+                    this.myClassPeriodArray.push(this.block);
+                }
+            this.scheduleArray.push(this.myClassPeriodArray);
+            this.myClassPeriodArray = [];
+        }
+        
+        this.printer(this.scheduleArray);
+
+        //for (let i = 0; i < this.scheduleArray.length; i++)
+        {
+            //console.log(this.scheduleArray[i]);
+        }
+    }
+
+    
+
+
+    /*
+        Checks if the rooms, teachers, and classes class_type matches and adds to the fitness value if it does.
+        The higher the fitness value, the better
+    */
     fitness(array_moment)
     {
-        if (array_moment[0][0][0].room_type === array_moment[0][0][1].teacher_type)
+        for(let i = 0; i < array_moment[0].length; i++)
         {
-            this.fitness_value++;
-        }
-        if (array_moment[0][0][0].room_type === (array_moment[0][0][2].class_type))
-        {
-            this.fitness_value++;
-        }
+            if (array_moment[0][i][0].room_type === array_moment[0][i][1].teacher_type)
+            {
+                this.fitness_value++;
+            }
+            this.maxfitness++;
 
+            if (array_moment[0][i][0].room_type === (array_moment[0][i][2].class_type))
+            {
+                this.fitness_value++;
+            }
+            this.maxfitness++;
+
+        }
+        //console.log("Room length: " + this.roomArray.length);
+        //console.log("Class length: " + this.classArray.length/3);
+        console.log("This is the percent that the fitness that is oogly=b00gly: " + (100* this.fitness_value/this.maxfitness) + "%");
+        console.log("Maximum fitness: " + this.maxfitness);
+        console.log("Below is the fitness value:")
         return this.fitness_value;
         //return 5;
     }
+
 }
 
 module.exports.WorkingClass = WorkingClass;
