@@ -9,11 +9,19 @@ class WorkingClass
         this.scheduleArray = [];
         this.fitness_value = 0;
         this.maxfitness = 0;
-        this.dup_class_array;
+        this.dupClassArray;
+        this.dupTeacherArray;
+        this.randomTeacherIndex;
+        this.randomClassIndex;
 
         this.block;
 
         this.initialGeneration();
+    }
+
+    rand(min, max) 
+    {
+        return Math.round(Math.random() * (max - min) + min);
     }
 
 
@@ -34,27 +42,30 @@ class WorkingClass
     initialGeneration()
     {
         
-        this.dup_class_array = this.classArray.slice();
-        console.log(this.dup_class_array);
 
         for (let j = 0; j < 8; j++)
         {
-            for (let i = 0, k = 0; i < this.roomArray.length, k < this.dup_class_array.length; i++, k++)
-            {
-                if (i > 2)
-                {}
-                else
-                {
-                    this.roomArray[i].room_teach(this.teacherArray[i]);
-                }
-                console.log(this.dup_class_array[3* j + i]);
-                this.roomArray[i].room_classy(this.dup_class_array[k]);
-                //console.log(j);
+            this.dupClassArray = this.classArray.slice();
+            this.dupTeacherArray = this.teacherArray.slice();
 
-                this.myClassPeriodArray.push(this.roomArray[i]);
+            for (let i = 0; i < this.roomArray.length; i++)
+            {
+               
+                
+                this.randomTeacherIndex = this.rand(0, this.dupTeacherArray.length - 1);
+                this.randomClassIndex = this.rand(0, this.dupClassArray.length - 1);
+                
+                
+                this.roomArray[i].room_teach(this.dupTeacherArray[this.randomTeacherIndex]);
+                this.dupTeacherArray = this.dupTeacherArray.splice(this.randomTeacherIndex, 1);
+
+                this.roomArray[i].room_classy(this.dupClassArray[this.randomClassIndex]);
+                this.dupClassrArray = this.dupClassArray.splice(this.randomClassIndex, 1);
+
+
+                this.myClassPeriodArray.push (this.roomArray[i]);
             }
             
-
             this.scheduleArray.push( this.myClassPeriodArray );
 
             this.myClassPeriodArray = [];
