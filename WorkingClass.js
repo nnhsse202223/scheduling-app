@@ -41,9 +41,7 @@ class WorkingClass
         {
             for (let i = 0, k = 0; i < this.roomArray.length, k < this.dup_class_array.length; i++, k++)
             {
-                if (i > 2)
-                {}
-                else
+                if (i <= 2)
                 {
                     this.roomArray[i].room_teach(this.teacherArray[i]);
                 }
@@ -92,12 +90,13 @@ class WorkingClass
     {
         for(let i = 0; i < array_moment[0].length; i++)
         {
-            if (array_moment[0][i].room_type === array_moment[0][i].room_teacher.teacher_type)
+            /*if (array_moment[0][i].room_type === array_moment[0][i].room_teacher.teacher_type)
             {
                 this.fitness_value++;
             }
             this.maxfitness++;
-
+            */
+           
             //if (array_moment[0][i].room_type === (array_moment[0][i].room_class.class_type))
             {
             //    this.fitness_value++;
