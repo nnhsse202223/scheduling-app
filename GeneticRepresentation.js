@@ -4,9 +4,7 @@
 */
 
 const {WorkingClass} = require("./WorkingClass.js");
-const {Room} = require("./Room.js");
-const {Teacher} = require("./Teacher.js");
-const {Classes} = require("./Classes.js");
+
 // OLD!
 // periods are arrays
 // within each period arrays are another array saying room, teacher, classes
@@ -26,13 +24,14 @@ class GeneticRepresentation
         this.returnString = "";
 
         //check how array.sort() works for a 3d array
-        for(var i = 0 ; i < this.teachersArray.length ; i++){
+        /*for(var i = 0 ; i < this.teachersArray.length ; i++){
             
-        }
+        }*/
     }
     
     represent()
     {
+        //this.returnString = "";
         for(var i = 0; i < this.teachersSchedulesArray.length; i++){
             // For an entire period
             for(var j = 0; j < this.teachersSchedulesArray[i].length ; j++){
@@ -47,3 +46,5 @@ class GeneticRepresentation
         return this.returnString;
     }
 }
+
+module.exports.GeneticRepresentation = GeneticRepresentation;
