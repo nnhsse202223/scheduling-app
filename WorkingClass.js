@@ -24,16 +24,16 @@ class WorkingClass
         return Math.round(Math.random() * (max - min) + min);
     }
 
-    printer(array_thing)
+    printer()
     {
-        for (let i = 0; i < array_thing.length; i++)
+        for (let i = 0; i < 8; i++)
         {
-            console.log("Period " + (i+1) + ": " + array_thing[i]);
+            console.log("Period " + (i+1) + ": " + this.scheduleArray[i]);
             console.log(" ");
         }
     }
 
-    getscheduleArray()
+    getScheduleArray()
     {
         return this.scheduleArray;
     }
@@ -55,19 +55,21 @@ class WorkingClass
                 this.randomClassIndex = this.rand(0, this.dupClassArray.length - 1);
 
                 this.roomArray[i].room_teach(this.dupTeacherArray[this.randomTeacherIndex]);
-                this.dupTeacherArray = this.dupTeacherArray.splice(this.randomTeacherIndex, 1);
+                this.dupTeacherArray.splice(this.randomTeacherIndex, 1);
 
                 this.roomArray[i].room_classy(this.dupClassArray[this.randomClassIndex]);
-                this.dupClassrArray = this.dupClassArray.splice(this.randomClassIndex, 1);
+                this.dupClassArray.splice(this.randomClassIndex, 1);
 
                 this.myClassPeriodArray.push(this.roomArray[i]);
             }
+            //console.log(" ******** ");
+        
+            this.scheduleArray.push( this.myClassPeriodArray );
 
-        this.scheduleArray.push( this.myClassPeriodArray );
-
-        this.myClassPeriodArray = [];
+            this.myClassPeriodArray = [];
+            //console.log(this.scheduleArray[j]);
         }
-        console.log(this.scheduleArray);
+        this.printer();
     }
 
     /*
@@ -89,7 +91,7 @@ class WorkingClass
             {
                 this.fitness_value++;
             }*/
-            this.maxfitness++;
+            this.maxfitness++;      //FIXME: Not reseting itself between calls
 
         }
         //console.log("Room length: " + this.roomArray.length);

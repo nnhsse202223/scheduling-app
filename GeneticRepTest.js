@@ -39,6 +39,9 @@ for(var i = 0 ; i < repDataTester.length ; i++){
 
 var wc = new WorkingClass(this.myRoomArray, this.myTeacherArray, this.myClassArray);
 wc.initialGeneration();
-this.schedule = wc.getScheduleArray;
-var representation = new GeneticRepresentation(this.schedule, this.myRoomArray, this.myTeacherArray, this.myClassArray);
+this.schedule = wc.getScheduleArray();
+var representation = new GeneticRepresentation(this.schedule, wc);
+console.log(representation.represent());
+
+representation.updateSchedules(this.schedule);
 console.log(representation.represent());

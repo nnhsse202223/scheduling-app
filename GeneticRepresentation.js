@@ -15,12 +15,10 @@ const {WorkingClass} = require("./WorkingClass.js");
 
 class GeneticRepresentation
 {
-    constructor(schedules, rooms, teachers, classes)
+    constructor(schedules, workingClass)
     {
         this.teachersSchedulesArray = schedules;
-        this.roomsArray = rooms;
-        this.teachersArray = teachers;
-        this.classesArray = classes;
+        this.workingClass = workingClass;
         this.returnString = "";
 
         //check how array.sort() works for a 3d array
@@ -29,8 +27,14 @@ class GeneticRepresentation
         }*/
     }
     
+    updateSchedules(schedules)
+    {
+        this.teachersSchedulesArray = schedules;
+    }
+
     represent()
     {
+        /*
         //this.returnString = "";
         for(var i = 0; i < this.teachersSchedulesArray.length; i++){
             // For an entire period
@@ -44,6 +48,9 @@ class GeneticRepresentation
             this.returnString += "\t\tFitness: " + wc.fitness() + "\n";
         }
         return this.returnString;
+        */
+       this.workingClass.printer();
+       console.log(this.workingClass.fitness(this.teachersSchedulesArray));
     }
 }
 
