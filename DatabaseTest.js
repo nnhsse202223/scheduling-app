@@ -55,4 +55,4 @@ class DatabaseTest
 var testDatabase = new DatabaseTest();
 
 var testObj = new WorkingClass(testDatabase.RoomArray, testDatabase.TeacherArray, testDatabase.ClassArray);
-console.log(testObj.fitness(testObj.scheduleArray));
+//console.log(testObj.fitness(testObj.scheduleArray));

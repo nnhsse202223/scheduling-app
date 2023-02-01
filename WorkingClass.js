@@ -25,11 +25,11 @@ class WorkingClass
     }
 
 
-    printer(array_thing)
+    printer()
     {
-        for (let i = 0; i < array_thing.length; i++)
+        for (let a = 0; a < 8; a++)
         {
-            console.log("Period " + (i+1) + ": " + array_thing[i]);
+            console.log("Period " + (a+1) + ": " + this.scheduleArray[a]);
             console.log(" ");
         }
     }
@@ -45,51 +45,60 @@ class WorkingClass
 
         for (let j = 0; j < 8; j++)
         {
-            this.dupClassArray = this.classArray.slice();
-            this.dupTeacherArray = this.teacherArray.slice();
+            //if (this.dupClassArray.length < this.roomArray.length)
+            {
+                this.dupClassArray = this.classArray.slice();
+            }
+            
+            //if (this.dupTeacherArray.length < this.roomArray.length)
+            {
+                this.dupTeacherArray = this.teacherArray.slice();
+            }
+/*
+            for (let i  = 0; i < this.roomArray.length; i++)
+            {
+                this.dupTeacherArray.sort();
+                this.dupClassArray.sort(); 
+                this.
+            }*/
 
+            
             for (let i = 0; i < this.roomArray.length; i++)
             {
-               
-                
+ 
                 this.randomTeacherIndex = this.rand(0, this.dupTeacherArray.length - 1);
                 this.randomClassIndex = this.rand(0, this.dupClassArray.length - 1);
                 
+                //console.log(this.dupTeacherArray);
+                //console.log(this.randomTeacherIndex);
                 
+
                 this.roomArray[i].room_teach(this.dupTeacherArray[this.randomTeacherIndex]);
-                this.dupTeacherArray = this.dupTeacherArray.splice(this.randomTeacherIndex, 1);
+                //console.log(this.roomArray[i].room_teacher);
+                this.dupTeacherArray.splice(this.randomTeacherIndex,1);
+            
 
                 this.roomArray[i].room_classy(this.dupClassArray[this.randomClassIndex]);
-                this.dupClassrArray = this.dupClassArray.splice(this.randomClassIndex, 1);
+                this.dupClassArray.splice(this.randomClassIndex, 1);
 
+                //console.log(this.roomArray[i]);
 
                 this.myClassPeriodArray.push (this.roomArray[i]);
             }
+
+            console.log(" ******** ");
             
             this.scheduleArray.push( this.myClassPeriodArray );
 
             this.myClassPeriodArray = [];
-        }
 
-        /*
-        for (let i = 0; i < this.roomArray.length; i++)
-        {
-            for (let j = 0; j < this.classArray.length/3; j++)
-                {
-                    this.block = [this.roomArray[j], this.teacherArray[j], this.classArray[3*j + i]];
-                    this.myClassPeriodArray.push(this.block);
-                }
-            this.scheduleArray.push(this.myClassPeriodArray);
-            this.myClassPeriodArray = [];
+            console.log(this.scheduleArray[j]);
+
         }
-        */
+    
         
-        this.printer(this.scheduleArray);
+        this.printer();
 
-        //for (let i = 0; i < this.scheduleArray.length; i++)
-        {
-            //console.log(this.scheduleArray[i]);
-        }
     }
 
     
