@@ -1,3 +1,5 @@
+const {Schedule} = require("./Schedule.js");
+
 class WorkingClass
 {
     constructor (roomArray, teacherArray, classArray)
@@ -10,6 +12,7 @@ class WorkingClass
         this.multiverseArray = [];
         this.fitness_value = 0;
         this.maxfitness = 0;
+        this.mySchedule = new Schedule(undefined);
         this.dupClassArray = this.classArray.slice();
         this.dupTeacherArray = this.teacherArray.slice();
         this.randomTeacherIndex;
@@ -51,7 +54,7 @@ class WorkingClass
             for (let i = 0; i < this.roomArray.length; i++)
             {
  
-                this.randomTeacherIndex = this.rand(0, this.dupTeacherArray.length - 1);
+            this.randomTeacherIndex = this.rand(0, this.dupTeacherArray.length - 1);
                 this.randomClassIndex = this.rand(0, this.dupClassArray.length - 1);
 
                 this.roomArray[i].set_room_teacher(this.dupTeacherArray[this.randomTeacherIndex]);
@@ -71,6 +74,8 @@ class WorkingClass
             this.scheduleArray.push( this.myClassPeriodArray );
 
             this.myClassPeriodArray = [];
+
+            this.mySchedule.set_schedule(this.scheduleArray);
 
             //console.log(this.scheduleArray[j]); Backup printing method to display schedule
 
