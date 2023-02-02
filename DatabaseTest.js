@@ -56,3 +56,8 @@ var testDatabase = new DatabaseTest();
 
 var testObj = new WorkingClass(testDatabase.RoomArray, testDatabase.TeacherArray, testDatabase.ClassArray);
 console.log(testObj.fitness(testObj.scheduleArray));
+//for (let i = 0; i < 9; i++)
+{
+    //console.log("Schedule for initial number: " + i);
+    //console.log(testObj.fitness(testObj.multiverseArray[i]));
+}

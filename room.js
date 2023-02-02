@@ -6,7 +6,7 @@ class Room
         this.room_no = room_no;
         this.type = type;
         this.teacher;
-        this.classer;
+        this.class;
         //JSON.stringify(this.type)
     }
 
@@ -28,17 +28,17 @@ class Room
 
     get room_class()
     {
-        return this.classer;
+        return this.class;
     }
 
-    room_teach(teach)
+    set_room_teacher(new_teacher)
     {
-        this.teacher = teach;
+        this.teacher = new_teacher;
     }
 
-    room_classy(clash)
+    set_room_class(new_class)
     {
-        this.classer = clash;
+        this.class = new_class;
     }
 
     toString()

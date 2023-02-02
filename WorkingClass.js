@@ -7,30 +7,26 @@ class WorkingClass
         this.classArray = classArray;
         this.myClassPeriodArray = [];
         this.scheduleArray = [];
+        this.multiverseArray = [];
         this.fitness_value = 0;
         this.maxfitness = 0;
-        this.dupClassArray;
-        this.dupTeacherArray;
+        this.dupClassArray = this.classArray.slice();
+        this.dupTeacherArray = this.teacherArray.slice();
         this.randomTeacherIndex;
         this.randomClassIndex;
 
         this.block;
 
-        this.initialGeneration();
+        for (let i = 0; i < 2; i++)
+        {
+            this.multiverseArray.push(this.initialGeneration());
+        }
+        
     }
 
     rand(min, max) 
     {
         return Math.round(Math.random() * (max - min) + min);
-    }
-
-    printer()
-    {
-        for (let i = 0; i < 8; i++)
-        {
-            console.log("Period " + (i+1) + ": " + this.scheduleArray[i]);
-            console.log(" ");
-        }
     }
 
     getScheduleArray()
@@ -47,29 +43,45 @@ class WorkingClass
     {
         for (let j = 0; j < 8; j++)
         {
-            this.dupClassArray = this.classArray.slice();
-            this.dupTeacherArray = this.teacherArray.slice();
-
-            for (let i = 0; i < this.roomArray.length; i++){
+            if (this.dupClassArray.length < this.roomArray.length)
+            {
+                this.dupClassArray = this.classArray.slice();
+            }
+            
+            if (this.dupTeacherArray.length < this.roomArray.length)
+            {
+                this.dupTeacherArray = this.teacherArray.slice();
+            }
+            
+            for (let i = 0; i < this.roomArray.length; i++)
+            {
+ 
                 this.randomTeacherIndex = this.rand(0, this.dupTeacherArray.length - 1);
                 this.randomClassIndex = this.rand(0, this.dupClassArray.length - 1);
 
-                this.roomArray[i].room_teach(this.dupTeacherArray[this.randomTeacherIndex]);
-                this.dupTeacherArray.splice(this.randomTeacherIndex, 1);
+                this.roomArray[i].set_room_teacher(this.dupTeacherArray[this.randomTeacherIndex]);
+                this.dupTeacherArray.splice(this.randomTeacherIndex,1);
 
-                this.roomArray[i].room_classy(this.dupClassArray[this.randomClassIndex]);
+                this.roomArray[i].set_room_class(this.dupClassArray[this.randomClassIndex]);
                 this.dupClassArray.splice(this.randomClassIndex, 1);
 
-                this.myClassPeriodArray.push(this.roomArray[i]);
+
+                this.myClassPeriodArray.push (this.roomArray[i]);
+
+                console.log("Period " + (j+1) + ": Room: " + this.myClassPeriodArray[i].room_number + ", Teacher: "+ this.myClassPeriodArray[i].room_teacher +", Class: " +this.myClassPeriodArray[i].room_class);
             }
-            //console.log(" ******** ");
-        
+
+            console.log(" ******** ");
+            
             this.scheduleArray.push( this.myClassPeriodArray );
 
             this.myClassPeriodArray = [];
-            //console.log(this.scheduleArray[j]);
+
+            //console.log(this.scheduleArray[j]); Backup printing method to display schedule
+
         }
-        this.printer();
+
+
     }
 
     /*
