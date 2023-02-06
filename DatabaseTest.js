@@ -55,10 +55,13 @@ class DatabaseTest
 }
 var testDatabase = new DatabaseTest();
 
+console.log("BEGINNING TESTING");
+console.log("-----------------");
+
 var testObj = new WorkingClass(testDatabase.RoomArray, testDatabase.TeacherArray, testDatabase.ClassArray);
-console.log(testObj.fitness(testObj.multiverseArray[8].schedule));
-for (let i = 0; i < 9; i++)
+for (let i = 0; i < testObj.multiverseArray.length; i++)
 {
-    //console.log("Schedule for initial number: " + i);
-    //console.log(testObj.fitness(testObj.multiverseArray[i].schedule));
+    console.log("Fitness for Schedule number: " + (i+1));
+    console.log(testObj.fitness(testObj.multiverseArray[i].schedule));
+    console.log(' ');
 }
