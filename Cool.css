@@ -15,7 +15,7 @@ button {
   border-radius: 5px;
   border: none;
   box-shadow: 0px 0px 30px 0px black;
-  color: #eeeeee;
+  color: #ffffff;
   background: #0c339e;
   cursor: pointer;
 }
@@ -38,9 +38,9 @@ button:active
   width: 120px;
   height: 120px;
   margin: -76px 0 0 -76px;
-  border: 16px solid #f3f3f3;
+  border: 16px solid #ffffff;
   border-radius: 50%;
-  border-top: 16px solid #3498db;
+  border-top: 16px solid #0c339e;
   -webkit-animation: spin 2s linear infinite, fadeIn 2s;
   animation: spin 2s linear infinite, fadeIn 2s;
 }
