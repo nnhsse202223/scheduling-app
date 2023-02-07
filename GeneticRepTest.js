@@ -7,6 +7,7 @@ const {Room} = require("./Room.js");
 const {Teacher} = require("./Teacher.js");
 const {Classes} = require("./Classes.js");
 const {GeneticRepresentation} = require("./GeneticRepresentation.js");
+const {Schedule} = require("./Schedule.js");
 
 this.room1 = new Room(129, "FACS");
 this.room2 = new Room(130, "FACS");
@@ -27,21 +28,16 @@ this.myRoomArray = [this.room1, this.room2, this.room3];
 this.myTeacherArray = [this.teacher1, this.teacher2, this.teacher3];
 this.myClassArray = [this.class1, this.class2, this.class3, this.class4, this.class5, this.class6, this.class7, this.class8, this.class9];
 
-//console.log(repDataTester);
-// This version lists it out in the same way that repDataTester is currently formatted above
-
-/*
-for(var i = 0 ; i < repDataTester.length ; i++){
-    var repDataRows = repDataTester[i];
-    console.log(`Period: ` + repDataRows.period + `\tClass: ` + repDataRows.class + `\tRoom: ` + repDataRows.room
-        + `\tCo-Teacher Name: ` + repDataRows.coTeacher);
-}*/
+//console.log(this.myRoomArray);
+//console.log(this.myTeacherArray);
+//console.log(this.myClassArray);
 
 var wc = new WorkingClass(this.myRoomArray, this.myTeacherArray, this.myClassArray);
 wc.initialGeneration();
-this.schedule = wc.getScheduleArray();
-var representation = new GeneticRepresentation(this.schedule, wc);
-console.log(representation.represent());
+var schedule = new Schedule(wc.scheduleArray);
+var representation = new GeneticRepresentation(schedule, wc);
+//console.log(this.representation.represent());
+representation.represent();
 
-representation.updateSchedules(this.schedule);
-console.log(representation.represent());
+//representation.updateSchedules(this.schedule);
+//console.log(representation.represent());

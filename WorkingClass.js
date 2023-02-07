@@ -1,3 +1,5 @@
+const {Schedule} = require("./Schedule.js");
+
 class WorkingClass
 {
     constructor (roomArray, teacherArray, classArray)
@@ -10,6 +12,7 @@ class WorkingClass
         this.multiverseArray = [];
         this.fitness_value = 0;
         this.maxfitness = 0;
+        this.mySchedule = new Schedule(undefined);
         this.dupClassArray = this.classArray.slice();
         this.dupTeacherArray = this.teacherArray.slice();
         this.randomTeacherIndex;
@@ -28,12 +31,6 @@ class WorkingClass
     {
         return Math.round(Math.random() * (max - min) + min);
     }
-
-    getScheduleArray()
-    {
-        return this.scheduleArray;
-    }
-
 
     /*
         Make a random initial generation
@@ -55,7 +52,6 @@ class WorkingClass
             
             for (let i = 0; i < this.roomArray.length; i++)
             {
- 
                 this.randomTeacherIndex = this.rand(0, this.dupTeacherArray.length - 1);
                 this.randomClassIndex = this.rand(0, this.dupClassArray.length - 1);
 
@@ -68,21 +64,30 @@ class WorkingClass
 
                 this.myClassPeriodArray.push (this.roomArray[i]);
 
-                console.log("Period " + (j+1) + ": Room: " + this.myClassPeriodArray[i].room_number + ", Teacher: "+ this.myClassPeriodArray[i].room_teacher +", Class: " +this.myClassPeriodArray[i].room_class);
+                //console.log(this.myClassPeriodArray);
+
+                //console.log("Period " + (j+1) + ": Room: " + this.myClassPeriodArray[i].room_number + ", Teacher: "+ this.myClassPeriodArray[i].room_teacher +", Class: " +this.myClassPeriodArray[i].room_class);
             }
 
-            console.log(" ******** ");
+            //console.log(" ******** ");
             
             this.scheduleArray.push( this.myClassPeriodArray );
 
+            //console.log(this.myClassPeriodArray);
+            //console.log(this.scheduleArray[0]);
+
             this.myClassPeriodArray = [];
 
+            this.mySchedule.set_schedule(this.scheduleArray);
+            //console.log(this.mySchedule);
+            //console.log(this.mySchedule[1]);
             //console.log(this.scheduleArray[j]); Backup printing method to display schedule
 
         }
 
 
     }
+
 
     /*
         Checks if the rooms, teachers, and classes class_type matches and adds to the fitness value if it does.
@@ -92,18 +97,17 @@ class WorkingClass
     {
         for(let i = 0; i < array_moment[0].length; i++)
         {
-            /*if (array_moment[0][i].room_type === array_moment[0][i].room_teacher.teacher_type)
+            if (array_moment[0][i].room_type === array_moment[0][i].room_teacher.teacher_type)
             {
                 this.fitness_value++;
             }
             this.maxfitness++;
-            */
-           
-            /*if (array_moment[0][i].room_type === (array_moment[0][i].room_class.class_type))
+
+            //if (array_moment[0][i].room_type === (array_moment[0][i].room_class.class_type))
             {
-                this.fitness_value++;
-            }*/
-            this.maxfitness++;      //FIXME: Not reseting itself between calls
+            //    this.fitness_value++;
+            }
+            this.maxfitness++;
 
         }
         //console.log("Room length: " + this.roomArray.length);

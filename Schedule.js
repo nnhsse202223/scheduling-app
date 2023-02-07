@@ -15,3 +15,5 @@ class Schedule
         this.scheduleArray = array;
     }
 }
+
+module.exports.Schedule = Schedule;

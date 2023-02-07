@@ -2,6 +2,7 @@ const { WorkingClass} = require("./WorkingClass.js");
 const {Room} = require("./Room.js");
 const {Teacher} = require("./Teacher.js");
 const {Classes} = require("./Classes.js");
+const {Schedule} = require("./Schedule.js");
 //const {ClassPeriod} = require("./ClassPeriod.js");
 class DatabaseTest
 {
@@ -55,9 +56,9 @@ class DatabaseTest
 var testDatabase = new DatabaseTest();
 
 var testObj = new WorkingClass(testDatabase.RoomArray, testDatabase.TeacherArray, testDatabase.ClassArray);
-console.log(testObj.fitness(testObj.scheduleArray));
-//for (let i = 0; i < 9; i++)
+console.log(testObj.fitness(testObj.multiverseArray[8].schedule));
+for (let i = 0; i < 9; i++)
 {
     //console.log("Schedule for initial number: " + i);
-    //console.log(testObj.fitness(testObj.multiverseArray[i]));
+    //console.log(testObj.fitness(testObj.multiverseArray[i].schedule));
 }

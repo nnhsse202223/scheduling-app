@@ -4,6 +4,8 @@
 */
 
 const {WorkingClass} = require("./WorkingClass.js");
+const {Schedule} = require("./Schedule.js");
+const {Room} = require("./Room.js");
 
 // OLD!
 // periods are arrays
@@ -34,23 +36,29 @@ class GeneticRepresentation
 
     represent()
     {
-        /*
-        //this.returnString = "";
-        for(var i = 0; i < this.teachersSchedulesArray.length; i++){
+        this.schedule = this.teachersSchedulesArray.schedule;
+        //console.log(this.schedule[0]);
+        console.log(this.schedule.length);
+        var returnString = "";
+        for(var i = 0; i < this.schedule.length; i++){
             // For an entire period
-            for(var j = 0; j < this.teachersSchedulesArray[i].length ; j++){
+            console.log("Period " + (i+1));
+            for(var j = 0; j < this.schedule[i].length ; j++){
                 // For each room
-                this.returnString += "Name: " + this.teachersSchedulesArray[i][j].room_teacher() +
-                    "\tClass: " + this.teachersSchedulesArray[i][j].room_class() +
-                    "\tRoom: " + this.teachersSchedulesArray[i][j].room_number();
+                console.log(this.schedule[j]);
+
+                //look into how console.log prints in WorkingClass.js
+                returnString = "Name: " + this.schedule[j].room_teacher() +
+                    "\tClass: " + this.schedule[j].room_class() +
+                    "\tRoom: " + this.schedule[j].room_number();
+                console.log(returnString);
             }
-            var wc = new WorkingClass(this.roomsArray, this.teachersArray, this.classesArray);
-            this.returnString += "\t\tFitness: " + wc.fitness() + "\n";
+            returnString = "\t\tFitness: " + this.workingClass.fitness(this.schedule) + "\n";
+            console.log(returnString);
         }
         return this.returnString;
-        */
-       this.workingClass.printer();
-       console.log(this.workingClass.fitness(this.teachersSchedulesArray));
+        //console.log(this.returnString);
+        
     }
 }
 
