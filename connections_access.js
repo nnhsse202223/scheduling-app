@@ -41,6 +41,7 @@ async function run() {
         }
       }
 
+      //Where if the array doesn't already have that teacher's name we add it.
       else{
         if(!(teacher_array.includes(element["Teachers"]))){
           teacher_array.push(element["Teachers"]);
@@ -68,6 +69,7 @@ async function run() {
     }
 
     //Printing out result arrays
+
     console.log(teacher_array);
     console.log(room_array);
     console.log(class_array);
