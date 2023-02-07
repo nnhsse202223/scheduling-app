@@ -1,0 +1,95 @@
+body {
+  background: linear-gradient(45deg, rgba(255,92,33,1) 0%, rgba(255,32,81,1) 33%, rgba(140,24,255,1) 67%, rgba(108,255,251,1) 100%);
+  background-size: 300% 300%;
+	animation: gradient 15s ease infinite;
+}
+
+button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 15rem;
+  width: 30rem;
+  font-size: 5rem;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0px 0px 30px 0px black;
+  color: #eeeeee;
+  background: #0c339e;
+  cursor: pointer;
+}
+
+button:hover
+{
+  background: #072985;
+}
+
+button:active
+{
+  background: #0a3abe;
+}
+
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  margin: -76px 0 0 -76px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  -webkit-animation: spin 2s linear infinite, fadeIn 2s;
+  animation: spin 2s linear infinite, fadeIn 2s;
+}
+
+#download {
+  animation: fadeIn 2s;
+  -webkit-animation: fadeIn 2s;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-webkit-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@-webkit-keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
