@@ -1,11 +1,14 @@
 <html>  
 <head>  
-<title> Download CSV file </title>  
-</head>  
-<script src="CSVtest.js">  
-</script>    
+<title> Download Schedule </title>
+<script src="Genetic.js"></script>    
+<script src="CSV.js"> </script>
+<script src="Loading.js"> </script>
+<link rel="stylesheet" href="haha.css">
+</head> 
 <body>
-<!-- create an HTML button to download the CSV file on click -->  
-<button onclick="downloadCSV()"> Download CSV </button>  
+    <button id="create" onclick="createCSV()"> Create Schedule </button>
+    <div style="display:none" id="loader"> </div>
+    <button style="display:none" id="download" onclick="downloadCSV()"> Download Schedule </button>
 </body>  
 </html>  
