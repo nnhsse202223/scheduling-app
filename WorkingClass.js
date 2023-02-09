@@ -7,24 +7,31 @@ class WorkingClass
         this.roomArray = roomArray;
         this.teacherArray = teacherArray;
         this.classArray = classArray;
-        this.myClassPeriodArray = [];
-        this.scheduleArray = [];
+        //this.myClassPeriodArray = [];
+        //this.scheduleArray = [];
         this.multiverseArray = [];
         this.fitness_value = 0;
         this.maxfitness = 0;
-        this.mySchedule = new Schedule();
-        this.dupClassArray = this.classArray.slice();
-        this.dupTeacherArray = this.teacherArray.slice();
-        this.randomTeacherIndex;
-        this.randomClassIndex;
+        //this.dupTeacherArray = this.teacherArray.slice();
+        //this.randomTeacherIndex;
+        //this.randomClassIndex;
 
         this.block;
 
+        console.log(this.multiverseArray);
         for (let i = 0; i < 2; i++)
         {
-            //console.log(this.initialGeneration());
-            this.multiverseArray.push(this.initialGeneration());
+            var mySchedule = this.initialGeneration();
+            console.log(mySchedule.toString());
+            if (i > 0){console.log(this.multiverseArray[0].schedule[0]);}
+            this.multiverseArray.push(mySchedule);
+            console.log(this.multiverseArray[0].schedule[0]);
+            console.log(this.multiverseArray);
         }
+
+        console.log(this.multiverseArray[0].schedule[0]);
+        console.log(" ");
+        console.log(this.multiverseArray[1].schedule[0]);
         
     }
 
@@ -45,55 +52,72 @@ class WorkingClass
     */
     initialGeneration()
     {
+        var scheduleArray1 = [];
+        var aSchedule = new Schedule([]);
+        var dupClassArray = this.classArray.slice();
+        var dupTeacherArray = this.teacherArray.slice();
+        var dupRoomArray = this.roomArray.slice();
+        var randomClassIndex  = 0;
+        var randomTeacherIndex = 0;
+        var myClassPeriodArray = [];
+
         for (let j = 0; j < 8; j++)
         {
-            if (this.dupClassArray.length < this.roomArray.length)
+            //Not enough classes to fil all rooms
+            if (dupClassArray.length < dupRoomArray.length)
             {
-                this.dupClassArray = this.classArray.slice();
+                dupClassArray = this.classArray.slice();
             }
             
-            if (this.dupTeacherArray.length < this.roomArray.length)
+            //Not enough teachers to fill all rooms
+            if (dupTeacherArray.length < dupRoomArray.length)
             {
-                this.dupTeacherArray = this.teacherArray.slice();
+                dupTeacherArray = this.teacherArray.slice();
             }
             
-            for (let i = 0; i < this.roomArray.length; i++)
+            
+            for (let i = 0; i < dupRoomArray.length; i++)
             {
  
-            this.randomTeacherIndex = this.rand(0, this.dupTeacherArray.length - 1);
-                this.randomClassIndex = this.rand(0, this.dupClassArray.length - 1);
+                randomTeacherIndex = this.rand(0, dupTeacherArray.length - 1);
+                randomClassIndex = this.rand(0, dupClassArray.length - 1);
 
-                this.roomArray[i].set_room_teacher(this.dupTeacherArray[this.randomTeacherIndex]);
-                this.dupTeacherArray.splice(this.randomTeacherIndex,1);
+                dupRoomArray[i].set_room_teacher(dupTeacherArray[randomTeacherIndex]);
+                dupTeacherArray.splice(randomTeacherIndex,1);
 
-                this.roomArray[i].set_room_class(this.dupClassArray[this.randomClassIndex]);
-                this.dupClassArray.splice(this.randomClassIndex, 1);
+                dupRoomArray[i].set_room_class(dupClassArray[randomClassIndex]);
+                dupClassArray.splice(randomClassIndex, 1);
 
 
-                this.myClassPeriodArray.push (this.roomArray[i]);
+                myClassPeriodArray  = dupRoomArray.slice();
 
                 //NOTE: KEEP THE LINE BELOW, THIS IS USED TO VIEW THE SCHEDULE!!!!!
-                console.log("Period " + (j+1) + ": Room: " + this.myClassPeriodArray[i].room_number + ", Teacher: "+ this.myClassPeriodArray[i].room_teacher +", Class: " +this.myClassPeriodArray[i].room_class);
+                console.log("Period " + (j+1) + ": Room: " + myClassPeriodArray[i].room_number + ", Teacher: "+ myClassPeriodArray[i].room_teacher +", Class: " +myClassPeriodArray[i].room_class);
             }
 
             //NOTE: KEEP FOR ORGANIZATION
             console.log(" ******** ");
-            
-            this.scheduleArray.push( this.myClassPeriodArray );
 
-            this.myClassPeriodArray = [];
+            //console.log(myClassPeriodArray[0]);
+            //Investigate if slice makes a copy of an array w/o references
+            var copyBecauseCodeDoesntWork = myClassPeriodArray.slice();
+            scheduleArray1.push(copyBecauseCodeDoesntWork);
+
+            myClassPeriodArray = [];
+            copyBecauseCodeDoesntWork = [];
+            //myClassPeriodArray.splice(0,myClassPeriodArray.length);
 
             
 
             //console.log(this.scheduleArray[j]); Backup printing method to display schedule
         }
 
-        this.mySchedule.set_schedule(this.scheduleArray);
+        aSchedule.set_schedule(scheduleArray1);
 
-        this.scheduleArray = [];
+        // scheduleArray1.length = 0;
 
         console.log("\n\n========================================\n========================================\n\n");
-        return this.mySchedule;
+        return aSchedule;
     }
 
     
@@ -113,8 +137,11 @@ class WorkingClass
         {
             for(let i = 0; i < array_moment[j].length; i++)
             {
-                //console.log(array_moment[j][i].room_type);
-                //console.log(array_moment[j][i].room_teacher.teacher_type);
+                // console.log("Period: " + (j+1) + ", Room: " + array_moment[j][i].room_no);
+                // console.log(array_moment[j][i].room_type);
+                // console.log(array_moment[j][i].room_teacher.teacher_type);
+                // console.log(array_moment[j][i].room_type === array_moment[j][i].room_teacher.teacher_type)
+                // console.log("88888888888888888888888")
                 if (array_moment[j][i].room_type === array_moment[j][i].room_teacher.teacher_type)
                 {
                     this.fitness_value++;
@@ -128,6 +155,8 @@ class WorkingClass
                 //this.maxfitness++;
 
             }
+            //console.log("lego my ego");
+            //console.log(" ");
         }
         //console.log("Room length: " + this.roomArray.length);
         //console.log("Class length: " + this.classArray.length/3);

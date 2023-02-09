@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/nnhsse202223/scheduling-app/issues"
   },
-  "homepage": "https://github.com/nnhsse202223/scheduling-app#readme"
+  "homepage": "https://github.com/nnhsse202223/scheduling-app#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "mongodb": "^5.0.1"
+  }
 }
