@@ -3,10 +3,6 @@
         This includes the Teacher, Room, & Class classes
 */
 
-const {WorkingClass} = require("./WorkingClass.js");
-const {Schedule} = require("./Schedule.js");
-const {Room} = require("./Room.js");
-
 // OLD!
 // periods are arrays
 // within each period arrays are another array saying room, teacher, classes
@@ -36,29 +32,23 @@ class GeneticRepresentation
 
     represent()
     {
-        this.schedule = this.teachersSchedulesArray.schedule;
-        //console.log(this.schedule[0]);
-        console.log(this.schedule.length);
-        var returnString = "";
-        for(var i = 0; i < this.schedule.length; i++){
-            // For an entire period
-            console.log("Period " + (i+1));
-            for(var j = 0; j < this.schedule[i].length ; j++){
-                // For each room
-                console.log(this.schedule[j]);
-
-                //look into how console.log prints in WorkingClass.js
-                returnString = "Name: " + this.schedule[j].room_teacher() +
-                    "\tClass: " + this.schedule[j].room_class() +
-                    "\tRoom: " + this.schedule[j].room_number();
-                console.log(returnString);
-            }
-            returnString = "\t\tFitness: " + this.workingClass.fitness(this.schedule) + "\n";
-            console.log(returnString);
-        }
-        return this.returnString;
-        //console.log(this.returnString);
         
+        this.schedule = this.teachersSchedulesArray.schedule;
+        for(var period = 0; period < 8; period++){
+            // For an entire period
+            console.log("Period " + (period+1));
+            for(var i = 0; i < this.schedule[period].length ; i++){
+                // For each room
+
+                //only pulls from the final period (8)
+                console.log("Name: " + this.schedule[period][i].room_teacher +
+                    "\t\tClass: " + this.schedule[period][i].room_class +
+                    "\t\tRoom: " + this.schedule[period][i].room_number);
+            }
+            console.log();
+        }
+
+        console.log("\t\tFitness: " + this.workingClass.fitness(this.schedule) + "\n");
     }
 }
 

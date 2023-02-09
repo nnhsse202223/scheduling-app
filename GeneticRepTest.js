@@ -28,16 +28,12 @@ this.myRoomArray = [this.room1, this.room2, this.room3];
 this.myTeacherArray = [this.teacher1, this.teacher2, this.teacher3];
 this.myClassArray = [this.class1, this.class2, this.class3, this.class4, this.class5, this.class6, this.class7, this.class8, this.class9];
 
-//console.log(this.myRoomArray);
-//console.log(this.myTeacherArray);
-//console.log(this.myClassArray);
-
 var wc = new WorkingClass(this.myRoomArray, this.myTeacherArray, this.myClassArray);
 wc.initialGeneration();
-var schedule = new Schedule(wc.scheduleArray);
+var schedule = new Schedule(wc.mySchedule.schedule);
 var representation = new GeneticRepresentation(schedule, wc);
-//console.log(this.representation.represent());
 representation.represent();
 
-//representation.updateSchedules(this.schedule);
-//console.log(representation.represent());
+//wc.initialGeneration();
+//representation.updateSchedules(schedule);
+//representation.represent();

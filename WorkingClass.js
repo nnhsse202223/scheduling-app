@@ -64,23 +64,23 @@ class WorkingClass
 
                 this.myClassPeriodArray.push (this.roomArray[i]);
 
-                //console.log(this.myClassPeriodArray);
-
-                //console.log("Period " + (j+1) + ": Room: " + this.myClassPeriodArray[i].room_number + ", Teacher: "+ this.myClassPeriodArray[i].room_teacher +", Class: " +this.myClassPeriodArray[i].room_class);
+                console.log("Period " + (j+1) + ": Room: " + this.myClassPeriodArray[i].room_number + ", Teacher: "+ this.myClassPeriodArray[i].room_teacher +", Class: " +this.myClassPeriodArray[i].room_class);
             }
 
             //console.log(" ******** ");
             
             this.scheduleArray.push( this.myClassPeriodArray );
 
-            //console.log(this.myClassPeriodArray);
-            //console.log(this.scheduleArray[0]);
+            /*
+            console.log(this.myClassPeriodArray[0].room_class);
+            console.log(this.myClassPeriodArray[0].room_teacher);
+            console.log(this.myClassPeriodArray[1].room_class);
+            console.log(this.myClassPeriodArray[1].room_teacher);
+            */
 
             this.myClassPeriodArray = [];
 
             this.mySchedule.set_schedule(this.scheduleArray);
-            //console.log(this.mySchedule);
-            //console.log(this.mySchedule[1]);
             //console.log(this.scheduleArray[j]); Backup printing method to display schedule
 
         }
@@ -114,10 +114,11 @@ class WorkingClass
         //console.log("Class length: " + this.classArray.length/3);
         //console.log( array_moment[0][0].room_type );
         //console.log ( array_moment[0][0].room_teacher.teacher_type );
-        console.log("This is the percent that the fitness that is oogly=b00gly: " + (100* this.fitness_value/this.maxfitness) + "%");
+        console.log("This is the current fitness percent: " + (100* this.fitness_value/this.maxfitness) + "%");
         console.log("Maximum fitness: " + this.maxfitness);
         console.log("Below is the fitness value:")
         return this.fitness_value;
+        //BTW, the fitness value and maxfitness value isn't reset between runs, which i think causes unintended behavior
         //return 5;
     }
 }
