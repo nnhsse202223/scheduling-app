@@ -13,11 +13,14 @@ class DatabaseTest
         this.myClass1Array;
         this.myClass2Array;
         this.myClass3Array;
-        this.room1 = new Room(129, "FACS");
-        this.room2 = new Room(123, "Business");
-        this.room3 = new Room(121, "Tech");
-        this.teacher1 = new Teacher("AgentP", "FACS");
-        this.teacher2 = new Teacher("AngelP","Business");
+        //this.room1 = new Room(129, "FACS");
+        //this.room2 = new Room(123, "Business");
+        //this.room3 = new Room(121, "Tech");
+        this.room1 = 129;
+        this.room2 = 123;
+        this.room3 = 121;
+        this.teacher1 = new Teacher("FACTS", "FACS");
+        this.teacher2 = new Teacher("ENTERPUERNEISHP","Business");
         this.teacher3 = new Teacher("Schmitt", "Tech");
         this.class1 = new Classes("Senior Foods", "FACS");
         this.class2 = new Classes("Business Incubator", "Business");
@@ -59,9 +62,11 @@ console.log("BEGINNING TESTING");
 console.log("-----------------");
 
 var testObj = new WorkingClass(testDatabase.RoomArray, testDatabase.TeacherArray, testDatabase.ClassArray);
+console.log(`is schedule 1 == schedule 2: ${testObj.multiverseArray[0].schedule == testObj.multiverseArray[1].schedule}`)
 for (let i = 0; i < testObj.multiverseArray.length; i++)
 {
     console.log("Fitness for Schedule number: " + (i+1));
+    //console.log(testObj.multiverseArray[i].schedule.toString());
     console.log(testObj.fitness(testObj.multiverseArray[i].schedule));
     console.log(' ');
 }
