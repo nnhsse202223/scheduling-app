@@ -1,13 +1,23 @@
 const { MongoClient } = require("mongodb");
+const { WorkingClass} = require("./WorkingClass.js");
+const {Room} = require("./Room.js");
+const {Teacher} = require("./Teacher.js");
+const {Classes} = require("./Classes.js");
+const {Schedule} = require("./Schedule.js");
 require('dotenv').config();
 
 // Replace the uri string with your MongoDB deployment's connection string.
+//this code is all pretty simple, honestly, if you don't know any of the code, you shouldn't be in class, ngl.
+//^^ kidding btw ;)
 const uri = "mongodb+srv://"+process.env.ADMIN_USERNAME+":"+process.env.ADMIN_PASSWORD+"@cluster0.gnworbx.mongodb.net/?retryWrites=true&w=majority";
 console.log(uri);
-let json_data = []
+let json_data = [];
 let teacher_array = [];
 let room_array = [];
 let class_array = [];
+//let myTeacherArray = [];
+//let myRoomArray = [];
+//let myClassArray = [];
 
 
 
@@ -29,6 +39,8 @@ async function run() {
     //Separating data into just classes
     for (const element of json_data) {
       class_array.push(element["Class"]);
+      class_array.push(element["Class_Type"]);
+
     }
 
     //Separating data into just teachers
@@ -37,6 +49,7 @@ async function run() {
         for(const subArrayElement of element["Teachers"]) {
           if(!(teacher_array.includes(subArrayElement))){
             teacher_array.push(subArrayElement);
+            teacher_array.push(element["Class_Type"]);
           }
         }
       }
@@ -45,6 +58,7 @@ async function run() {
       else{
         if(!(teacher_array.includes(element["Teachers"]))){
           teacher_array.push(element["Teachers"]);
+          teacher_array.push(element["Class_Type"]);
         }
       }
 
@@ -56,6 +70,7 @@ async function run() {
         for(const subArrayElement of element["Room"]) {
           if(!(room_array.includes(subArrayElement))){
             room_array.push(subArrayElement);
+            room_array.push(element["Class_Type"]);
           }
         }
       }
@@ -63,6 +78,7 @@ async function run() {
       else{
         if(!(room_array.includes(element["Room"]))){
           room_array.push(element["Room"]);
+          room_array.push(element["Class_Type"]);
         }
       }
 
@@ -83,7 +99,28 @@ async function run() {
 run().catch(console.dir);
 
 
+function get_teacher_array(){
+  return teacher_array;
+}
+
+function get_class_array(){
+  return class_array;
+}
+
+function get_room_array(){
+  return room_array;
+}
+
+
+
 
 
 //json = JSON.stringify(json);
 //fs.writeFile("data.json",json,(err) => err && console.error(err));
+module.exports.get_teacher_array = get_teacher_array;
+module.exports.get_class_array = get_class_array;
+module.exports.get_room_array = get_room_array;
+module.exports.teacher_array = teacher_array;
+module.exports.class_array = class_array;
+module.exports.room_array = room_array;
+// module.exports.connections_access = connections_access;

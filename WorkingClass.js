@@ -26,7 +26,7 @@ class WorkingClass
 
         //this piece of code runs the generation a certain number of times and then puts them in the multiverse array
         console.log(this.multiverseArray);
-        for (let i = 0; i < 10; i++)
+        for (let i = 0; i < 2; i++)
         {
             var mySchedule = this.initialGeneration();
             //console.log(mySchedule.toString());

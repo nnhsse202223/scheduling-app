@@ -3,6 +3,12 @@ const {Room} = require("./Room.js");
 const {Teacher} = require("./Teacher.js");
 const {Classes} = require("./Classes.js");
 const {Schedule} = require("./Schedule.js");
+const {get_teacher_array} = require("./connections_access.js");
+const {get_class_array} = require("./connections_access.js");
+const {get_room_array} = require("./connections_access.js");
+const {teacher_array} = require("./connections_access.js");
+const {class_array} = require("./connections_access.js");
+const {room_array} = require("./connections_access.js");
 //const {ClassPeriod} = require("./ClassPeriod.js");
 class DatabaseTest
 {
@@ -13,12 +19,20 @@ class DatabaseTest
         this.myClass1Array;
         this.myClass2Array;
         this.myClass3Array;
+
+        for (let i = 0; i < get_teacher_array.length; i++)
+        {
+            
+        }
+
+
+        /*
         this.room1 = new Room(129, "FACS");
         this.room2 = new Room(123, "Business");
         this.room3 = new Room(121, "Tech");
-        //this.room1 = 129;
-        //this.room2 = 123;
-        //this.room3 = 121;
+        this.room1 = 129;
+        this.room2 = 123;
+        this.room3 = 121;
         this.teacher1 = new Teacher("FACTS", "FACS");
         this.teacher2 = new Teacher("ENTERPUERNEISHP","Business");
         this.teacher3 = new Teacher("Schmitt", "Tech");
@@ -31,6 +45,7 @@ class DatabaseTest
         this.class7 = new Classes("South East Asian Culinary", "FACS");
         this.class8 = new Classes("Blended Busniness Days", "Business");
         this.class9 = new Classes("Cybersecruity", "Tech");
+        */
 
 
         this.myRoomArray = [this.room1, this.room2, this.room3];
