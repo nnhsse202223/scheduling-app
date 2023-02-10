@@ -13,12 +13,12 @@ class DatabaseTest
         this.myClass1Array;
         this.myClass2Array;
         this.myClass3Array;
-        //this.room1 = new Room(129, "FACS");
-        //this.room2 = new Room(123, "Business");
-        //this.room3 = new Room(121, "Tech");
-        this.room1 = 129;
-        this.room2 = 123;
-        this.room3 = 121;
+        this.room1 = new Room(129, "FACS");
+        this.room2 = new Room(123, "Business");
+        this.room3 = new Room(121, "Tech");
+        //this.room1 = 129;
+        //this.room2 = 123;
+        //this.room3 = 121;
         this.teacher1 = new Teacher("FACTS", "FACS");
         this.teacher2 = new Teacher("ENTERPUERNEISHP","Business");
         this.teacher3 = new Teacher("Schmitt", "Tech");
