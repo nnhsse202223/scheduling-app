@@ -14,6 +14,21 @@ class Schedule
     {
         this.scheduleArray = array;
     }
+    
+    toString()
+    {
+        var stringer = "";
+        for (let i = 0; i < this.scheduleArray.length; i++)
+        {
+            for (let j  = 0; j < this.scheduleArray[i].length; j++)
+            {
+                stringer += ("Period " + (i+1) + ": Room: " + this.scheduleArray[i][j].room_number + ", Teacher: "+ this.scheduleArray[i][j].room_teacher +", Class: " +this.scheduleArray[i][j].room_class + " ");
+                //console.log("");                                                                                                                                    ");
+            }
+            //stringer+=("\n\n========================================\n========================================\n\n");                                                                                                                                                        ");
+        }
+        return stringer;
+    }
 }
 
 module.exports.Schedule = Schedule;
