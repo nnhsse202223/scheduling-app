@@ -1,7 +1,7 @@
 body {
-  background: linear-gradient(45deg, rgb(255, 166, 33) 0%, rgb(253, 18, 89) 33%, rgb(132, 25, 255) 67%, rgb(74, 152, 255) 100%);
+  background: linear-gradient(45deg, rgb(255, 166, 33) 0%, rgb(253, 18, 89) 33%, rgb(132, 25, 255) 67%, rgb(74, 204, 255) 100%);
   background-size: 300% 300%;
-  animation: gradient 15s ease infinite;
+  animation: gradient 60s ease infinite;
 }
 
 button {
