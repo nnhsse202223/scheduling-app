@@ -4,10 +4,15 @@ const {Room} = require("./Room.js");
 const {Teacher} = require("./Teacher.js");
 const {Classes} = require("./Classes.js");
 const {Schedule} = require("./Schedule.js");
+//const { DatabaseTest } = require("./DatabaseTest.js");
 require('dotenv').config();
 
 // Replace the uri string with your MongoDB deployment's connection string.
 //this code is all pretty simple, honestly, if you don't know any of the code, you shouldn't be in class, ngl.
+//冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 
+//冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 
+//冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 
+//冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 
 //^^ kidding btw ;)
 const uri = "mongodb+srv://"+process.env.ADMIN_USERNAME+":"+process.env.ADMIN_PASSWORD+"@cluster0.gnworbx.mongodb.net/?retryWrites=true&w=majority";
 console.log(uri);
@@ -22,8 +27,15 @@ let class_array = [];
 
 
 const client = new MongoClient(uri);
+
 async function run() {
   try {
+
+    let json_data = [];
+  let teacher_array = [];
+  let room_array = [];
+  let class_array = [];
+
     await client.connect();
 
     const database = client.db("NNHS_DATA");
@@ -96,22 +108,19 @@ async function run() {
     await client.close();
   }
 }
-run().catch(console.dir);
 
 
 function get_teacher_array(){
   return teacher_array;
 }
 
-function get_class_array(){
+function get_ccray(){
   return class_array;
 }
 
 function get_room_array(){
   return room_array;
 }
-
-
 
 
 
@@ -123,4 +132,5 @@ module.exports.get_room_array = get_room_array;
 module.exports.teacher_array = teacher_array;
 module.exports.class_array = class_array;
 module.exports.room_array = room_array;
+module.exports.run = run;
 // module.exports.connections_access = connections_access;
