@@ -164,9 +164,9 @@ class WorkingClass
             for(let i = 0; i < array_moment[j].length; i++)
             {
                 // console.log("Period: " + (j+1) + ", Room: " + array_moment[j][i].room_no);
-                // console.log(array_moment[j][i].room_type);
-                // console.log(array_moment[j][i].room_teacher.teacher_type);
-                // console.log(array_moment[j][i].room_type === array_moment[j][i].room_teacher.teacher_type)
+                // console.log(array_moment [j][i].room_type);
+                // console.log(array_moment [j][i].room_teacher.teacher_type);
+                // console.log(array_moment [j][i].room_type === array_moment[j][i].room_teacher.teacher_type)
                 // console.log("88888888888888888888888")
                 if (array_moment[j][i].room_type === array_moment[j][i].room_teacher.teacher_type)
                 {
@@ -186,16 +186,16 @@ class WorkingClass
                 }
                 this.maxfitness++;
             }
-            //console.log("lego my ego");
-            //console.log(" ");
+
         }
         //console.log("Room length: " + this.roomArray.length);
         //console.log("Class length: " + this.classArray.length/3);
-        //console.log( array_moment[0][0].room_type );
-        //console.log ( array_moment[0][0].room_teacher.teacher_type );
+        //console.log( array_moment [0][0].room_type );
+        //console.log ( array_moment [0][0].room_teacher.teacher_type );
+         
         console.log("This is the percent that the fitness that is oogly=b00gly: " + (100* this.fitness_value/this.maxfitness) + "%");
         console.log("Maximum fitness: " + this.maxfitness);
-        console.log("Below is the fitness value:")
+        console.log("Below is the fitness value:");
         return this.fitness_value;
     }
 

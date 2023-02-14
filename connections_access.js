@@ -9,33 +9,19 @@ require('dotenv').config();
 
 // Replace the uri string with your MongoDB deployment's connection string.
 //this code is all pretty simple, honestly, if you don't know any of the code, you shouldn't be in class, ngl.
-//冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 
-//冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 
-//冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 
-//冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 冰淇淋 
 //^^ kidding btw ;)
 const uri = "mongodb+srv://"+process.env.ADMIN_USERNAME+":"+process.env.ADMIN_PASSWORD+"@cluster0.gnworbx.mongodb.net/?retryWrites=true&w=majority";
-console.log(uri);
-let json_data = [];
-let teacher_array = [];
-let room_array = [];
-let class_array = [];
-//let myTeacherArray = [];
-//let myRoomArray = [];
-//let myClassArray = [];
-
-
+// console.log(uri);
 
 const client = new MongoClient(uri);
 
 async function run() {
+  var json_data = [];
+  var teacher_array = [];
+  var room_array = [];
+  var class_array = [];
+  
   try {
-
-    let json_data = [];
-  let teacher_array = [];
-  let room_array = [];
-  let class_array = [];
-
     await client.connect();
 
     const database = client.db("NNHS_DATA");
@@ -98,14 +84,16 @@ async function run() {
 
     //Printing out result arrays
 
-    console.log(teacher_array);
-    console.log(room_array);
-    console.log(class_array);
+    // console.log(teacher_array);
+    // console.log(room_array);
+    // console.log(class_array);
  
 
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();
+
+    return {class: class_array, teacher: teacher_array, room: room_array};
   }
 }
 
@@ -114,7 +102,7 @@ function get_teacher_array(){
   return teacher_array;
 }
 
-function get_ccray(){
+function get_class_array(){
   return class_array;
 }
 
@@ -129,8 +117,5 @@ function get_room_array(){
 module.exports.get_teacher_array = get_teacher_array;
 module.exports.get_class_array = get_class_array;
 module.exports.get_room_array = get_room_array;
-module.exports.teacher_array = teacher_array;
-module.exports.class_array = class_array;
-module.exports.room_array = room_array;
 module.exports.run = run;
 // module.exports.connections_access = connections_access;
