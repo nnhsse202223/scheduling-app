@@ -5,7 +5,7 @@ const {Classes} = require("./Classes.js");
 const {Schedule} = require("./Schedule.js");
 const {run} = require("./connections_access.js");
 
-class DatabaseTest
+class Database
 {
     constructor(roomArray, classArray, teacherArray)
     {
@@ -15,27 +15,34 @@ class DatabaseTest
         this.myRoomArray = [];
         this.myTeacherArray = [];
         this.myClassArray = [];
+        this.myClass1Array;
+        this.myClass2Array;
+        this.myClass3Array;
         
 
-        //this changes the json format to the Object-oriented format that is used in the rest of the code
-        for (let i = 0; i < this.theTeacherArray.length; i+=2)
+        for (let i = 0; i < /*teacherArray.length*/ this.theTeacherArray.length; i+=2)
         {
             var teacher = new Teacher(this.theTeacherArray[i], this.theTeacherArray[i+1]);
             this.myTeacherArray.push(teacher);
         }
 
-        for (let i = 0; i < this.theClassArray.length; i+=2)
+        for (let i = 0; i < /*classArray.length*/ this.theClassArray.length; i+=2)
         {
             var classes = new Classes(this.theClassArray[i], this.theClassArray[i+1]);
             this.myClassArray.push(classes);
         }
 
-        for (let i = 0; i < this.theRoomArray.length; i+=2)
+        for (let i = 0; i < /*roomArray.length*/ this.theRoomArray.length; i+=2)
         {
             var room = new Room(this.theRoomArray[i], this.theRoomArray[i+1]);
             this.myRoomArray.push(room);
         }
-   }
+        
+        //console.log(this.myRoomArray.sort());
+        // console.log(this.myClassArray);
+        // console.log(this.myTeacherArray);
+
+    }
 
     //made getter methods for each array
     get RoomArray()
@@ -58,10 +65,6 @@ class DatabaseTest
 
 console.log("BEGINNING TESTING");
 console.log("-----------------");
-
-
-
-//this actually runs the thing, so call the DatabaseTest.js to run all code
 var returned_data;
 (
     async ()=>{
@@ -72,16 +75,18 @@ var returned_data;
     let room_data = returned_data['room'];
     let class_data = returned_data['class'];
 
-    var testDatabase = new DatabaseTest(room_data, class_data, teacher_data);
+    var data = new Database(room_data, class_data, teacher_data);
+    
+    //this is a WorkingClass object that does the initiial generation within the constructor, so the initial gens of schedule are already set, you only need
+    //  call the mutation and eagle_purge method when you want
+    var theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
 
-    var testObj = new WorkingClass(testDatabase.RoomArray.sort(), testDatabase.TeacherArray, testDatabase.ClassArray);
-
-    console.log(`is schedule 1 == schedule 2: ${testObj.multiverseArray[0].schedule == testObj.multiverseArray[1].schedule}`)
-    for (let i = 0; i < testObj.multiverseArray.length; i++)
+    console.log(`is schedule 1 == schedule 2: ${theObj.multiverseArray[0].schedule == theObj.multiverseArray[1].schedule}`)
+    for (let i = 0; i < theObj.multiverseArray.length; i++)
     {
         console.log("Fitness for Schedule number: " + (i+1));
         //console.log(testObj.multiverseArray[i].schedule.toString());
-        console.log(testObj.fitness(testObj.multiverseArray[i].schedule));
+        console.log(theObj.fitness(theObj.multiverseArray[i].schedule));
         console.log(' ');
     }
 })

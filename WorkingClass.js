@@ -5,45 +5,25 @@ class WorkingClass
 {
     constructor (roomArray, teacherArray, classArray)
     {
-        //this should all be self explanatory
         this.roomArray = roomArray;
         this.teacherArray = teacherArray;
         this.classArray = classArray;
-        //this.myClassPeriodArray = [];
-        //this.scheduleArray = [];
         this.multiverseArray = [];
         this.fitness_value = 0;
         this.maxfitness = 0;
-        //this.dupTeacherArray = this.teacherArray.slice();
-        //this.randomTeacherIndex;
-        //this.randomClassIndex;
+        
 
         //this is to let us know what schedules are which, it is only for organization.
         this.scheduleNo = 1;
 
-        //not sure if I am using this
-        this.block;
-
         //this piece of code runs the generation a certain number of times and then puts them in the multiverse array
         console.log(this.multiverseArray);
-        for (let i = 0; i < 2; i++)
+        for (let i = 0; i < 100; i++)s
         {
             var mySchedule = this.initialGeneration();
             //console.log(mySchedule.toString());
-            //if (i > 0){console.log(this.multiverseArray[0].schedule[0]);}
             this.multiverseArray.push(mySchedule);
-            //console.log(this.multiverseArray[0].schedule[0]);
-            //console.log(this.multiverseArray);
-        }
-
-        //console.log(this.multiverseArray[0].schedule[0]);
-        //console.log(" ");
-        //console.log(this.multiverseArray[1].schedule[0]);
-        
-        //console.log(this.multiverseArray[0].schedule[0]);
-        //console.log(" ");
-        //console.log(this.multiverseArray[1].schedule[0]);
-
+        }    
     }
 
     /*
