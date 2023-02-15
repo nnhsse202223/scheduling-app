@@ -44,9 +44,9 @@ class DatabaseTest
             this.myRoomArray.push(room);
         }
         
-        // console.log(this.myRoomArray);
+        //console.log(this.myRoomArray.sort());
         // console.log(this.myClassArray);
-        // console.log(this.myTeacherArray);
+        // console.log(this.myTeacherArray);s
 
     }
 
@@ -85,7 +85,7 @@ var returned_data;
 
     var testDatabase = new DatabaseTest(room_data, class_data, teacher_data);
 
-    var testObj = new WorkingClass(testDatabase.RoomArray, testDatabase.TeacherArray, testDatabase.ClassArray);
+    var testObj = new WorkingClass(testDatabase.RoomArray.sort(), testDatabase.TeacherArray, testDatabase.ClassArray);
 
     console.log(`is schedule 1 == schedule 2: ${testObj.multiverseArray[0].schedule == testObj.multiverseArray[1].schedule}`)
     for (let i = 0; i < testObj.multiverseArray.length; i++)
