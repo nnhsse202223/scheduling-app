@@ -18,7 +18,7 @@ class WorkingClass
 
         //this piece of code runs the generation a certain number of times and then puts them in the multiverse array
         console.log(this.multiverseArray);
-        for (let i = 0; i < 100; i++)s
+        for (let i = 0; i < 5; i++)
         {
             var mySchedule = this.initialGeneration();
             //console.log(mySchedule.toString());
@@ -94,8 +94,6 @@ class WorkingClass
                 //dupRoomArray[i].set_room_class(dupClassArray[randomClassIndex]);
                 dupClassArray.splice(randomClassIndex, 1);
 
-                //myClassPeriodArray  = dupRoomArray.slice();
-                myClassPeriodArray.push(theRoom);
 
                 //myClassPeriodArray  = dupRoomArray.slice();
                 myClassPeriodArray.push(theRoom);
@@ -109,18 +107,17 @@ class WorkingClass
 
             //console.log(myClassPeriodArray[0]);
             //Investigate if slice makes a copy of an array w/o references
-            var copyBecauseCodeDoesntWork = myClassPeriodArray.slice();
-            scheduleArray1.push(copyBecauseCodeDoesntWork);
+            //var copyBecauseCodeDoesntWork = myClassPeriodArray.slice();
+            scheduleArray1.push(myClassPeriodArray.slice());
 
             myClassPeriodArray = [];
-            copyBecauseCodeDoesntWork = [];
+            //copyBecauseCodeDoesntWork = [];
             //myClassPeriodArray.splice(0,myClassPeriodArray.length);
 
             
 
             //console.log(this.scheduleArray[j]); Backup printing method to display schedule
         }
-        aSchedule.set_schedule(scheduleArray1);
 
         aSchedule.set_schedule(scheduleArray1);
 
@@ -131,7 +128,7 @@ class WorkingClass
     }
 
 
-     /*
+    /*
         Checks if the rooms, teachers, and classes class_type matches and adds to the fitness value if it does.
         The higher the fitness value, the better
         It also checks with the nax fitness, and gives it a percent value
@@ -175,6 +172,7 @@ class WorkingClass
         //console.log( array_moment [0][0].room_type );
         //console.log ( array_moment [0][0].room_teacher.teacher_type );
          
+        // Hey, can this be simplified for when its called by GeneticRepresentation? Just make it return the percentage maybe?
         console.log("This is the percent that the fitness that is oogly=b00gly: " + (100* this.fitness_value/this.maxfitness) + "%");
         console.log("Maximum fitness: " + this.maxfitness);
         console.log("Below is the fitness value:");

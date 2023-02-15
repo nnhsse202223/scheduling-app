@@ -17,12 +17,6 @@ class GeneticRepresentation
     {
         this.teachersSchedulesArray = schedules;
         this.workingClass = workingClass;
-        this.returnString = "";
-
-        //check how array.sort() works for a 3d array
-        /*for(var i = 0 ; i < this.teachersArray.length ; i++){
-            
-        }*/
     }
     
     updateSchedules(schedules)
@@ -32,23 +26,22 @@ class GeneticRepresentation
 
     represent()
     {
-        
-        this.schedule = this.teachersSchedulesArray.schedule;
-        for(var period = 0; period < 8; period++){
-            // For an entire period
-            console.log("Period " + (period+1));
-            for(var i = 0; i < this.schedule[period].length ; i++){
-                // For each room
+        for(var value = 0; value < this.teachersSchedulesArray.length; value++){
+            this.schedule = this.teachersSchedulesArray[value].schedule;
+            for(var period = 0; period < this.schedule.length; period++){
+                // For an entire period
+                console.log("Period " + (period+1));
+                for(var i = 0; i < this.schedule[period].length ; i++){
+                    // For each room
 
-                //only pulls from the final period (8)
-                console.log("Name: " + this.schedule[period][i].room_teacher +
-                    "\t\tClass: " + this.schedule[period][i].room_class +
-                    "\t\tRoom: " + this.schedule[period][i].room_number);
+                    console.log("Room: " + this.schedule[period][i].room_number +
+                        " \tTeacher: " + this.schedule[period][i].room_teacher +
+                        " \tClass: " + this.schedule[period][i].room_class);
+                }
+                console.log();
             }
-            console.log();
+            console.log("\tFitness: " + this.workingClass.fitness(this.schedule) + "\n");
         }
-
-        console.log("\t\tFitness: " + this.workingClass.fitness(this.schedule) + "\n");
     }
 }
 
