@@ -14,7 +14,6 @@ class Schedule
     {
         this.scheduleArray = array;
     }
-    
     toString()
     {
         var stringer = "";

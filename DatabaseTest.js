@@ -3,39 +3,54 @@ const {Room} = require("./Room.js");
 const {Teacher} = require("./Teacher.js");
 const {Classes} = require("./Classes.js");
 const {Schedule} = require("./Schedule.js");
+const {get_teacher_array} = require("./connections_access.js");
+const {get_class_array} = require("./connections_access.js");
+const {get_room_array} = require("./connections_access.js");
+const {teacher_array} = require("./connections_access.js");
+const {class_array} = require("./connections_access.js");
+const {room_array} = require("./connections_access.js");
+const {run} = require("./connections_access.js");
 //const {ClassPeriod} = require("./ClassPeriod.js");
 class DatabaseTest
 {
-    constructor()
+    constructor(roomArray, classArray, teacherArray)
     {
-        this.myRoomArray;
-        this.myTeacherArray;
+        this.theRoomArray = roomArray;
+        this.theClassArray = classArray;
+        this.theTeacherArray = teacherArray;
+        this.myRoomArray = [];
+        this.myTeacherArray = [];
+        this.myClassArray = [];
         this.myClass1Array;
         this.myClass2Array;
         this.myClass3Array;
-        this.room1 = new Room(129, "FACS");
-        this.room2 = new Room(123, "Business");
-        this.room3 = new Room(121, "Tech");
-        this.teacher1 = new Teacher("AgentP", "FACS");
-        this.teacher2 = new Teacher("AngelP","Business");
-        this.teacher3 = new Teacher("Schmitt", "Tech");
-        this.class1 = new Classes("Senior Foods", "FACS");
-        this.class2 = new Classes("Business Incubator", "Business");
-        this.class3 = new Classes("Software Engineering 1/2", "Tech");
-        this.class4 = new Classes("Italian Culinary", "FACS");
-        this.class5 = new Classes("Accounting 1", "Business");
-        this.class6 = new Classes("AP Computer Science A", "Tech");
-        this.class7 = new Classes("South East Asian Culinary", "FACS");
-        this.class8 = new Classes("Blended Busniness Days", "Business");
-        this.class9 = new Classes("Cybersecruity", "Tech");
+        
 
+        for (let i = 0; i < /*teacherArray.length*/ this.theTeacherArray.length; i+=2)
+        {
+            var teacher = new Teacher(this.theTeacherArray[i], this.theTeacherArray[i+1]);
+            this.myTeacherArray.push(teacher);
+        }
 
-        this.myRoomArray = [this.room1, this.room2, this.room3];
-        this.myTeacherArray = [this.teacher1, this.teacher2, this.teacher3];
-        this.myClassArray = [this.class1, this.class4, this.class7, this.class2, this.class5, this.class8, this.class3, this.class6, this.class9];
+        for (let i = 0; i < /*classArray.length*/ this.theClassArray.length; i+=2)
+        {
+            var classes = new Classes(this.theClassArray[i], this.theClassArray[i+1]);
+            this.myClassArray.push(classes);
+        }
+
+        for (let i = 0; i < /*roomArray.length*/ this.theRoomArray.length; i+=2)
+        {
+            var room = new Room(this.theRoomArray[i], this.theRoomArray[i+1]);
+            this.myRoomArray.push(room);
+        }
+        
+        //console.log(this.myRoomArray.sort());
+        // console.log(this.myClassArray);
+        // console.log(this.myTeacherArray);s
 
     }
-    //make getter methods for each array
+
+    //made getter methods for each array
     get RoomArray()
     {
         return this.myRoomArray;
@@ -53,12 +68,31 @@ class DatabaseTest
         return this.myClassPeriodArray;
     }
 }
-var testDatabase = new DatabaseTest();
 
-var testObj = new WorkingClass(testDatabase.RoomArray, testDatabase.TeacherArray, testDatabase.ClassArray);
-console.log(testObj.fitness(testObj.multiverseArray[8].schedule));
-for (let i = 0; i < 9; i++)
-{
-    //console.log("Schedule for initial number: " + i);
-    //console.log(testObj.fitness(testObj.multiverseArray[i].schedule));
-}
+console.log("BEGINNING TESTING");
+console.log("-----------------");
+var returned_data;
+(
+    async ()=>{
+    returned_data= await run();
+    }
+)().then(()=>{
+
+    // console.log(returned_data);
+    let teacher_data = returned_data['teacher'];
+    let room_data = returned_data['room'];
+    let class_data = returned_data['class'];
+
+    var testDatabase = new DatabaseTest(room_data, class_data, teacher_data);
+
+    var testObj = new WorkingClass(testDatabase.RoomArray.sort(), testDatabase.TeacherArray, testDatabase.ClassArray);
+
+    console.log(`is schedule 1 == schedule 2: ${testObj.multiverseArray[0].schedule == testObj.multiverseArray[1].schedule}`)
+    for (let i = 0; i < testObj.multiverseArray.length; i++)
+    {
+        console.log("Fitness for Schedule number: " + (i+1));
+        //console.log(testObj.multiverseArray[i].schedule.toString());
+        console.log(testObj.fitness(testObj.multiverseArray[i].schedule));
+        console.log(' ');
+    }
+})
