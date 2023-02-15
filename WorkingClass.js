@@ -18,7 +18,7 @@ class WorkingClass
 
         //this piece of code runs the generation a certain number of times and then puts them in the multiverse array
         console.log(this.multiverseArray);
-        for (let i = 0; i < 100; i++)s
+        for (let i = 0; i < 2; i++)
         {
             var mySchedule = this.initialGeneration();
             //console.log(mySchedule.toString());
@@ -41,9 +41,10 @@ class WorkingClass
         Makes a random initial generation
         HOW THIS WORKS:
         Our schedule is a 2D array of Room objects. These Rooms contain a type, a Teacher object, and a Classes (like what class is being taught) object. The Teacher and Class
-            object also has a type. The type is either currently FACS, Business, and Tech. It then takes a random teacher and class from our database, and then assigns it to
-            a new Room object. That room object then gets pushed into a myClassPeriodArray, which there is one for every period, of which there are 8. Then, the myClassPeriodArray
-            gets pushed into the schedule array. The end result ends up being a 2D array. The schedule array is an array of arrays in which each contain Room object elements.
+            object also has a type. The type is either currently FACS, Business, Agriculture and Technology. It then takes a random teacher and class from our database, and then 
+            assigns it to a new Room object. That room object then gets pushed into a myClassPeriodArray, which there is one for every period, of which there are 8. Then,
+            the myClassPeriodArray gets pushed into the schedule array. The end result ends up being a 2D array. The schedule array is an array of arrays in which each contain 
+            Room object elements.
         Add code to get rid of impossible cases: Schmit teaching agriculture (comparing class type to teacher type)
     */
     initialGeneration()
@@ -100,10 +101,10 @@ class WorkingClass
                 myClassPeriodArray.push(theRoom);
 
                 //NOTE: KEEP THE LINE BELOW, THIS IS USED TO VIEW THE SCHEDULE!!!!!
-                console.log("Period " + (j+1) + ": Room: " + myClassPeriodArray[i].room_number + ", Teacher: "+ myClassPeriodArray[i].room_teacher +", Class: " +myClassPeriodArray[i].room_class);
+                console.log("Period " + (j+1) + ": Room: " + myClassPeriodArray[i].room_number + ", Teacher: "+ myClassPeriodArray[i].room_teacher + ",  \t" + "Class: " +myClassPeriodArray[i].room_class);
             }
         
-            //NOTE: KEEP FOR ORGANIZATION
+            //NOTE: KEEP FOR ORGANIZATIONx
             console.log(" ******** ");
 
             //console.log(myClassPeriodArray[0]);
