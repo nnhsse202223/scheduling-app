@@ -30,5 +30,5 @@ this.myClassArray = [this.class1, this.class2, this.class3, this.class4, this.cl
 
 var wc = new WorkingClass(this.myRoomArray, this.myTeacherArray, this.myClassArray);
 var schedule = wc.multiverseArray;
-var representation = new GeneticRepresentation(schedule, wc);
+var representation = new GeneticRepresentation(schedule);
 representation.represent();

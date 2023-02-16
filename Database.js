@@ -4,6 +4,7 @@ const {Teacher} = require("./Teacher.js");
 const {Classes} = require("./Classes.js");
 const {Schedule} = require("./Schedule.js");
 const {run} = require("./connections_access.js");
+const {GeneticRepresentation} = require("./GeneticRepresentation.js");
 
 class Database
 {
@@ -74,6 +75,7 @@ var returned_data;
     let teacher_data = returned_data['teacher'];
     let room_data = returned_data['room'];
     let class_data = returned_data['class'];
+    console.log(teacher_data);
 
     var data = new Database(room_data, class_data, teacher_data);
     
@@ -81,12 +83,17 @@ var returned_data;
     //  call the mutation and eagle_purge method when you want
     var theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
 
-    console.log(`is schedule 1 == schedule 2: ${theObj.multiverseArray[0].schedule == theObj.multiverseArray[1].schedule}`)
+    //console.log(`is schedule 1 == schedule 2: ${theObj.multiverseArray[0].schedule == theObj.multiverseArray[1].schedule}`)
+
+    var gene = new GeneticRepresentation(theObj.multiverseArray);
+
+    gene.represent();
+
     for (let i = 0; i < theObj.multiverseArray.length; i++)
     {
-        console.log("Fitness for Schedule number: " + (i+1));
+        //console.log("Fitness for Schedule number: " + (i+1));
         //console.log(testObj.multiverseArray[i].schedule.toString());
-        console.log(theObj.fitness(theObj.multiverseArray[i].schedule));
+        //console.log(theObj.fitness(theObj.multiverseArray[i].schedule));
         console.log(' ');
     }
 })

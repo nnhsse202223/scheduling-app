@@ -18,7 +18,7 @@ class WorkingClass
 
         //this piece of code runs the generation a certain number of times and then puts them in the multiverse array
         console.log(this.multiverseArray);
-        for (let i = 0; i < 5; i++)
+        for (let i = 0; i < 2; i++)
         {
             var mySchedule = this.initialGeneration();
             //console.log(mySchedule.toString());
@@ -99,31 +99,32 @@ class WorkingClass
                 myClassPeriodArray.push(theRoom);
 
                 //NOTE: KEEP THE LINE BELOW, THIS IS USED TO VIEW THE SCHEDULE!!!!!
-                console.log("Period " + (j+1) + ": Room: " + myClassPeriodArray[i].room_number + ", Teacher: "+ myClassPeriodArray[i].room_teacher +", Class: " +myClassPeriodArray[i].room_class);
+                //console.log("Period " + (j+1) + ": Room: " + myClassPeriodArray[i].room_number + ", Teacher: "+ myClassPeriodArray[i].room_teacher +", Class: " +myClassPeriodArray[i].room_class);
             }
         
             //NOTE: KEEP FOR ORGANIZATION
-            console.log(" ******** ");
+            //console.log(" ******** ");
 
             //console.log(myClassPeriodArray[0]);
             //Investigate if slice makes a copy of an array w/o references
-            //var copyBecauseCodeDoesntWork = myClassPeriodArray.slice();
             scheduleArray1.push(myClassPeriodArray.slice());
 
             myClassPeriodArray = [];
-            //copyBecauseCodeDoesntWork = [];
-            //myClassPeriodArray.splice(0,myClassPeriodArray.length);
 
             
 
             //console.log(this.scheduleArray[j]); Backup printing method to display schedule
         }
 
+        //this.fitness(aSchedule);
         aSchedule.set_schedule(scheduleArray1);
+        //aSchedule.set_percentage(this.fitness_value/this.maxfitness * 100);
 
         // scheduleArray1.length = 0;
 
-        console.log("\n\n========================================\n========================================\n\n");
+
+        //NOTE: KEEP FOR GENERATION
+        //console.log("\n\n========================================\n========================================\n\n");
         return aSchedule;
     }
 
@@ -173,9 +174,9 @@ class WorkingClass
         //console.log ( array_moment [0][0].room_teacher.teacher_type );
          
         // Hey, can this be simplified for when its called by GeneticRepresentation? Just make it return the percentage maybe?
-        console.log("This is the percent that the fitness that is oogly=b00gly: " + (100* this.fitness_value/this.maxfitness) + "%");
-        console.log("Maximum fitness: " + this.maxfitness);
-        console.log("Below is the fitness value:");
+        //console.log("This is the percent that the fitness that is oogly=b00gly: " + (100* this.fitness_value/this.maxfitness) + "%");
+        //console.log("Maximum fitness: " + this.maxfitness);
+        //console.log("Below is the fitness value:");
         return this.fitness_value;
     }
 }

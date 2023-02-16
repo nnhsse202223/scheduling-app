@@ -7,6 +7,7 @@ require('dotenv').config();
 //^^ kidding btw ;)
 const uri = "mongodb+srv://"+process.env.ADMIN_USERNAME+":"+process.env.ADMIN_PASSWORD+"@cluster0.gnworbx.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
+console.log(uri);
 
 async function run() {
   var json_data = [];

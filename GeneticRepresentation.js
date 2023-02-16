@@ -13,10 +13,9 @@
 
 class GeneticRepresentation
 {
-    constructor(schedules, workingClass)
+    constructor(schedules)
     {
         this.teachersSchedulesArray = schedules;
-        this.workingClass = workingClass;
     }
     
     updateSchedules(schedules)
@@ -40,7 +39,7 @@ class GeneticRepresentation
                 }
                 console.log();
             }
-            console.log("\tFitness: " + this.workingClass.fitness(this.schedule) + "\n");
+            console.log("\tFitness: " + this.schedule.percent /*this.workingClass.fitness(this.schedule)*/ + "\n");
         }
     }
 }

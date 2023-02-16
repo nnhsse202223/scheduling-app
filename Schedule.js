@@ -3,6 +3,7 @@ class Schedule
     constructor(array)
     {
         this.scheduleArray = array;
+        this.percentage = 0;
     }
 
     get schedule()
@@ -14,6 +15,17 @@ class Schedule
     {
         this.scheduleArray = array;
     }
+
+    set_percentage(percentage)
+    {
+        this.percentage = percentage;
+    }
+
+    get percent()
+    {
+        return this.percentage;
+    }
+
     toString()
     {
         var stringer = "";
