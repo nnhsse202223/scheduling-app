@@ -59,8 +59,8 @@ class WorkingClass
         var myClassPeriodArray = [];
 
         //just for organization (please tell me I can spell)
-        console.log("Schedule number: " + this.scheduleNo);
-        console.log("");
+        // console.log("Schedule number: " + this.scheduleNo);
+        // console.log("");
         this.scheduleNo++;
 
         for (let j = 0; j < 8; j++)
@@ -101,11 +101,11 @@ class WorkingClass
                 myClassPeriodArray.push(theRoom);
 
                 //NOTE: KEEP THE LINE BELOW, THIS IS USED TO VIEW THE SCHEDULE!!!!!
-                console.log("Period " + (j+1) + ": Room: " + myClassPeriodArray[i].room_number + ", Teacher: "+ myClassPeriodArray[i].room_teacher + ",  \t" + "Class: " +myClassPeriodArray[i].room_class);
+                //console.log("Period " + (j+1) + ": Room: " + myClassPeriodArray[i].room_number + ", Teacher: "+ myClassPeriodArray[i].room_teacher + ",  \t" + "Class: " + myClassPeriodArray[i].room_class);
             }
         
-            //NOTE: KEEP FOR ORGANIZATIONx
-            console.log(" ******** ");
+            //NOTE: KEEP FOR ORGANIZATION
+            //console.log(" ******** ");
 
             //console.log(myClassPeriodArray[0]);
             //Investigate if slice makes a copy of an array w/o references
@@ -121,11 +121,14 @@ class WorkingClass
             //console.log(this.scheduleArray[j]); Backup printing method to display schedule
         }
 
+        this.fitness(aSchedule);
         aSchedule.set_schedule(scheduleArray1);
+        aSchedule.set_percentage(this.fitness_value/this.maxfitness * 100);
 
         // scheduleArray1.length = 0;
 
-        console.log("\n\n========================================\n========================================\n\n");
+        //NOTE: KEEP FOR ORGANIZATION
+        //console.log("\n\n========================================\n========================================\n\n");
         return aSchedule;
     }
 
@@ -178,9 +181,9 @@ class WorkingClass
         //console.log( array_moment [0][0].room_type );
         //console.log ( array_moment [0][0].room_teacher.teacher_type );
          
-        console.log("This is the percent that the fitness that is oogly=b00gly: " + (100* this.fitness_value/this.maxfitness) + "%");
-        console.log("Maximum fitness: " + this.maxfitness);
-        console.log("Below is the fitness value:");
+        // console.log("This is the percent that the fitness that is oogly=b00gly: " + (100* this.fitness_value/this.maxfitness) + "%");
+        // console.log("Maximum fitness: " + this.maxfitness);
+        // console.log("Below is the fitness value:");
         return this.fitness_value;
     }
 
