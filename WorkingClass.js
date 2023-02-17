@@ -121,9 +121,12 @@ class WorkingClass
             //console.log(this.scheduleArray[j]); Backup printing method to display schedule
         }
 
-        this.fitness(aSchedule);
         aSchedule.set_schedule(scheduleArray1);
+        console.log(this.fitness(aSchedule.schedule));
+        console.log(this.fitness_value);
+        console.log(this.maxfitness);
         aSchedule.set_percentage(this.fitness_value/this.maxfitness * 100);
+        console.log(aSchedule.percent);
 
         // scheduleArray1.length = 0;
 
