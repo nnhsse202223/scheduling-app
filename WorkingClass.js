@@ -17,7 +17,7 @@ class WorkingClass
         this.scheduleNo = 1;
 
         //this piece of code runs the generation a certain number of times and then puts them in the multiverse array
-        console.log(this.multiverseArray);
+        //console.log(this.multiverseArray);
         for (let i = 0; i < 2; i++)
         {
             var mySchedule = this.initialGeneration();
@@ -122,11 +122,11 @@ class WorkingClass
         }
 
         aSchedule.set_schedule(scheduleArray1);
-        console.log(this.fitness(aSchedule.schedule));
-        console.log(this.fitness_value);
-        console.log(this.maxfitness);
+        //console.log(this.fitness(aSchedule.schedule));
+        //console.log(this.fitness_value);
+        //console.log(this.maxfitness);
         aSchedule.set_percentage(this.fitness_value/this.maxfitness * 100);
-        console.log(aSchedule.percent);
+        //console.log(aSchedule.percent);
 
         // scheduleArray1.length = 0;
 

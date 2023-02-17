@@ -8,6 +8,7 @@ require('dotenv').config();
 const uri = "mongodb+srv://"+process.env.ADMIN_USERNAME+":"+process.env.ADMIN_PASSWORD+"@cluster0.gnworbx.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
 
+
 async function run() {
   var json_data = [];
   var teacher_array = [];
