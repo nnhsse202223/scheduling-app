@@ -5,6 +5,8 @@ const {Classes} = require("./Classes.js");
 const {Schedule} = require("./Schedule.js");
 const {run} = require("./connections_access.js");
 const {GeneticRepresentation} = require("./GeneticRepresentation.js")
+var theObj;
+let fs = require('fs');
 
 class Database
 {
@@ -16,9 +18,9 @@ class Database
         this.myRoomArray = [];
         this.myTeacherArray = [];
         this.myClassArray = [];
-        this.myClass1Array;
-        this.myClass2Array;
-        this.myClass3Array;
+        //this.myClass1Array;
+        //this.myClass2Array;
+        //this.myClass3Array;
         
 
         for (let i = 0; i < /*teacherArray.length*/ this.theTeacherArray.length; i+=2)
@@ -64,8 +66,9 @@ class Database
     }
 }
 
-console.log("BEGINNING TESTING");
-console.log("-----------------");
+function script(){
+//console.log("BEGINNING TESTING");
+//console.log("-----------------");
 var returned_data;
 (
     async ()=>{
@@ -80,11 +83,11 @@ var returned_data;
     
     //this is a WorkingClass object that does the initiial generation within the constructor, so the initial gens of schedule are already set, you only need
     //  call the mutation and eagle_purge method when you want
-    var theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
+    theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
 
-    var gene = new GeneticRepresentation(theObj.multiverseArray);
+    //var gene = new GeneticRepresentation(theObj.multiverseArray);
 
-    gene.represent();
+    //gene.represent();
 
     /*
     //console.log(`is schedule 1 == schedule 2: ${theObj.multiverseArray[0].schedule == theObj.multiverseArray[1].schedule}`)
@@ -96,4 +99,18 @@ var returned_data;
         //console.log(' ');
         }
         */
+    /*
+    var schedular = theObj.multiverseArray[Math.floor(Math.random() * 2)].schedule; //schedule[1]
+    var csvString = "Period, Room, Teacher, Class\n";
+    let n = 0;
+    schedular.forEach((period) => {
+        n++;
+        period.forEach((room) => csvString += n + ',' + room.room_number + ',' + room.room_teacher + ',' + room.room_class + '\n');
+    });
+    fs.writeFile("thingy.csv",csvString,(err) => err && console.error(err));
+    */
 })
+}
+
+
+//script();
