@@ -26,5 +26,6 @@ function downloadCSV() {
 function fullCSV() {
     startCSV();
     script();
+    // let response = fetch('/database');
     endCSV();
 }
