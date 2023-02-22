@@ -27,6 +27,6 @@ function downloadCSV() {
 
 async function fullCSV() {
     startCSV();
-    theObj = await (await fetch('/database')).json();
+    theObj = await fetch('/database').then(response => response.json());
     endCSV();
 }
