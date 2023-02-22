@@ -1,3 +1,5 @@
+var theObj;
+
 function startCSV() {
     document.getElementById("create").style.display = "none";
     document.getElementById("loader").style.display = "block";
@@ -25,7 +27,6 @@ function downloadCSV() {
 
 function fullCSV() {
     startCSV();
-    script();
-    // let response = fetch('/database');
+    theObj = fetch('/database');
     endCSV();
 }

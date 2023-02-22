@@ -5,7 +5,6 @@ const {Classes} = require("./Classes.js");
 const {Schedule} = require("./Schedule.js");
 const {run} = require("./connections_access.js");
 const {GeneticRepresentation} = require("./GeneticRepresentation.js")
-var theObj;
 let fs = require('fs');
 
 class Database
@@ -67,6 +66,7 @@ class Database
 }
 
 function script(){
+console.log("a");
 //console.log("BEGINNING TESTING");
 //console.log("-----------------");
 var returned_data;
@@ -83,12 +83,10 @@ var returned_data;
     
     //this is a WorkingClass object that does the initiial generation within the constructor, so the initial gens of schedule are already set, you only need
     //  call the mutation and eagle_purge method when you want
-    theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
-
+    let theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
     //var gene = new GeneticRepresentation(theObj.multiverseArray);
-
     //gene.represent();
-
+    return theObj;
     /*
     //console.log(`is schedule 1 == schedule 2: ${theObj.multiverseArray[0].schedule == theObj.multiverseArray[1].schedule}`)
     for (let i = 0; i < theObj.multiverseArray.length; i++)
@@ -98,7 +96,7 @@ var returned_data;
         //console.log(the Obj.fitness(theObj.multiverseArray[i].schedule));
         //console.log(' ');
         }
-        */
+    */
     /*
     var schedular = theObj.multiverseArray[Math.floor(Math.random() * 2)].schedule; //schedule[1]
     var csvString = "Period, Room, Teacher, Class\n";
@@ -112,5 +110,4 @@ var returned_data;
 })
 }
 
-
-//script();
+module.exports.script = script;

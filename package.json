@@ -4,7 +4,8 @@
   "description": "The repository for the scheduling app.",
   "main": "Classes.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -17,8 +18,11 @@
   },
   "homepage": "https://github.com/nnhsse202223/scheduling-app#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "mongodb": "^5.0.1"
+    "fs": "^0.0.1-security",
+    "mongodb": "^5.0.1",
+    "nodemon": "^2.0.20"
   }
 }

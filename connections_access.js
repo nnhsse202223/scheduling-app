@@ -14,10 +14,10 @@ async function run() {
   var teacher_array = [];
   var room_array = [];
   var class_array = [];
-  
   try {
+    console.log("b");
     await client.connect();
-
+    console.log("c");
     //Accessing all data in MongoDB collection
     const database = client.db("NNHS_DATA");
     const coll = database.collection("DATA");
