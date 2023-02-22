@@ -1,6 +1,5 @@
 const {script} = require("./Database.js");
 const express = require('express');
-const cors = require('cors');
 var app = express();
 
 app.use(express.static('Client'));
