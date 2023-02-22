@@ -65,22 +65,14 @@ class Database
     }
 }
 
-function script(){
-console.log("a");
-//console.log("BEGINNING TESTING");
-//console.log("-----------------");
-var returned_data;
-(
-    async ()=>{
-    returned_data= await run();
-    }
-)().then(()=>{
+async function script(){
+    //console.log("BEGINNING TESTING");
+    //console.log("-----------------");
+    var returned_data = await run();
     let teacher_data = returned_data['teacher'];
     let room_data = returned_data['room'];
     let class_data = returned_data['class'];
-
     var data = new Database(room_data, class_data, teacher_data);
-    
     //this is a WorkingClass object that does the initiial generation within the constructor, so the initial gens of schedule are already set, you only need
     //  call the mutation and eagle_purge method when you want
     let theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
@@ -107,7 +99,6 @@ var returned_data;
     });
     fs.writeFile("thingy.csv",csvString,(err) => err && console.error(err));
     */
-})
 }
 
 module.exports.script = script;

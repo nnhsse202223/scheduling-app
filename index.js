@@ -7,12 +7,9 @@ app.get('/',(req,res)=>{
     res.sendFile(__dirname + "/Client/StylizedWebsite.html");
 });
 
-app.get('/database',(req,res)=>{
-    console.log("start");
-    let theObj = script();
-    console.log("mid");
+app.get('/database', async (req,res)=>{
+    let theObj = await script();
     res.send(theObj);
-    console.log("end");
 })
 
 app.listen(8080,()=>{

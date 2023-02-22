@@ -45,7 +45,6 @@ class Room
     {
         return "    Room " + this.room_no + ":  Teacher: " + this.room_teacher + "  Class: " + this.room_class;
     }
-
 }
 
 module.exports.Room = Room;

@@ -11,12 +11,12 @@ function endCSV() {
 }
 
 function downloadCSV() {
-    var schedular = theObj.multiverseArray[Math.floor(Math.random() * 2)].schedule; //schedule[1]
+    var schedular = theObj.multiverseArray[Math.floor(Math.random() * 2)].scheduleArray; //schedule[1]
     var csvString = "Period, Room, Teacher, Class\n";
     let n = 0;
     schedular.forEach((period) => {
         n++;
-        period.forEach((room) => csvString += n + ',' + room.room_number + ',' + room.room_teacher + ',' + room.room_class + '\n');
+        period.forEach((room) => csvString += n + ',' + room.room_no + ',' + room.teacher.name + ',' + room.class.name + '\n');
     });
     var hiddenElement = document.createElement('a');  
     hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvString);  
@@ -25,8 +25,8 @@ function downloadCSV() {
     hiddenElement.click();  
 }
 
-function fullCSV() {
+async function fullCSV() {
     startCSV();
-    theObj = fetch('/database');
+    theObj = await (await fetch('/database')).json();
     endCSV();
 }
