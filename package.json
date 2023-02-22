@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/nnhsse202223/scheduling-app#readme",
   "dependencies": {
-    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
