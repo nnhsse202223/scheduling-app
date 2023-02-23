@@ -18,7 +18,7 @@ class WorkingClass
 
         //this piece of code runs the generation a certain number of times and then puts them in the multiverse array
         //console.log(this.multiverseArray);
-        for (let i = 0; i < 2; i++)
+        for (let i = 0; i < 1; i++)
         {
             var mySchedule = this.initialGeneration();
             //console.log(mySchedule.toString());
@@ -125,6 +125,9 @@ class WorkingClass
         //console.log(this.fitness(aSchedule.schedule));
         //console.log(this.fitness_value);
         //console.log(this.maxfitness);
+        this.fitness(aSchedule.schedule);
+        //console.log(this.fitness_value);
+        //console.log(this.maxfitness);
         aSchedule.set_percentage(this.fitness_value/this.maxfitness * 100);
         //console.log(aSchedule.percent);
 
@@ -143,46 +146,48 @@ class WorkingClass
         The higher the fitness value, the better
         It also checks with the nax fitness, and gives it a percent value
 
-        @param array_moment takes in a array to iterate through
+        @param theSchedule takes in a array to iterate through
         @return the fitness value
     */
-    fitness(array_moment)
+    fitness(theSchedule)
     {
         this.fitness_value = 0;
         this.maxfitness = 0;
-        for (let j = 0; j < array_moment.length; j++)
+        //console.log("length: " + theSchedule.length);
+        for (let j = 0; j < theSchedule.length; j++) //checks class period
         {
-            for(let i = 0; i < array_moment[j].length; i++)
+            for(let i = 0; i < theSchedule[j].length; i++) //rooms within each period
             {
-                // console.log("Period: " + (j+1) + ", Room: " + array_moment[j][i].room_no);
-                // console.log(array_moment [j][i].room_type);
-                // console.log(array_moment [j][i].room_teacher.teacher_type);
-                // console.log(array_moment [j][i].room_type === array_moment[j][i].room_teacher.teacher_type)
+                // console.log("Period: " + (j+1) + ", Room: " + theSchedule[j][i].room_no);
+                // console.log(theSchedule [j][i].room_type);
+                // console.log(theSchedule [j][i].room_teacher.teacher_type);
+                // console.log(theSchedule [j][i].room_type === theSchedule[j][i].room_teacher.teacher_type)
                 // console.log("88888888888888888888888")
-                if (array_moment[j][i].room_type === array_moment[j][i].room_teacher.teacher_type)
+                if (theSchedule[j][i].room_type === theSchedule[j][i].room_teacher.teacher_type)
                 {
                     this.fitness_value++;
                 }
                 this.maxfitness++;
 
-                if (array_moment[0][i].room_type === (array_moment[j][i].room_class.class_type))
+                if (theSchedule[0][i].room_type === (theSchedule[j][i].room_class.class_type))
                 {
                     this.fitness_value++;
                 }
                 this.maxfitness++;
 
-                if (array_moment[j][i].room_teacher.teacher_type === array_moment[j][i].room_class.class_type)
+                if (theSchedule[j][i].room_teacher.teacher_type === theSchedule[j][i].room_class.class_type)
                 {
                     this.fitness_value++;
                 }
                 this.maxfitness++;
+                //console.log(this.maxfitness);
             }
 
         }
         //console.log("Room length: " + this.roomArray.length);
         //console.log("Class length: " + this.classArray.length/3);
-        //console.log( array_moment [0][0].room_type );
-        //console.log ( array_moment [0][0].room_teacher.teacher_type );
+        //console.log( theSchedule [0][0].room_type );
+        //console.log ( theSchedule [0][0].room_teacher.teacher_type );
          
         // console.log("This is the percent that the fitness that is oogly=b00gly: " + (100* this.fitness_value/this.maxfitness) + "%");
         // console.log("Maximum fitness: " + this.maxfitness);
