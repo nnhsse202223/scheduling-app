@@ -39,6 +39,7 @@ class GeneticRepresentation
                 }
                 console.log();
             }
+            console.log(this.teachersSchedulesArray[value]);
             console.log("Fitness: " + this.teachersSchedulesArray[value].percent /*this.workingClass.fitness(this.schedule)*/ + "\n");
         }
     }
