@@ -14,6 +14,7 @@ async function run() {
   var teacher_array = [];
   var room_array = [];
   var class_array = [];
+  var newClass_array = {};
   try {
     await client.connect();
     //Accessing all data in MongoDB collection
@@ -24,12 +25,6 @@ async function run() {
     //Saving data to local variable
     await cursor.forEach( function(myDoc) { json_data.push(myDoc); } );
     
-    //Separating data into just classes
-    for (const element of json_data) {
-      class_array.push(element["Class"]);
-      class_array.push(element["Class_Type"]);
-    }
-
     //Separating data into just teachers
     for (const element of json_data) {
       if(Array.isArray(element["Teachers"])){
@@ -57,6 +52,9 @@ async function run() {
           if(!(room_array.includes(subArrayElement))){
             room_array.push(subArrayElement);
             room_array.push(element["Class_Type"]);
+
+
+            newClass_array[subArrayElement] = [];
           }
         }
       }
@@ -65,14 +63,52 @@ async function run() {
         if(!(room_array.includes(element["Room"]))){
           room_array.push(element["Room"]);
           room_array.push(element["Class_Type"]);
+
+          newClass_array[element["Room"]] = [];
         }
       }
     }
 
+
+
+
+
+
+
+
+    //Separating data into just classes
+    for (const element of json_data) {
+      class_array.push(element["Class"]);
+      class_array.push(element["Class_Type"]);
+
+      if(Array.isArray(element["Room"])){ //if multiple rooms
+        for(const subArrayElement of element["Room"]) {
+          console.log(newClass_array[element["Room"]]);
+          newClass_array[element["Room"]] = newClass_array[element["Room"]].push(element["Class"]); //issue: not pushing data into value object in dictionary.
+          console.log(newClass_array[element["Room"]]);
+        }
+      }
+      else{
+        console.log(newClass_array[element["Room"]]);
+        newClass_array[element["Room"]] = newClass_array[element["Room"]].push(element["Class"]); 
+      }
+
+    }
+
+
+
   } finally {
     await client.close();
+
+
+    console.log(newClass_array);
+
+
     return {class: class_array, teacher: teacher_array, room: room_array};
   }
 }
 
 module.exports.run = run;
+
+
+run();
