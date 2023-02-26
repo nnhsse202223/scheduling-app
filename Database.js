@@ -77,7 +77,7 @@ async function script(){
     //  call the mutation and eagle_purge method when you want
     let theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
     var gene = new GeneticRepresentation(theObj.multiverseArray);
-    gene.represent();
+    //gene.represent();
 
     
     //return theObj;
@@ -92,7 +92,7 @@ async function script(){
         }
     */
     
-    var schedular = theObj.multiverseArray[Math.floor(Math.random() * 2)].schedule; //schedule[1]
+    var schedular = theObj.multiverseArray[Math.floor(Math.random() * theObj.multiverseArray.length)].schedule; //schedule[1]
     var csvString = "Period, Room, Teacher, Class\n";
     let n = 0;
     schedular.forEach((period) => {
@@ -103,5 +103,5 @@ async function script(){
     fs.writeFile("thingy.csv",csvString,(err) => err && console.error(err));
     
 }
-script();
+//script();
 module.exports.script = script;

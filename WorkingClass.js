@@ -1,5 +1,7 @@
-const { Room } = require("./room.js");
+const { Room } = require("./Room.js");
 const {Schedule} = require("./Schedule.js");
+
+const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 100;
 
 class WorkingClass
 {
@@ -18,7 +20,7 @@ class WorkingClass
 
         //this piece of code runs the generation a certain number of times and then puts them in the multiverse array
         //console.log(this.multiverseArray);
-        for (let i = 0; i < 1; i++)
+        for (let i = 0; i < INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT; i++)
         {
             var mySchedule = this.initialGeneration();
             //console.log(mySchedule.toString());
