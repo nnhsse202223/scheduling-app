@@ -69,6 +69,9 @@ async function script(){
     //console.log("BEGINNING TESTING");
     //console.log("-----------------");
     var returned_data = await run();
+
+    //NEED TO CREATE LOCAL VARIABLES WITH ROOMWITHCLASSES AND ROOM WITH TEACHERS FOR USE 
+
     let teacher_data = returned_data['teacher'];
     let room_data = returned_data['room'];
     let class_data = returned_data['class'];
@@ -77,7 +80,7 @@ async function script(){
     //  call the mutation and eagle_purge method when you want
     let theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
     var gene = new GeneticRepresentation(theObj.multiverseArray);
-    //gene.represent();
+    gene.represent();
 
     
     //return theObj;
@@ -103,5 +106,5 @@ async function script(){
     fs.writeFile("thingy.csv",csvString,(err) => err && console.error(err));
     
 }
-//script();
+script();
 module.exports.script = script;

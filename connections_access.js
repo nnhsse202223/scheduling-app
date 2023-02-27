@@ -14,7 +14,9 @@ async function run() {
   var teacher_array = [];
   var room_array = [];
   var class_array = [];
-  var newClass_array = {};
+  var roomDictWithClasses = {};
+  var roomDictWithTeachers = {}
+
   try {
     await client.connect();
     //Accessing all data in MongoDB collection
@@ -32,6 +34,8 @@ async function run() {
           if(!(teacher_array.includes(subArrayElement))){
             teacher_array.push(subArrayElement);
             teacher_array.push(element["Class_Type"]);
+
+            roomDictWithTeachers[subArrayElement] = [];
           }
         }
       }
@@ -40,7 +44,9 @@ async function run() {
       else{
         if(!(teacher_array.includes(element["Teachers"]))){
           teacher_array.push(element["Teachers"]);
-          teacher_array.push(element["Class_Type"]);
+          teacher_array.push(element["Teachers"]);
+
+          roomDictWithTeachers[element["Teachers"]] = [];
         }
       }
     }
@@ -54,7 +60,8 @@ async function run() {
             room_array.push(element["Class_Type"]);
 
 
-            newClass_array[subArrayElement] = [];
+            roomDictWithClasses[subArrayElement] = [];
+
           }
         }
       }
@@ -64,33 +71,42 @@ async function run() {
           room_array.push(element["Room"]);
           room_array.push(element["Class_Type"]);
 
-          newClass_array[element["Room"]] = [];
+          roomDictWithClasses[element["Room"]] = [];
         }
       }
     }
-
-
-
-
-
-
-
 
     //Separating data into just classes
     for (const element of json_data) {
       class_array.push(element["Class"]);
       class_array.push(element["Class_Type"]);
+    }
 
-      if(Array.isArray(element["Room"])){ //if multiple rooms
+    //Getting all possible classes into rooms in format {room,[Class]}
+    for (const element of json_data) {
+      
+
+      if(Array.isArray(element["Room"])){ //if multiple rooms that the class can hold
         for(const subArrayElement of element["Room"]) {
-          console.log(newClass_array[element["Room"]]);
-          newClass_array[element["Room"]] = newClass_array[element["Room"]].push(element["Class"]); //issue: not pushing data into value object in dictionary.
-          console.log(newClass_array[element["Room"]]);
+          roomDictWithClasses[subArrayElement].push(element["Class"]); //issue: not pushing data into value object in dictionary.
+
         }
       }
       else{
-        console.log(newClass_array[element["Room"]]);
-        newClass_array[element["Room"]] = newClass_array[element["Room"]].push(element["Class"]); 
+        roomDictWithClasses[element["Room"]].push(element["Class"]); 
+      }
+
+    }
+
+    //Getting all possible classes into rooms in format {teacher,[Class]}
+    for (const element of json_data) {
+      if(Array.isArray(element["Teachers"])){ //if multiple rooms that the class can hold
+        for(const subArrayElement of element["Teachers"]) {
+          roomDictWithTeachers[subArrayElement].push(element["Class"]); //issue: not pushing data into value object in dictionary.
+        }
+      }
+      else{
+        roomDictWithTeachers[element["Teachers"]].push(element["Class"]); 
       }
 
     }
@@ -99,12 +115,9 @@ async function run() {
 
   } finally {
     await client.close();
-
-
-    console.log(newClass_array);
-
-
-    return {class: class_array, teacher: teacher_array, room: room_array};
+    console.log(roomDictWithClasses);
+    console.log(roomDictWithTeachers);
+    return {class: class_array, teacher: teacher_array, room: room_array, roomWithClasses: roomDictWithClasses, roomWithTeachers: roomDictWithTeachers};
   }
 }
 
