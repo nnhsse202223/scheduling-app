@@ -1,7 +1,7 @@
 const { Room } = require("./Room.js");
 const {Schedule} = require("./Schedule.js");
 
-const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 100;
+const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 1;
 
 class WorkingClass
 {
