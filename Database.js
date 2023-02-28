@@ -9,11 +9,13 @@ let fs = require('fs');
 
 class Database
 {
-    constructor(roomArray, classArray, teacherArray)
+    constructor(roomArray, classArray, teacherArray, teacherDiction, roomDiction)
     {
         this.theRoomArray = roomArray;
         this.theClassArray = classArray;
         this.theTeacherArray = teacherArray;
+        this.teacherCLog = teacherDiction;
+        this.roomCLog = roomDiction;
         this.myRoomArray = [];
         this.myTeacherArray = [];
         this.myClassArray = [];
@@ -22,21 +24,21 @@ class Database
         //this.myClass3Array;
         
 
-        for (let i = 0; i < /*teacherArray.length*/ this.theTeacherArray.length; i+=2)
+        for (let i = 0; i < /*teacherArray.length*/ this.theTeacherArray.length; i++)
         {
-            var teacher = new Teacher(this.theTeacherArray[i], this.theTeacherArray[i+1]);
+            var teacher = new Teacher(this.theTeacherArray[i], this.teacherCLog(this.theTeacherArray[i]));
             this.myTeacherArray.push(teacher);
         }
 
-        for (let i = 0; i < /*classArray.length*/ this.theClassArray.length; i+=2)
+        for (let i = 0; i < /*classArray.length*/ this.theClassArray.length; i++)
         {
-            var classes = new Classes(this.theClassArray[i], this.theClassArray[i+1]);
+            var classes = new Classes(this.theClassArray[i]);
             this.myClassArray.push(classes);
         }
 
-        for (let i = 0; i < /*roomArray.length*/ this.theRoomArray.length; i+=2)
+        for (let i = 0; i < /*roomArray.length*/ this.theRoomArray.length; i++)
         {
-            var room = new Room(this.theRoomArray[i], this.theRoomArray[i+1]);
+            var room = new Room(this.theRoomArray[i], this.roomCLog(this.theRoomArray[i]));
             this.myRoomArray.push(room);
         }
         
@@ -75,17 +77,25 @@ async function script(){
     let teacher_data = returned_data['teacher'];
     let room_data = returned_data['room'];
     let class_data = returned_data['class'];
-    var data = new Database(room_data, class_data, teacher_data);
+
+    let teacherClassLog = returned_data['TeachersWithClasses'];
+    let roomClassLog = returned_data['roomWithClasses'];
+
+    var data = new Database(room_data, class_data, teacher_data,teacherClassLog,roomClassLog);
+    
     //this is a WorkingClass object that does the initiial generation within the constructor, so the initial gens of schedule are already set, you only need
     //  call the mutation and eagle_purge method when you want
     let theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
+    
+    
+    
+    //Printer method to display raw schedule data
     var gene = new GeneticRepresentation(theObj.multiverseArray);
     gene.represent();
 
     
     //return theObj;
     /*
-    //console.log(`is schedule 1 == schedule 2: ${theObj.multiverseArray[0].schedule == theObj.multiverseArray[1].schedule}`)
     for (let i = 0; i < theObj.multiverseArray.length; i++)
     {
         //console.log("Fitness for Schedule number: " + (i+1));
@@ -95,16 +105,16 @@ async function script(){
         }
     */
     
-    var schedular = theObj.multiverseArray[Math.floor(Math.random() * theObj.multiverseArray.length)].schedule; //schedule[1]
-    var csvString = "Period, Room, Teacher, Class\n";
-    let n = 0;
-    schedular.forEach((period) => {
-        n++;
-        period.forEach((room) => csvString += n + ',' + room.room_number + ',' + room.room_teacher + ',' + room.room_class + '\n');
-    });
+    // var schedular = theObj.multiverseArray[Math.floor(Math.random() * theObj.multiverseArray.length)].schedule; //schedule[1]
+    // var csvString = "Period, Room, Teacher, Class\n";
+    // let n = 0;
+    // schedular.forEach((period) => {
+    //     n++;
+    //     period.forEach((room) => csvString += n + ',' + room.room_number + ',' + room.room_teacher + ',' + room.room_class + '\n');
+    // });
     
-    fs.writeFile("thingy.csv",csvString,(err) => err && console.error(err));
+    // fs.writeFile("thingy.csv",csvString,(err) => err && console.error(err));
     
 }
 script();
-module.exports.script = script;
+module.exports.script = script; 

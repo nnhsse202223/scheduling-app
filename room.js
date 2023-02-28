@@ -1,10 +1,9 @@
 class Room 
 {
     //constructor
-    constructor (room_no, type, classLogArray)
+    constructor (room_no, classLogArray)
     {
         this.room_no = room_no;
-        this.type = type;
         this.classLog = classLogArray;
         this.teacher;
         this.class;
@@ -12,10 +11,6 @@ class Room
     }
 
     //get functions
-    get room_type()
-    {
-        return this.type;
-    }
 
     get room_number()
     {

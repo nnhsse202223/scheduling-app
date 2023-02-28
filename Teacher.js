@@ -1,10 +1,9 @@
 class Teacher
 {
     //constructor
-    constructor (name, type, classLogArray)
+    constructor (name, classLogArray)
     {
         this.name = name;
-        this.type = type;
         this.classLog = classLogArray;
         //JSON.stringify(this.type);
     }
@@ -14,11 +13,6 @@ class Teacher
     get teacher_name()
     {
         return this.name;
-    }
-
-    get teacher_type()
-    {
-        return this.type;
     }
 
     get classList()
