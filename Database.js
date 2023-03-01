@@ -76,9 +76,16 @@ async function script(){
     //this is a WorkingClass object that does the initiial generation within the constructor, so the initial gens of schedule are already set, you only need
     //  call the mutation and eagle_purge method when you want
     let theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
+    var schedular = theObj.multiverseArray[Math.floor(Math.random() * 2)].scheduleArray; //schedule[1]
+    var csvString = "Period, Room, Teacher, Class\n";
+    let n = 0;
+    schedular.forEach((period) => {
+        n++;
+        period.forEach((room) => csvString += n + ',' + room.room_no + ',' + room.teacher.name + ',' + room.class.name + '\n');
+    });
     //var gene = new GeneticRepresentation(theObj.multiverseArray);
     //gene.represent();
-    return theObj;
+    return csvString;
     /*
     //console.log(`is schedule 1 == schedule 2: ${theObj.multiverseArray[0].schedule == theObj.multiverseArray[1].schedule}`)
     for (let i = 0; i < theObj.multiverseArray.length; i++)

@@ -1,5 +1,6 @@
 const {script} = require("./Database.js");
 const express = require('express');
+let fs = require('fs');
 var app = express();
 
 app.use(express.static('Client'));
@@ -8,8 +9,16 @@ app.get('/',(req,res)=>{
 });
 
 app.get('/database', async (req,res)=>{
-    let theObj = await script();
-    res.send(theObj);
+    let csvString = await script();
+    fileNames = fs.readdirSync(__dirname + "/Logs");
+    console.log(fileNames);
+    let n = 0;
+    fileNames.forEach(name => {
+        name = name.subString(11);
+        name
+    })
+    fs.writeFileSync("Logs/ScheduleLog1.csv",csvString,(err) => err && console.error(err));
+    res.send(csvString);
 })
 
 app.listen(8080,()=>{
