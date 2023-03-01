@@ -4,12 +4,12 @@ let fs = require('fs');
 
 // let json = csvToJson.parseSubArray(',',',').getJsonFromCsv('CustomClassData.csv');
 let fileOutputName = 'data.json';
-let fileInputName = 'CustomClassData.csv'
+let fileInputName = 'TeacherProfiles.csv'
 
-let json = csvToJson.parseSubArray('*','| ').getJsonFromCsv(fileInputName);
+let json = csvToJson.getJsonFromCsv(fileInputName);
 
 
-
+/*
 //is this code repeatable with different data?
 for(let i=0; i<json.length;i++){
    if (json[i]['Course_ID'].slice(0,1) == "B"){
@@ -32,13 +32,21 @@ for(let i=0; i<json.length;i++){
    }
    
 }
-
-
+*/
+/*
 for(let i=0; i<3;i++){
    console.log(json[i]);
 }
-
-
+*/
+json.forEach(teacher => {
+   for (let key in teacher)
+   {
+      if(teacher[key] == "")
+      {
+         delete teacher[key];
+      }
+   }
+})
 json = JSON.stringify(json);
 fs.writeFile("data.json",json,(err) => err && console.error(err));
 
