@@ -1,7 +1,7 @@
 const { Room } = require("./Room.js");
 const {Schedule} = require("./Schedule.js");
 
-const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 2;
+const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 1;
 
 class WorkingClass
 {
@@ -11,6 +11,8 @@ class WorkingClass
         this.teacherArray = teacherArray;
         this.classArray = classArray;
         this.multiverseArray = [];
+        this.gen_number = 0;
+        this.multiverseArray.push(this.gen_number);
         this.fitness_value = 0;
         this.maxfitness = 0;
         
@@ -183,22 +185,31 @@ class WorkingClass
 
 
 
-    // Take in array of schedules, mutate it, 
-    regeneration(multiverse)
+    // Take in array of schedules, mutates it, and creates a new schedule
+    regenerate(multiverse)
     {
-        for(i = 0; i < multiverse.length; i++)
+        for(let i = 0; i < multiverse.length; i++)
         {
-            //var schedule = multiverseArray.pop();
+            var omniverse = [];
+            omniverse.push(++this.gen_number);
+            var schedules = multiverse.pop();
+
             //put mutator method here
-            //var blank = new Schedule(schedule.schedule, schedule.percentage);
+            //mutator mutator mutator
+            //blah blah blah
+            //more mutator
+            //la la la la la
+            //i love mutator methods
+            //aaaaaaaaaaaaaaaaand we're done 
+            
+            var blank = new Schedule(schedules.schedule, schedules.percentage);
+            omniverse.push(blank);
         } 
-        
-        
+        this.multiverseArray = [];
+        this.multiverseArray = omniverse.slice();
+
+        return omniverse;
     }
-
-
-
-
 
 }
 

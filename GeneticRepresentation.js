@@ -3,10 +3,6 @@
         This includes the Teacher, Room, & Class classes
 */
 
-// OLD!
-// periods are arrays
-// within each period arrays are another array saying room, teacher, classes
-
 // NEW!
 // 2d array, X is room numbers, Y is period
 // within each array value another array is held that states the teacher and class
@@ -25,7 +21,8 @@ class GeneticRepresentation
 
     represent()
     {
-        for(var value = 0; value < this.teachersSchedulesArray.length; value++){
+        console.log("Generation: " + this.teachersSchedulesArray[0]);
+        for(var value = 1; value < this.teachersSchedulesArray.length; value++){
             this.schedule = this.teachersSchedulesArray[value].schedule;
             for(var period = 0; period < this.schedule.length; period++){
                 // For an entire period

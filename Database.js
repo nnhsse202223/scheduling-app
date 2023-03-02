@@ -21,6 +21,7 @@ class Database
         this.myRoomArray = [];
         this.myTeacherArray = [];
         this.myClassArray = [];
+        this.numbers_of_generations = 2;
         
 
         for (let i = 0; i < /*teacherArray.length*/ this.theTeacherArray.length; i++)
@@ -84,14 +85,21 @@ async function script(){
     let theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
     
     
-    //Printer method to display raw schedule data
+    //Making multiple generations of schedules
     var gene = new GeneticRepresentation(theObj.multiverseArray);
     gene.represent();
-    
-    //return theObj;
+
+
+    //This is to regenerate the schedules
+    for (let i = 0; i < data.numbers_of_generations; i++)
+    {
+        var gene = new GeneticRepresentation(theObj.regenerate(theObj.multiverseArray));
+        gene.represent();        
+    }
+
     /*
     for (let i = 0; i < theObj.multiverseArray.length; i++)
-    {
+    { 
         //console.log("Fitness for Schedule number: " + (i+1));
         //console.log(testObj.multiverseArray[i].schedule.toString());
         //console.log(the Obj.fitness(theObj.multiverseArray[i].schedule));
@@ -109,6 +117,8 @@ async function script(){
     
     // fs.writeFile("thingy.csv",csvString,(err) => err && console.error(err));
     
+    
+    //return theObj;
 }
 script();
 module.exports.script = script; 
