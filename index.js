@@ -13,7 +13,6 @@ app.get('/database', async (req,res)=>{
     fileNames = fs.readdirSync(__dirname + "/Logs");
     if(fileNames.length >= 10)
     {
-        console.log('what');
         var fileToDelete = fileNames[0];
         fileNames.forEach(name => {
             var check = +name.substring(11, name.indexOf('_')) < +fileToDelete.substring(11, fileToDelete.indexOf('_'));
