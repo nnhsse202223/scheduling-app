@@ -1,7 +1,7 @@
 const { Room } = require("./Room.js");
 const {Schedule} = require("./Schedule.js");
 
-const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 1;
+const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 2;
 
 class WorkingClass
 {
@@ -88,7 +88,7 @@ class WorkingClass
                 randomTeacherIndex = this.rand(0, dupTeacherArray.length - 1);
                 randomClassIndex = this.rand(0, dupClassArray.length - 1);
                 var THE_OTHER_ROOM = dupRoomArray.pop();
-                var theRoom = new Room(THE_OTHER_ROOM.room_number, THE_OTHER_ROOM.room_type);
+                var theRoom = new Room(THE_OTHER_ROOM.room_number, THE_OTHER_ROOM.classList);
 
                 theRoom.set_room_teacher(dupTeacherArray[randomTeacherIndex])
                 //dupRoomArray[i].set_room_teacher();
@@ -160,42 +160,45 @@ class WorkingClass
         {
             for(let i = 0; i < theSchedule[j].length; i++) //rooms within each period
             {
-                // console.log("Period: " + (j+1) + ", Room: " + theSchedule[j][i].room_no);
-                // console.log(theSchedule [j][i].room_type);
-                // console.log(theSchedule [j][i].room_teacher.teacher_type);
-                // console.log(theSchedule [j][i].room_type === theSchedule[j][i].room_teacher.teacher_type)
-                // console.log("88888888888888888888888")
-                if (theSchedule[j][i].room_type === theSchedule[j][i].room_teacher.teacher_type)
+                if (theSchedule[j][i].classList.includes(theSchedule[j][i].room_class.name))
                 {
                     this.fitness_value++;
                 }
                 this.maxfitness++;
-
-                if (theSchedule[0][i].room_type === (theSchedule[j][i].room_class.class_type))
+                
+                if (theSchedule[j][i].room_teacher.classList.includes(theSchedule[j][i].room_class.name))
                 {
                     this.fitness_value++;
                 }
                 this.maxfitness++;
-
-                if (theSchedule[j][i].room_teacher.teacher_type === theSchedule[j][i].room_class.class_type)
-                {
-                    this.fitness_value++;
-                }
-                this.maxfitness++;
-                //console.log(this.maxfitness);
             }
 
         }
-        //console.log("Room length: " + this.roomArray.length);
-        //console.log("Class length: " + this.classArray.length/3);
-        //console.log( theSchedule [0][0].room_type );
-        //console.log ( theSchedule [0][0].room_teacher.teacher_type );
-         
-        // console.log("This is the percent that the fitness that is oogly=b00gly: " + (100* this.fitness_value/this.maxfitness) + "%");
-        // console.log("Maximum fitness: " + this.maxfitness);
-        // console.log("Below is the fitness value:");
+    
+
+        // console.log("fitness value: " + this.fitness_value);
+        // console.log("max fitness: " + this.maxfitness);
         return this.fitness_value;
     }
+
+
+
+    // Take in array of schedules, mutate it, 
+    regeneration(multiverse)
+    {
+        for(i = 0; i < multiverse.length; i++)
+        {
+            //var schedule = multiverseArray.pop();
+            //put mutator method here
+            //var blank = new Schedule(schedule.schedule, schedule.percentage);
+        } 
+        
+        
+    }
+
+
+
+
 
 }
 
