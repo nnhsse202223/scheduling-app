@@ -11,7 +11,6 @@ class Room
     }
 
     //get functions
-
     get room_number()
     {
         return this.room_no;

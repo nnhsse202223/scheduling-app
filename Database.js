@@ -14,19 +14,18 @@ class Database
         this.theRoomArray = roomArray;
         this.theClassArray = classArray;
         this.theTeacherArray = teacherArray;
+        this.teacherCLog = {};
         this.teacherCLog = teacherDiction;
+        this.roomClog = {};
         this.roomCLog = roomDiction;
         this.myRoomArray = [];
         this.myTeacherArray = [];
         this.myClassArray = [];
-        //this.myClass1Array;
-        //this.myClass2Array;
-        //this.myClass3Array;
         
 
         for (let i = 0; i < /*teacherArray.length*/ this.theTeacherArray.length; i++)
         {
-            var teacher = new Teacher(this.theTeacherArray[i], this.teacherCLog(this.theTeacherArray[i]));
+            var teacher = new Teacher(this.theTeacherArray[i], this.teacherCLog[this.theTeacherArray[i]]);
             this.myTeacherArray.push(teacher);
         }
 
@@ -38,13 +37,10 @@ class Database
 
         for (let i = 0; i < /*roomArray.length*/ this.theRoomArray.length; i++)
         {
-            var room = new Room(this.theRoomArray[i], this.roomCLog(this.theRoomArray[i]));
+            var room = new Room(this.theRoomArray[i], this.roomCLog[this.theRoomArray[i]]);
             this.myRoomArray.push(room);
         }
         
-        //console.log(this.myRoomArray.sort());
-        // console.log(this.myClassArray);
-        // console.log(this.myTeacherArray);
 
     }
 
@@ -68,8 +64,8 @@ class Database
 }
 
 async function script(){
-    //console.log("BEGINNING TESTING");
-    //console.log("-----------------");
+    console.log("BEGINNING TESTING");
+    console.log("-----------------");
     var returned_data = await run();
 
     //NEED TO CREATE LOCAL VARIABLES WITH ROOMWITHCLASSES AND ROOM WITH TEACHERS FOR USE 
@@ -88,11 +84,9 @@ async function script(){
     let theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
     
     
-    
     //Printer method to display raw schedule data
     var gene = new GeneticRepresentation(theObj.multiverseArray);
     gene.represent();
-
     
     //return theObj;
     /*
