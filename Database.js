@@ -87,14 +87,14 @@ async function script(){
     
     //Making multiple generations of schedules
     var gene = new GeneticRepresentation(theObj.multiverseArray);
-    gene.represent();
+    //gene.represent();
 
 
     //This is to regenerate the schedules
     for (let i = 0; i < data.numbers_of_generations; i++)
     {
         var gene = new GeneticRepresentation(theObj.regenerate(theObj.multiverseArray));
-        gene.represent();        
+        //gene.represent();        
     }
 
     /*
