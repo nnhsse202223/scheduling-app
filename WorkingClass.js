@@ -1,10 +1,12 @@
 const { Room } = require("./Room.js");
 const {Schedule} = require("./Schedule.js");
 
+//the number of schedules we want to generate
 const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 1;
 
 class WorkingClass
 {
+    //easy stuff, right?
     constructor (roomArray, teacherArray, classArray)
     {
         this.roomArray = roomArray;
@@ -32,6 +34,7 @@ class WorkingClass
 
     /*
         Creates a random integer value between min and max, inclusive of both
+
         @param min the minimum value
         @param max the maximum value
     */
@@ -49,7 +52,7 @@ class WorkingClass
             assigns it to a new Room object. That room object then gets pushed into a myClassPeriodArray, which there is one for every period, of which there are 8. Then,
             the myClassPeriodArray gets pushed into the schedule array. The end result ends up being a 2D array. The schedule array is an array of arrays in which each contain 
             Room object elements.
-        Add code to get rid of impossible cases: Schmit teaching agriculture (comparing class type to teacher type)
+        Add code to get rid of impossible cases: Schmit teaching agriculture (comparing class type to teacher type) THIS IS DONE
     */
     initialGeneration()
     {
@@ -111,31 +114,17 @@ class WorkingClass
             //NOTE: KEEP FOR ORGANIZATION
             //console.log(" ******** ");
 
-            //console.log(myClassPeriodArray[0]);
-            //Investigate if slice makes a copy of an array w/o references
             var copyBecauseCodeDoesntWork = myClassPeriodArray.slice();
             scheduleArray1.push(copyBecauseCodeDoesntWork);
 
             myClassPeriodArray = [];
             copyBecauseCodeDoesntWork = [];
-            //myClassPeriodArray.splice(0,myClassPeriodArray.length);
-
-            
-
-            //console.log(this.scheduleArray[j]); Backup printing method to display schedule
+            //console.log(this.scheduleArray[j]); //Backup printing method to display schedule
         }
 
         aSchedule.set_schedule(scheduleArray1);
-        //console.log(this.fitness(aSchedule.schedule));
-        //console.log(this.fitness_value);
-        //console.log(this.maxfitness);
         this.fitness(aSchedule.schedule);
-        //console.log(this.fitness_value);
-        //console.log(this.maxfitness);
         aSchedule.set_percentage(this.fitness_value/this.maxfitness * 100);
-        //console.log(aSchedule.percent);
-
-        // scheduleArray1.length = 0;
 
         //NOTE: KEEP FOR ORGANIZATION
         //console.log("\n\n========================================\n========================================\n\n");
@@ -157,7 +146,6 @@ class WorkingClass
     {
         this.fitness_value = 0;
         this.maxfitness = 0;
-        //console.log("length: " + theSchedule.length);
         for (let j = 0; j < theSchedule.length; j++) //checks class period
         {
             for(let i = 0; i < theSchedule[j].length; i++) //rooms within each period
@@ -176,7 +164,6 @@ class WorkingClass
             }
 
         }
-    
 
         // console.log("fitness value: " + this.fitness_value);
         // console.log("max fitness: " + this.maxfitness);
@@ -185,7 +172,11 @@ class WorkingClass
 
 
 
-    // Take in array of schedules, mutates it, and creates a new schedule
+    /* 
+        Take in array of schedules, mutates it, and creates a new schedule
+
+        @param multiverse the schedule array that needs to be regenerated
+    */
     regenerate(multiverse)
     {
         for(let i = 0; i < multiverse.length; i++)
