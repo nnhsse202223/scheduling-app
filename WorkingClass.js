@@ -17,7 +17,7 @@ class WorkingClass
         this.multiverseArray.push(this.gen_number);
         this.fitness_value = 0;
         this.maxfitness = 0;
-        
+        var teacherPreferenceData = require('./teachers.json');
 
         //this is to let us know what schedules are which, it is only for organization.
         this.scheduleNo = 1;
@@ -154,15 +154,26 @@ class WorkingClass
                 {
                     this.fitness_value++;
                 }
+                else
+                {
+                    return 0;
+                }
                 this.maxfitness++;
                 
                 if (theSchedule[j][i].room_teacher.classList.includes(theSchedule[j][i].room_class.name))
                 {
-                    this.fitness_value++;
+                    teacherPreferenceData.forEach(json => {
+                        if(json["Teacher"] == theSchedule[j][i].room_teacher) {
+                        this.fitness_value += json[theSchedule[j][i].room_class.name];
+                        this.maxfitness += 10;
+                    }});
+                }
+                else
+                {
+                    return 0;
                 }
                 this.maxfitness++;
             }
-
         }
 
         // console.log("fitness value: " + this.fitness_value);
@@ -202,34 +213,42 @@ class WorkingClass
         return omniverse;
     }
 
-
-
+    //does all the mutations if we want it to
     mutate(theSchedule)
     {
-        //does all the mutations if we want it to
+        
     }
 
-
-    addition(theSchedule)
+    //Adds more randomly generated schedules to the multiverse array
+    addition(multiverseSchedule)
     {
 
     }
 
-    eaglePurge(theSchedule)
+    //Deletes bad schedules from multiverse array
+    eaglePurge(multiverseSchedule) 
     {
-
+        for(let i = 0; i < multiverseSchedule.length; i++){
+            console.log(multiverseSchedule[i].percentage);
+        }
+        
+        //for eeeur ascheedl in the mutlvoerse, call therodsfold
+        //with the threshold negative, PURGE!!!!
     }
 
+    // Regenerates a certain part of a schedule. 
     line_change(theSchedule)
     {
 
     }
 
+    //crosses two different schedules.
     crossover(theSchedule)
     {
 
     }
 
+    //Checks if changes made to individual schedules from line_change or crossover were better or worse than just leaving it alone. 
     mutateChecker(theSchedule, theNewSchedule)
     {
 
@@ -248,17 +267,17 @@ class WorkingClass
     {
         if (type == "add")
         {
-            return 10;
+            return 10; //change to algorithm
         }
 
         if (type == "subtract")
         {
-            return 10;
+            return 10; //change to algorithm
         }
 
         if (type == "end")
         {
-            return 97.5;
+            return 97.5; //change to algorithm
         }
     }
 
