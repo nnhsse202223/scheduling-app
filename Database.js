@@ -87,14 +87,14 @@ async function script(){
     
     //Making multiple generations of schedules
     var gene = new GeneticRepresentation(theObj.multiverseArray);
-    //gene.represent();
+    gene.represent();
 
 
     //This is to regenerate the schedules
     for (let i = 0; i < data.numbers_of_generations; i++)
     {
         var gene = new GeneticRepresentation(theObj.regenerate(theObj.multiverseArray));
-        //gene.represent();        
+        gene.represent();        
     }
 
     /*
@@ -107,18 +107,18 @@ async function script(){
         }
     */
     
-    // var schedular = theObj.multiverseArray[Math.floor(Math.random() * theObj.multiverseArray.length)].schedule; //schedule[1]
-    // var csvString = "Period, Room, Teacher, Class\n";
-    // let n = 0;
-    // schedular.forEach((period) => {
-    //     n++;
-    //     period.forEach((room) => csvString += n + ',' + room.room_number + ',' + room.room_teacher + ',' + room.room_class + '\n');
-    // });
+    var schedular = theObj.multiverseArray[Math.floor(Math.random() * theObj.multiverseArray.length)].schedule; //schedule[1]
+    var csvString = "Period, Room, Teacher, Class\n";
+    let n = 0;
+    schedular.forEach((period) => {
+        n++;
+        period.forEach((room) => csvString += n + ',' + room.room_number + ',' + room.room_teacher + ',' + room.room_class + '\n');
+    });
     
-    // fs.writeFile("thingy.csv",csvString,(err) => err && console.error(err));
+    fs.writeFile("thingy.csv",csvString,(err) => err && console.error(err));
     
     
-    //return theObj;
+    return theObj;
 }
 script();
 module.exports.script = script; 

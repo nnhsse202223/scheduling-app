@@ -211,6 +211,65 @@ class WorkingClass
         return omniverse;
     }
 
-}
 
+
+    mutate(theSchedule)
+    {
+        //does all the mutations if we want it to
+    }
+
+
+    addition(theSchedule)
+    {
+
+    }
+
+    eaglePurge(theSchedule)
+    {
+
+    }
+
+    line_change(theSchedule)
+    {
+
+    }
+
+    crossover(theSchedule)
+    {
+
+    }
+
+    mutateChecker(theSchedule, theNewSchedule)
+    {
+
+    }
+
+
+    /*
+        Checks the threshold value of different types of functions. The parameters tells us what type to check.
+        If we want to check the threshold to add a schedule, the type is 'add'.
+        If we want to check the threshold for removing a schedule, the type is 'subtract'.
+        If we want to check the threshold to stop looking for a schedule, the type is 'end'.
+
+        @param type the type of threshold being checked
+    */
+    threshold(type)
+    {
+        if (type == "add")
+        {
+            return 10;
+        }
+
+        if (type == "subtract")
+        {
+            return 10;
+        }
+
+        if (type == "end")
+        {
+            return 97.5;
+        }
+    }
+
+}
 module.exports.WorkingClass = WorkingClass;
