@@ -21,7 +21,7 @@ class Database
         this.myRoomArray = [];
         this.myTeacherArray = [];
         this.myClassArray = [];
-        this.numbers_of_generations = 2;
+        this.numbers_of_generations = 1;
         
 
         for (let i = 0; i < /*teacherArray.length*/ this.theTeacherArray.length; i++)
@@ -96,26 +96,16 @@ async function script(){
         var gene = new GeneticRepresentation(theObj.regenerate(theObj.multiverseArray));
         gene.represent();        
     }
-
-    /*
-    for (let i = 0; i < theObj.multiverseArray.length; i++)
-    { 
-        //console.log("Fitness for Schedule number: " + (i+1));
-        //console.log(testObj.multiverseArray[i].schedule.toString());
-        //console.log(the Obj.fitness(theObj.multiverseArray[i].schedule));
-        //console.log(' ');
-        }
-    */
     
-    var schedular = theObj.multiverseArray[Math.floor(Math.random() * theObj.multiverseArray.length)].schedule; //schedule[1]
-    var csvString = "Period, Room, Teacher, Class\n";
-    let n = 0;
-    schedular.forEach((period) => {
-        n++;
-        period.forEach((room) => csvString += n + ',' + room.room_number + ',' + room.room_teacher + ',' + room.room_class + '\n');
-    });
+    // var schedular = theObj.multiverseArray[Math.floor(Math.random() * theObj.multiverseArray.length)].schedule; //schedule[1]
+    // var csvString = "Period, Room, Teacher, Class\n";
+    // let n = 0;
+    // schedular.forEach((period) => {
+    //     n++;
+    //     period.forEach((room) => csvString += n + ',' + room.room_number + ',' + room.room_teacher + ',' + room.room_class + '\n');
+    // });
     
-    fs.writeFile("thingy.csv",csvString,(err) => err && console.error(err));
+    // fs.writeFile("thingy.csv",csvString,(err) => err && console.error(err));
     
     
     return theObj;

@@ -23,11 +23,10 @@ class WorkingClass
         this.scheduleNo = 1;
 
         //this piece of code runs the generation a certain number of times and then puts them in the multiverse array
-        //console.log(this.multiverseArray);
+
         for (let i = 0; i < INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT; i++)
         {
             var mySchedule = this.initialGeneration();
-            //console.log(mySchedule.toString());
             this.multiverseArray.push(mySchedule);
         }    
     }
@@ -60,14 +59,10 @@ class WorkingClass
         var aSchedule = new Schedule([]);
         var dupClassArray = this.classArray.slice();
         var dupTeacherArray = this.teacherArray.slice();
-        //var dupRoomArray = this.roomArray.slice();
         var randomClassIndex  = 0;
         var randomTeacherIndex = 0;
         var myClassPeriodArray = [];
 
-        //just for organization (please tell me I can spell)
-        // console.log("Schedule number: " + this.scheduleNo);
-        // console.log("");
         this.scheduleNo++;
 
         for (let j = 0; j < 8; j++)
@@ -110,9 +105,6 @@ class WorkingClass
                 //NOTE: KEEP THE LINE BELOW, THIS IS USED TO VIEW THE SCHEDULE!!!!!
                 //console.log("Period " + (j+1) + ": Room: " + myClassPeriodArray[i].room_number + ", Teacher: "+ myClassPeriodArray[i].room_teacher + ",  \t" + "Class: " + myClassPeriodArray[i].room_class);
             }
-        
-            //NOTE: KEEP FOR ORGANIZATION
-            //console.log(" ******** ");
 
             var copyBecauseCodeDoesntWork = myClassPeriodArray.slice();
             scheduleArray1.push(copyBecauseCodeDoesntWork);
@@ -154,30 +146,18 @@ class WorkingClass
                 {
                     this.fitness_value++;
                 }
-                else
-                {
-                    return 0;
-                }
+
                 this.maxfitness++;
                 
                 if (theSchedule[j][i].room_teacher.classList.includes(theSchedule[j][i].room_class.name))
                 {
-                    teacherPreferenceData.forEach(json => {
-                        if(json["Teacher"] == theSchedule[j][i].room_teacher) {
-                        this.fitness_value += json[theSchedule[j][i].room_class.name];
-                        this.maxfitness += 10;
-                    }});
-                }
-                else
-                {
-                    return 0;
+                    this.fitness_value++;
+                    
                 }
                 this.maxfitness++;
             }
         }
 
-        // console.log("fitness value: " + this.fitness_value);
-        // console.log("max fitness: " + this.maxfitness);
         return this.fitness_value;
     }
 
@@ -203,10 +183,15 @@ class WorkingClass
             //la la la la la
             //i love mutator methods
             //aaaaaaaaaaaaaaaaand we're done 
+            this.eaglePurge(schedules);
+
+
             
             var blank = new Schedule(schedules.schedule, schedules.percentage);
             omniverse.push(blank);
         } 
+
+
         this.multiverseArray = [];
         this.multiverseArray = omniverse.slice();
 
@@ -216,21 +201,21 @@ class WorkingClass
     //does all the mutations if we want it to
     mutate(theSchedule)
     {
-        
+        this.eaglePurge(this.multiverseArray);
     }
 
     //Adds more randomly generated schedules to the multiverse array
-    addition(multiverseSchedule)
+    addition(aSchedule)
     {
 
     }
 
     //Deletes bad schedules from multiverse array
-    eaglePurge(multiverseSchedule) 
+    eaglePurge(aSchedule) 
     {
-        for(let i = 0; i < multiverseSchedule.length; i++){
-            console.log(multiverseSchedule[i].percentage);
-        }
+        console.log("Fitness % EAGLE PURGE " + aSchedule.percentage);
+  
+
         
         //for eeeur ascheedl in the mutlvoerse, call therodsfold
         //with the threshold negative, PURGE!!!!
