@@ -165,8 +165,16 @@ class WorkingClass
                     teacherPreferenceData.forEach(json => {
                         if(json["Teacher"] == theSchedule[j][i].room_teacher) {
                         this.fitness_value += json[theSchedule[j][i].room_class.name];
-                        this.maxfitness += 10;
                     }});
+                    let n;
+                    teacherPreferenceData.forEach(json => json.forEach(className => {
+                        if(className == theSchedule[j][i].room_class.name) {
+                            if(json[className] > n) {
+                                n = json[className];
+                            }
+                        }
+                    }));
+                    maxfitnes += n;
                 }
                 else
                 {
