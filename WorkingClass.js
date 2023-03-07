@@ -17,7 +17,7 @@ class WorkingClass
         this.multiverseArray.push(this.gen_number);
         this.fitness_value = 0;
         this.maxfitness = 0;
-        var teacherPreferenceData = require('./teachers.json');
+        this.teacherPreferenceData = require('./teachers.json');
 
         //this is to let us know what schedules are which, it is only for organization.
         this.scheduleNo = 1;
@@ -154,32 +154,35 @@ class WorkingClass
                 {
                     this.fitness_value++;
                 }
-                else
-                {
-                    return 0;
-                }
+                // else
+                // {
+                //     this.fitness_value = 0;
+                //     this.maxfitness++;
+                //     return this.fitness_value;
+                // }
                 this.maxfitness++;
-                
                 if (theSchedule[j][i].room_teacher.classList.includes(theSchedule[j][i].room_class.name))
                 {
-                    teacherPreferenceData.forEach(json => {
-                        if(json["Teacher"] == theSchedule[j][i].room_teacher) {
-                        this.fitness_value += json[theSchedule[j][i].room_class.name];
+                    this.teacherPreferenceData.forEach(fileData => {
+                        if(fileData["Teacher"] == theSchedule[j][i].room_teacher) {
+                        this.fitness_value += fileData[theSchedule[j][i].room_class.name];
                     }});
                     let n;
-                    teacherPreferenceData.forEach(json => json.forEach(className => {
+                    this.teacherPreferenceData.forEach(fileData => fileData.forEach(className => {
                         if(className == theSchedule[j][i].room_class.name) {
-                            if(json[className] > n) {
-                                n = json[className];
+                            if(fileData[className] > n) {
+                                n = fileData[className];
                             }
                         }
                     }));
-                    maxfitnes += n;
+                    maxfitness += n;
                 }
-                else
-                {
-                    return 0;
-                }
+                // else
+                // {
+                //     this.fitness_value = 0;
+                //     this.maxfitness++;
+                //     return this.fitness_value;
+                // }
                 this.maxfitness++;
             }
         }

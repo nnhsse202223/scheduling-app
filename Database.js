@@ -106,7 +106,7 @@ async function script(){
         //console.log(' ');
         }
     */
-    
+    /*
     var schedular = theObj.multiverseArray[Math.floor(Math.random() * theObj.multiverseArray.length)].schedule; //schedule[1]
     var csvString = "Period, Room, Teacher, Class\n";
     let n = 0;
@@ -114,9 +114,9 @@ async function script(){
         n++;
         period.forEach((room) => csvString += n + ',' + room.room_number + ',' + room.room_teacher + ',' + room.room_class + '\n');
     });
-    
+
     fs.writeFile("thingy.csv",csvString,(err) => err && console.error(err));
-    
+    */
     
     return theObj;
 }
