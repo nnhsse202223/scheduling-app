@@ -21,7 +21,7 @@ class Database
         this.myRoomArray = [];
         this.myTeacherArray = [];
         this.myClassArray = [];
-        this.numbers_of_generations = 1;
+        this.numbers_of_generations = 5;
         
 
         for (let i = 0; i < /*teacherArray.length*/ this.theTeacherArray.length; i++)
@@ -86,14 +86,17 @@ async function script(){
     
     
     //Making multiple generations of schedules
-    var gene = new GeneticRepresentation(theObj.multiverseArray);
+    var gene = new GeneticRepresentation(theObj.verse);
+    //console.log(theObj.verse.theMultiverseArray);
     gene.represent();
+    console.log(theObj.verse);
 
 
     //This is to regenerate the schedules
     for (let i = 0; i < data.numbers_of_generations; i++)
     {
-        var gene = new GeneticRepresentation(theObj.regenerate(theObj.multiverseArray));
+        theObj.regenerate(theObj.verse);
+        var gene = new GeneticRepresentation(theObj.verse);
         gene.represent();        
     }
     

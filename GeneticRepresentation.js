@@ -11,18 +11,19 @@ class GeneticRepresentation
 {
     constructor(schedules)
     {
-        this.teachersSchedulesArray = schedules;
+        this.teachersSchedulesArray = schedules.theMultiverseArray;
+        this.gen = schedules.genNo;
     }
     
     updateSchedules(schedules)
     {
-        this.teachersSchedulesArray = schedules;
+        this.teachersSchedulesArray = schedules.theMultiverseArray;
     }
 
     represent()
     {
-        console.log("Generation: " + this.teachersSchedulesArray[0]);
-        for(var value = 1; value < this.teachersSchedulesArray.length; value++){
+        console.log("Generation: " + this.gen);
+        for(var value = 0; value < this.teachersSchedulesArray.length; value++){
             this.schedule = this.teachersSchedulesArray[value].schedule;
             
             
