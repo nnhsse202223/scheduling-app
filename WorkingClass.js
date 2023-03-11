@@ -195,7 +195,7 @@ class WorkingClass
         } 
 
         //Multiverse Mutators
-        this.eaglePurge(omniverse);
+        //omniverse = this.eaglePurge(omniverse);
 
         //clear multiverseArray
         this.multiverseArray = [];
@@ -222,16 +222,18 @@ class WorkingClass
     }
 
     //Deletes bad schedules from multiverse array
+    //NOTE: Hi Max!
+    //The multiverseInput is still an array of schedules, so 
+    //mutate through the arrays as you please!
+    //just remember to check the threshold value and delete stuff
+    //from there, i think for now, we delete at least 10% or so,
+    //more if the threshold says to, but less than 50%
     eaglePurge(multiverseInput) 
     {
         //console.log(multiverseInput);
         // for(let i = 0; i < multiverseInput.length; i++){
         //     console.log("Fitness % EAGLE PURGE: " + multiverseInput[i].percentage);
         // }
-
-        
-  
-
         
         //for eeeur ascheedl in the mutlvoerse, call therodsfold
         //with the threshold negative, PURGE!!!!

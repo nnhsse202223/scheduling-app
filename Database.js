@@ -89,7 +89,6 @@ async function script(){
     var gene = new GeneticRepresentation(theObj.verse);
     //console.log(theObj.verse.theMultiverseArray);
     gene.represent();
-    console.log(theObj.verse);
 
 
     //This is to regenerate the schedules
