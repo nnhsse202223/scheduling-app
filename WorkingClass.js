@@ -1,12 +1,12 @@
 const { Room } = require("./Room.js");
 const {Schedule} = require("./Schedule.js");
+const {Multiverse, Generation} = require("./Generation.js");
 
 //the number of schedules we want to generate
-const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 1;
+const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 5;
 
 class WorkingClass
 {
-    //easy stuff, right?
     constructor (roomArray, teacherArray, classArray)
     {
         this.roomArray = roomArray;
@@ -14,9 +14,9 @@ class WorkingClass
         this.classArray = classArray;
         this.multiverseArray = [];
         this.gen_number = 0;
-        this.multiverseArray.push(this.gen_number);
         this.fitness_value = 0;
         this.maxfitness = 0;
+        this.verse;
         var teacherPreferenceData = require('./teachers.json');
 
         //this is to let us know what schedules are which, it is only for organization.
@@ -29,6 +29,8 @@ class WorkingClass
             var mySchedule = this.initialGeneration();
             this.multiverseArray.push(mySchedule);
         }    
+
+        this.verse = new Generation(this.gen_number, this.multiverseArray);
     }
 
     /*
@@ -168,52 +170,66 @@ class WorkingClass
 
         @param multiverse the schedule array that needs to be regenerated
     */
-    regenerate(multiverse)
+    regenerate(multiverseObject)
     {
-        for(let i = 0; i < multiverse.length; i++)
+        multiverseObject.setGen(multiverseObject.genNo + 1);
+
+        var omniverse = [];
+
+        for(let i = 0; i < multiverseObject.theMultiverseArray.length; i++)
         {
-            var omniverse = [];
-            omniverse.push(++this.gen_number);
-            var schedules = multiverse.pop();
+            var schedules = multiverseObject.theMultiverseArray[i];
 
-            //put mutator method here
-            //mutator mutator mutator
-            //blah blah blah
-            //more mutator
-            //la la la la la
-            //i love mutator methods
-            //aaaaaaaaaaaaaaaaand we're done 
-            this.eaglePurge(schedules);
-
-
+            //Singular Schedule Mutators
+            //la la la
+            //mutate mutate
+            //we do some mutations here
+            //ehehehe
+            //more mutations!!!!
+            //yayayayayayayy
+             
             
-            var blank = new Schedule(schedules.schedule, schedules.percentage);
-            omniverse.push(blank);
+            var mutated_Schedules = new Schedule(schedules.schedule, schedules.percentage);
+            omniverse.push(mutated_Schedules );
+            
         } 
 
+        //Multiverse Mutators
+        this.eaglePurge(omniverse);
 
+        //clear multiverseArray
         this.multiverseArray = [];
         this.multiverseArray = omniverse.slice();
 
-        return omniverse;
+        var omnipresent = new Generation(multiverseObject.genNo, omniverse);
+        //console.log(omnipresent);
+
+        return omnipresent;
     }
 
     //does all the mutations if we want it to
     mutate(theSchedule)
     {
-        this.eaglePurge(this.multiverseArray);
+        
     }
 
     //Adds more randomly generated schedules to the multiverse array
-    addition(aSchedule)
+    addition(multiverseInput)
     {
-
+        /*
+        var missingSchedules = INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT - multiverseInput.length;
+        */
     }
 
     //Deletes bad schedules from multiverse array
-    eaglePurge(aSchedule) 
+    eaglePurge(multiverseInput) 
     {
-        console.log("Fitness % EAGLE PURGE " + aSchedule.percentage);
+        //console.log(multiverseInput);
+        // for(let i = 0; i < multiverseInput.length; i++){
+        //     console.log("Fitness % EAGLE PURGE: " + multiverseInput[i].percentage);
+        // }
+
+        
   
 
         
@@ -221,8 +237,8 @@ class WorkingClass
         //with the threshold negative, PURGE!!!!
     }
 
-    // Regenerates a certain part of a schedule. 
-    line_change(theSchedule)
+    //Takes two Room objects within a Schedule and randomly mutates them. 
+    line_swap(theSchedule)
     {
 
     }
