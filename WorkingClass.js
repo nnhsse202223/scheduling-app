@@ -218,6 +218,16 @@ class WorkingClass
     {
         /*
         var missingSchedules = INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT - multiverseInput.length;
+
+        while (missingSchedules > 0)
+        {
+            var potentialSchedule = this.initialGeneration();
+            if (potentialSchedule.percentage > threshold("add"))
+            {
+                multiverseInput.push(potentialSchedule);
+                missingSchedules--;
+            }
+        }
         */
     }
 
