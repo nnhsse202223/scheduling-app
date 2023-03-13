@@ -154,41 +154,43 @@ class WorkingClass
                 {
                     this.fitness_value++;
                 }
-                // else
-                // {
-                //     this.fitness_value = 0;
-                //     this.maxfitness++;
-                //     return this.fitness_value;
-                // }
+                else
+                {
+                    this.fitness_value = 0;
+                    this.maxfitness++;
+                    return this.fitness_value;
+                }
                 this.maxfitness++;
                 if (theSchedule[j][i].room_teacher.classList.includes(theSchedule[j][i].room_class.name))
                 {
                     this.teacherPreferenceData.forEach(fileData => {
                         if(fileData["Teacher"] == theSchedule[j][i].room_teacher) {
-                        this.fitness_value += fileData[theSchedule[j][i].room_class.name];
+                            console.log(fileData["Teacher"]);
+                            console.log(theSchedule[j][i].room_class.name);
+                            console.log(fileData[theSchedule[j][i].room_class.name]);
+                            this.fitness_value += +fileData[theSchedule[j][i].room_class.name];
                     }});
-                    let n;
-                    this.teacherPreferenceData.forEach(fileData => fileData.forEach(className => {
+                    let n = 0;
+                    this.teacherPreferenceData.forEach(fileData => Object.keys(fileData).forEach(className => {
                         if(className == theSchedule[j][i].room_class.name) {
                             if(fileData[className] > n) {
-                                n = fileData[className];
+                                n = +fileData[className];
                             }
                         }
                     }));
-                    maxfitness += n;
+                    this.maxfitness += n;
                 }
-                // else
-                // {
-                //     this.fitness_value = 0;
-                //     this.maxfitness++;
-                //     return this.fitness_value;
-                // }
-                this.maxfitness++;
+                else
+                {
+                     this.fitness_value = 0;
+                    this.maxfitness++;
+                     return this.fitness_value;
+                }
             }
         }
 
-        // console.log("fitness value: " + this.fitness_value);
-        // console.log("max fitness: " + this.maxfitness);
+        console.log("fitness value: " + this.fitness_value);
+        console.log("max fitness: " + this.maxfitness);
         return this.fitness_value;
     }
 
