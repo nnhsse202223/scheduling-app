@@ -258,7 +258,8 @@ class WorkingClass
     //crosses two different schedules.
     crossover(theSchedule)
     {
-
+        var randPeriod = rand(1,8);
+        var randRoom = rand(0, )
     }
 
     //Checks if changes made to individual schedules from line_change or crossover were better or worse than just leaving it alone. 
