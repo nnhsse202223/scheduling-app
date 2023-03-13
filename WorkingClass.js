@@ -176,6 +176,8 @@ class WorkingClass
 
         var omniverse = [];
 
+        var multiver = [];
+
         for(let i = 0; i < multiverseObject.theMultiverseArray.length; i++)
         {
             var schedules = multiverseObject.theMultiverseArray[i];
@@ -195,13 +197,20 @@ class WorkingClass
         } 
 
         //Multiverse Mutators
-        //omniverse = this.eaglePurge(omniverse);
+        // omniverse = this.eaglePurge(omniverse, multiverseObject.genNo);
+        // if (multiverseObject.genNo > 2)
+        // {
+        //     this.addition(omniverse, multiverseObject.genNo);
+        // }
+        
 
         //clear multiverseArray
-        this.multiverseArray = [];
-        this.multiverseArray = omniverse.slice();
+        multiver = [];
+        multiver = omniverse.slice();
+        //console.log(multiver);
 
-        var omnipresent = new Generation(multiverseObject.genNo, omniverse);
+        var omnipresent = new Generation(multiverseObject.genNo, multiver);
+        //console.log(omnipresent);
         //console.log(omnipresent);
 
         return omnipresent;
@@ -214,52 +223,77 @@ class WorkingClass
     }
 
     //Adds more randomly generated schedules to the multiverse array
-    addition(multiverseInput)
+    addition(multiverseInput, gen)
     {
-        /*
         var missingSchedules = INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT - multiverseInput.length;
 
         while (missingSchedules > 0)
         {
             var potentialSchedule = this.initialGeneration();
-            if (potentialSchedule.percentage > threshold("add"))
+            if (potentialSchedule.percentage > this.threshold("add", gen))
             {
                 multiverseInput.push(potentialSchedule);
                 missingSchedules--;
             }
         }
-        */
     }
 
     //Deletes bad schedules from multiverse array
-    //NOTE: Hi Max!
-    //The multiverseInput is still an array of schedules, so 
-    //mutate through the arrays as you please!
-    //just remember to check the threshold value and delete stuff
-    //from there, i think for now, we delete at least 10% or so,
-    //more if the threshold says to, but less than 50%
-    eaglePurge(multiverseInput) 
+    // It's called eagle purge cause in like Honors Bio there are like bugs on a rock and an eagle comes down and eats some (purge)
+
+    //ADD RANDOMNESS FOR WHEN TO DELETE VS NOT
+    eaglePurge(multiverseInput, gen) 
     {
-        //console.log(multiverseInput);
-        // for(let i = 0; i < multiverseInput.length; i++){
-        //     console.log("Fitness % EAGLE PURGE: " + multiverseInput[i].percentage);
-        // }
+        var goodSchedules = [];
         
-        //for eeeur ascheedl in the mutlvoerse, call therodsfold
-        //with the threshold negative, PURGE!!!!
+        //Restricting the amount of deletions to to under a certain percent -->  .5 would enable eagle purge to delete up to half of all schedules in multiverseInput if the fitness vals are small
+        // var percent_of_schedules_to_delete = .5; 
+        
+        // var maximum_number_of_schedules_to_delete = multiverseInput.length * percent_of_schedules_to_delete;
+
+        // var deleted_schedules = 0;
+        
+        for(let i = 0; i < multiverseInput.length; i++){
+            if(multiverseInput[i].percentage > this.threshold("subtract", gen))
+            {
+                goodSchedules.push(multiverseInput[i]);
+            }
+        }
+
+        return goodSchedules;
     }
 
-    //Takes two Room objects within a Schedule and randomly mutates them. 
+    //Takes two Room objects within a Schedule and randomly mutates them -> swapping when classes take place inside a day. 
+    //vertical
     line_swap(theSchedule)
     {
 
     }
 
-    //crosses two different schedules.
-    crossover(theSchedule)
+    //crosses two different schedules -> switching 1 class.
+    //horizontal
+    crossover(multiverseInput)
     {
         var randPeriod = rand(1,8);
-        var randRoom = rand(0, )
+        var firstRandomSchedule = rand(0, multiverseInput.length - 1);
+        var secondRandomSchedule;
+        while (secondRandomSchedule = firstRandomSchedule)
+        {
+            secondRandomSchedule = rand(0, multiverseInput.length - 1);
+        }
+
+
+        var firstRandRoomIndex = rand(0, multiverseInput[firstRandomSchedule].schedule[randPeriod].length);
+        var secondRandRoomIndex = rand(0, multiverseInput[secondRandomSchedule].schedule[randPeriod].length);
+
+        var firstRoom = multiverseInput[firstRandomSchedule].schedule[randPeriod][firstRandRoomIndex];
+        var secondRoom = multiverseInput[secondRandomSchedule].schedule[randPeriod][secondRandRoomIndex];
+        
+        // what we need to do:
+        // swap the two rooms
+        // check if they are better
+        // continue on with life
+
     }
 
     //Checks if changes made to individual schedules from line_change or crossover were better or worse than just leaving it alone. 
@@ -277,16 +311,16 @@ class WorkingClass
 
         @param type the type of threshold being checked
     */
-    threshold(type)
+    threshold(type, gen)
     {
         if (type == "add")
         {
-            return 10; //change to algorithm
+            return 10 + gen; //change to algorithm
         }
 
         if (type == "subtract")
         {
-            return 10; //change to algorithm
+            return 10 + gen; //change to algorithm
         }
 
         if (type == "end")
