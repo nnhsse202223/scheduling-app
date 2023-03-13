@@ -90,12 +90,13 @@ async function script(){
     //console.log(theObj.verse.theMultiverseArray);
     gene.represent();
 
+    var theActualVerse;
 
     //This is to regenerate the schedules
     for (let i = 0; i < data.numbers_of_generations; i++)
     {
-        theObj.regenerate(theObj.verse);
-        var gene = new GeneticRepresentation(theObj.verse);
+        theActualVerse = theObj.regenerate(theObj.verse);
+        var gene = new GeneticRepresentation(theActualVerse);
         gene.represent();        
     }
     
