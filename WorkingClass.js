@@ -17,7 +17,7 @@ class WorkingClass
         this.multiverseArray.push(this.gen_number);
         this.fitness_value = 0;
         this.maxfitness = 0;
-        this.teacherPreferenceData = require('./teachers.json');
+        this.teacherPreferenceData = require('./teachers2.json');
 
         //this is to let us know what schedules are which, it is only for organization.
         this.scheduleNo = 1;
@@ -146,51 +146,37 @@ class WorkingClass
     {
         this.fitness_value = 0;
         this.maxfitness = 0;
+        let negate = false;
         for (let j = 0; j < theSchedule.length; j++) //checks class period
         {
             for(let i = 0; i < theSchedule[j].length; i++) //rooms within each period
             {
-                if (theSchedule[j][i].classList.includes(theSchedule[j][i].room_class.name))
+                if(theSchedule[j][i].classList.includes(theSchedule[j][i].room_class.name))
                 {
-                    this.fitness_value++;
+                    this.fitness_value += 10; //Technically unnesscary, given that we do not have room weights and we are negating fitness if the room is wrong
                 }
                 else
                 {
-                    this.fitness_value = 0;
-                    this.maxfitness++;
-                    return this.fitness_value;
+                    negate = true;
                 }
-                this.maxfitness++;
                 if (theSchedule[j][i].room_teacher.classList.includes(theSchedule[j][i].room_class.name))
                 {
                     this.teacherPreferenceData.forEach(fileData => {
                         if(fileData["Teacher"] == theSchedule[j][i].room_teacher) {
-                            console.log(fileData["Teacher"]);
-                            console.log(theSchedule[j][i].room_class.name);
-                            console.log(fileData[theSchedule[j][i].room_class.name]);
-                            this.fitness_value += +fileData[theSchedule[j][i].room_class.name];
+                            this.fitness_value += +fileData[theSchedule[j][i].room_class.name.replaceAll(' ', '')];
                     }});
-                    let n = 0;
-                    this.teacherPreferenceData.forEach(fileData => Object.keys(fileData).forEach(className => {
-                        if(className == theSchedule[j][i].room_class.name) {
-                            if(fileData[className] > n) {
-                                n = +fileData[className];
-                            }
-                        }
-                    }));
-                    this.maxfitness += n;
                 }
                 else
                 {
-                     this.fitness_value = 0;
-                    this.maxfitness++;
-                     return this.fitness_value;
+                    negate = true;
                 }
+                this.maxfitness += 20; //10 for rooms and 10 for classes
             }
         }
-
-        console.log("fitness value: " + this.fitness_value);
-        console.log("max fitness: " + this.maxfitness);
+        if(negate)
+        {
+            this.fitness_value -= this.maxfitness;
+        }
         return this.fitness_value;
     }
 
