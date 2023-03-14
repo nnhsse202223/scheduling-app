@@ -177,6 +177,7 @@ class WorkingClass
         {
             this.fitness_value -= this.maxfitness;
         }
+        this.fitness_value /= this.maxfitness;
         return this.fitness_value;
     }
 
