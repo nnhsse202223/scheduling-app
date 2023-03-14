@@ -117,8 +117,7 @@ class WorkingClass
         }
 
         aSchedule.set_schedule(scheduleArray1);
-        this.fitness(aSchedule.schedule);
-        aSchedule.set_percentage(this.fitness_value/this.maxfitness * 100);
+        aSchedule.set_percentage(this.fitness(aSchedule.schedule));
 
         //NOTE: KEEP FOR ORGANIZATION
         //console.log("\n\n========================================\n========================================\n\n");
@@ -160,7 +159,7 @@ class WorkingClass
             }
         }
 
-        return this.fitness_value;
+        return this.fitness_value/this.maxfitness * 100;
     }
 
 
@@ -274,6 +273,13 @@ class WorkingClass
     //horizontal
     crossover(multiverseInput)
     {
+        var multiverseInputCopy = [];
+        
+        for (let i = 0; i < multiverseInput.length; i++)
+        {
+            multiverseInputCopy.push(new Schedule(multiverseInput[i].schedule, multiverseInput[i].percentage));
+        }
+        
         var randPeriod = rand(1,8);
         var firstRandomSchedule = rand(0, multiverseInput.length - 1);
         var secondRandomSchedule;
@@ -282,24 +288,57 @@ class WorkingClass
             secondRandomSchedule = rand(0, multiverseInput.length - 1);
         }
 
-
+        //Generating a random class period to use
         var firstRandRoomIndex = rand(0, multiverseInput[firstRandomSchedule].schedule[randPeriod].length);
         var secondRandRoomIndex = rand(0, multiverseInput[secondRandomSchedule].schedule[randPeriod].length);
 
+        //Accessing that random room
         var firstRoom = multiverseInput[firstRandomSchedule].schedule[randPeriod][firstRandRoomIndex];
         var secondRoom = multiverseInput[secondRandomSchedule].schedule[randPeriod][secondRandRoomIndex];
+
+        //Swapping classes
+        multiverseInputCopy[firstRandomSchedule].schedule[randPeriod][firstRandRoomIndex].set_room_teacher = secondRoom.room_teacher;
+        multiverseInputCopy[firstRandomSchedule].schedule[randPeriod][firstRandRoomIndex].set_room_class = secondRoom.room_class;
+
+        multiverseInputCopy[secondRandomSchedule].schedule[randPeriod][secondRandRoomIndex].set_room_teacher = firstRoom.room_teacher;
+        multiverseInputCopy[secondRandomSchedule].schedule[randPeriod][secondRandRoomIndex].set_room_class = firstRoom.room_class;
         
-        // what we need to do:
-        // swap the two rooms
+        //Updating fitness value of new potential classes
+        multiverseInputCopy[firstRandomSchedule].set_percentage(this.fitness(multiverseInputCopy[firstRandomSchedule].schedule));
+        multiverseInputCopy[secondRandomSchedule].set_percentage(this.fitness(multiverseInputCopy[secondRandomSchedule].schedule));
+
+        //Checking the percentages such that if one schedule is improved we should keep that. 
+        if (this.mutateChecker(multiverseInput[firstRandomSchedule], multiverseInputCopy[firstRandomSchedule]) > 0 && this.mutateChecker(multiverseInput[secondRandomSchedule], multiverseInputCopy[secondRandomSchedule]) > 0)
+        {
+            return multiverseInputCopy;
+        }
+        else if ()
+        {
+            
+
+        }
+
+        // NOTEEEEEEEEEEEEEE:
         // check if they are better
-        // continue on with life
+
 
     }
 
     //Checks if changes made to individual schedules from line_change or crossover were better or worse than just leaving it alone. 
+    //Return 1 if Old schedule is worse than new schedule
+    //Return -1 if new schedule is worse than old schedule
+    // Return 0 if they are equal
     mutateChecker(theSchedule, theNewSchedule)
     {
-
+        if(theSchedule.percentage < theNewSchedule.percentage){
+            return 1;
+        }
+        else if (theSchedule.percentage > theNewSchedule.percentage){
+            return -1;
+        }
+        else{
+            return 0;
+        }
     }
 
 
