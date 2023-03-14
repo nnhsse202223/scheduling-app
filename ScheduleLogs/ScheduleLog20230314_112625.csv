@@ -1,0 +1,137 @@
+Period, Room, Teacher, Class
+1,139,Melissa Oskroba,Cul 1
+1,138,Angie Lewandowski,Plant Science
+1,134,Gene Nolan,Fashion Design
+1,132,Greg Ditch,Workshop Elements
+1,130,Geoff Schmit,Blended Intro to Business
+1,129,Jen Betthauser,Drafting Studio 1
+1,128,Jason Ryan,Online Consumer
+1,126,Dawn Ingram,Comp Animal 1
+1,125,Matt Callaghan,ACCElerator
+1,123,Henry Gleamza,Health Occ
+1,121,Jason Reid,Consumer Econ
+1,120,Becky DiOrio,Drafting Studio 2
+1,119,Dan Kischuk,Workshop Elements
+1,117,Sara Willard,Geo in Construction
+1,116,Dana Klen,Cul 2
+1,115,Alli Hillyer,Comp Animal 1
+1,114,Terry Morenus,Cul 2
+2,139,Dawn Ingram,Blended Intro to Business
+2,138,Terry Morenus,ITS1
+2,134,Melissa Oskroba,Graphics 3
+2,132,Jason Reid,Senior Foods
+2,130,Greg Ditch,Consumer Econ EL
+2,129,Sara Willard,Marketing
+2,128,Jasmin Tuazon,Consumer Econ TT
+2,126,Alli Hillyer,Tech Edge +
+2,125,Dana Klen,Game Design
+2,123,Becky DiOrio,Consumer Econ TT
+2,121,Angie Lewandowski,Graphics 1
+2,120,Matt Callaghan,Business Law
+2,119,Geoff Schmit,Graphics 2
+2,117,Henry Gleamza,Tech Edge
+2,116,Gene Nolan,Software Engineering 1
+2,115,Jason Ryan,AP Computer Science
+2,114,Jen Betthauser,Incubator
+3,139,Jasmin Tuazon,Introduction to Business
+3,138,Jason Reid,Comp Programming 1
+3,134,Matt Callaghan,R&D
+3,132,Gene Nolan,Accounting 1
+3,130,Alli Hillyer,Senior Foods
+3,129,Sara Willard,Interior Design
+3,128,Jason Ryan,Drafting Studio 1
+3,126,Dan Kischuk,Adult Living
+3,125,Dana Klen,Consumer Econ EL
+3,123,Dawn Ingram,Fashion Design
+3,121,Greg Ditch,ITS2
+3,120,Henry Gleamza,Workshop Studio
+3,119,Terry Morenus,Electronics
+3,117,Geoff Schmit,Vet Science
+3,116,Becky DiOrio,ECE 2
+3,115,Angie Lewandowski,Tech Edge
+3,114,Melissa Oskroba,International Business
+4,139,Matt Callaghan,Auto 1
+4,138,Alli Hillyer,Blended Consumer
+4,134,Jen Betthauser,Cybersecurity
+4,132,Jason Ryan,ECE 1
+4,130,Dana Klen,Advertising
+4,129,Greg Ditch,Web Page Design
+4,128,Henry Gleamza,Honors Accounting
+4,126,Gene Nolan,Marketing
+4,125,Jason Reid,Auto 3
+4,123,Jasmin Tuazon,Graphics 1
+4,121,Geoff Schmit,Online Consumer
+4,120,Angie Lewandowski,Electronics
+4,119,Melissa Oskroba,Cul 1
+4,117,Terry Morenus,International Business
+4,116,Dawn Ingram,Adult Living
+4,115,Sara Willard,Comp Programming 1
+4,114,Becky DiOrio,Comp Programming 2
+5,139,Jasmin Tuazon,Tech Edge +
+5,138,Geoff Schmit,Cul 3
+5,134,Henry Gleamza,Intro to Health Occ
+5,132,Angie Lewandowski,Comp Animal 2
+5,130,Dawn Ingram,ITS1
+5,129,Gene Nolan,Intro to Teaching 1
+5,128,Matt Callaghan,Auto 2
+5,126,Sara Willard,Business Law
+5,125,Dan Kischuk,Cul 3
+5,123,Terry Morenus,Blended Consumer
+5,121,Becky DiOrio,Fashion Merchandising
+5,120,Melissa Oskroba,Adv. Web Page Design
+5,119,Jason Ryan,Aqua & Urban Food Prod.
+5,117,Alli Hillyer,Human Growth and Dev
+5,116,Greg Ditch,Consumer Econ
+5,115,Dana Klen,Software Engineering 2
+5,114,Jen Betthauser,Human Growth and Dev
+6,139,Sara Willard,Consumer Econ TT
+6,138,Angie Lewandowski,Marketing
+6,134,Greg Ditch,AP Computer Science
+6,132,Matt Callaghan,Health Occ
+6,130,Becky DiOrio,Plant Science
+6,129,Gene Nolan,Drafting Studio 2
+6,128,Jason Reid,ECE 1
+6,126,Henry Gleamza,Online Consumer
+6,125,Dawn Ingram,Incubator
+6,123,Jason Ryan,Fashion Design
+6,121,Melissa Oskroba,Tech Edge
+6,120,Dan Kischuk,Introduction to Business
+6,119,Alli Hillyer,Floral & Landscape Design
+6,117,Geoff Schmit,Web Page Design
+6,116,Jasmin Tuazon,ITS1
+6,115,Jen Betthauser,ITS1
+6,114,Dana Klen,Software Engineering 2
+7,139,Dan Kischuk,Workshop Elements
+7,138,Becky DiOrio,Blended Intro to Business
+7,134,Jasmin Tuazon,Workshop Elements
+7,132,Jason Ryan,Tech Edge +
+7,130,Angie Lewandowski,Blended Consumer
+7,129,Greg Ditch,Intro to Teaching 1
+7,128,Matt Callaghan,Intro to Health Occ
+7,126,Henry Gleamza,Blended Intro to Business
+7,125,Jason Reid,Online Consumer
+7,123,Alli Hillyer,Consumer Econ
+7,121,Sara Willard,Graphics 2
+7,120,Geoff Schmit,Human Growth and Dev
+7,119,Melissa Oskroba,Consumer Econ TT
+7,117,Dawn Ingram,Graphics 3
+7,116,Dana Klen,Human Growth and Dev
+7,115,Jen Betthauser,Graphics 1
+7,114,Terry Morenus,Comp Programming 1
+8,139,Henry Gleamza,Cybersecurity
+8,138,Becky DiOrio,Senior Foods
+8,134,Jason Reid,Graphics 3
+8,132,Dawn Ingram,Comp Animal 1
+8,130,Sara Willard,Comp Animal 2
+8,129,Gene Nolan,Workshop Studio
+8,128,Jen Betthauser,Senior Foods
+8,126,Jasmin Tuazon,Advertising
+8,125,Matt Callaghan,Cul 3
+8,123,Jason Ryan,Vet Science
+8,121,Dan Kischuk,Drafting Studio 1
+8,120,Greg Ditch,R&D
+8,119,Alli Hillyer,Cul 3
+8,117,Terry Morenus,Comp Programming 2
+8,116,Dana Klen,Blended Consumer
+8,115,Angie Lewandowski,EDS
+8,114,Melissa Oskroba,Auto 2

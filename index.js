@@ -10,7 +10,7 @@ app.get('/',(req,res)=>{
 
 app.get('/database', async (req,res)=>{
     let csvString = await script();
-    fileNames = fs.readdirSync(__dirname + "/Logs");
+    fileNames = fs.readdirSync(__dirname + "/ScheduleLogs");
     if(fileNames.length >= 10)
     {
         var fileToDelete = fileNames[0];
@@ -30,7 +30,7 @@ app.get('/database', async (req,res)=>{
                 }
             }
         })
-        fs.unlinkSync("Logs/" + fileToDelete, (err) => err && console.error(err));
+        fs.unlinkSync("ScheduleLogs/" + fileToDelete, (err) => err && console.error(err));
     }
     var today = new Date();
     var dateTime = "ScheduleLog" + today.getFullYear();
@@ -59,7 +59,7 @@ app.get('/database', async (req,res)=>{
         dateTime += 0;
     }
     dateTime += today.getSeconds();
-    fs.writeFileSync("Logs/" + dateTime + ".csv",csvString,(err) => err && console.error(err));
+    fs.writeFileSync("ScheduleLogs/" + dateTime + ".csv",csvString,(err) => err && console.error(err));
     res.send(csvString);
 })
 
