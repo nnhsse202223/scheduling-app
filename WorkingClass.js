@@ -3,7 +3,7 @@ const {Schedule} = require("./Schedule.js");
 const {Multiverse, Generation} = require("./Generation.js");
 
 //the number of schedules we want to generate
-const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 5;
+const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 2;
 
 class WorkingClass
 {
@@ -201,6 +201,8 @@ class WorkingClass
         // {
         //     this.addition(omniverse, multiverseObject.genNo);
         // }
+
+        omniverse = this.crossover(omniverse);
         
 
         //clear multiverseArray
@@ -280,17 +282,18 @@ class WorkingClass
             multiverseInputCopy.push(new Schedule(multiverseInput[i].schedule, multiverseInput[i].percentage));
         }
         
-        var randPeriod = rand(1,8);
-        var firstRandomSchedule = rand(0, multiverseInput.length - 1);
-        var secondRandomSchedule;
-        while (secondRandomSchedule = firstRandomSchedule)
+        var randPeriod = this.rand(1,8);
+        var firstRandomSchedule = this.rand(0, multiverseInput.length - 1);    
+        var secondRandomSchedule = this.rand(0, multiverseInput.length - 1);
+        while (secondRandomSchedule == firstRandomSchedule)
         {
-            secondRandomSchedule = rand(0, multiverseInput.length - 1);
+            secondRandomSchedule = this.rand(0, multiverseInput.length - 1);
+            // console.log(secondRandomSchedule);
         }
 
         //Generating a random class period to use
-        var firstRandRoomIndex = rand(0, multiverseInput[firstRandomSchedule].schedule[randPeriod].length);
-        var secondRandRoomIndex = rand(0, multiverseInput[secondRandomSchedule].schedule[randPeriod].length);
+        var firstRandRoomIndex = this.rand(0, multiverseInput[firstRandomSchedule].schedule[randPeriod].length);
+        var secondRandRoomIndex = this.rand(0, multiverseInput[secondRandomSchedule].schedule[randPeriod].length);
 
         //Accessing that random room
         var firstRoom = multiverseInput[firstRandomSchedule].schedule[randPeriod][firstRandRoomIndex];
@@ -314,6 +317,7 @@ class WorkingClass
         {
             multiverseInputCopy[firstRandomSchedule].schedule = multiverseInput[firstRandomSchedule];
             multiverseInputCopy[firstRandomSchedule].percentage = this.fitness(multiverseInput[firstRandomSchedule].schedule);
+            //console.log(multiverseInputCopy[firstRandomSchedule].percentage);
         }
 
         if (this.mutateChecker(multiverseInput[secondRandomSchedule], multiverseInputCopy[secondRandomSchedule]) < 0)
