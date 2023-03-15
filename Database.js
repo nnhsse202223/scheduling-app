@@ -77,11 +77,33 @@ async function script(){
     //  call the mutation and eagle_purge method when you want
     let theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
     var schedular = theObj.multiverseArray[Math.floor(Math.random() * 2)].scheduleArray; //schedule[1]
-    var csvString = "Period, Room, Teacher, Class\n";
-    let n = 0;
+    // var csvString = "Period, Room, Teacher, Class\n";
+    // let n = 0;
+    // schedular.forEach((period) => {
+    //     n++;
+    //     period.forEach((room) => csvString += n + ',' + room.room_number + ',' + room.room_teacher + ',' + room.room_class + '\n');
+    // });
+
+    var csvString = "Period, 1, 2, 3, 4, 5, 6, 7, 8\n";
+    let teacherArray = [];
     schedular.forEach((period) => {
-        n++;
-        period.forEach((room) => csvString += n + ',' + room.room_no + ',' + room.teacher.name + ',' + room.class.name + '\n');
+        period.forEach((room) => {let repeatedTeacher = false;
+            for(let i = 0; i < teacherArray.length ; i++){
+            if(room.room_teacher == teacherArray[i]){
+                repeatedTeacher = true;
+            }}
+            if(repeatedTeacher == false) {
+                let teacher = room.room_teacher;
+                csvString += teacher + ',';
+
+                schedular.forEach((teacherPeriod) => {
+                    teacherPeriod.forEach((teacherRoom) => {if(teacherRoom.room_teacher == teacher){
+                        csvString += teacherRoom.room_class + " - " + teacherRoom.room_number + ',';
+                    }});
+                });
+                csvString += '\n';
+                teacherArray.push(teacher);
+    }});
     });
     //var gene = new GeneticRepresentation(theObj.multiverseArray);
     //gene.represent();
