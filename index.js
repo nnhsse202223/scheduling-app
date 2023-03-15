@@ -3,6 +3,15 @@ const express = require('express');
 let fs = require('fs');
 var app = express();
 
+app.use(express.json());       
+app.use(express.urlencoded({extended: true}));
+app.post("/logs", (req, res) => {
+   let scheduleNumber = req.body.scheduleNumber;
+   let fileNames = fs.readdirSync(__dirname + "/ScheduleLogs");
+   let csvString = fs.readFile(__dirname + "/ScheduleLogs/" + fileNames[scheduleNumber]);
+   res.send(csvString, "utf8", (err) => err && console.error(err));
+});
+
 app.use(express.static('Client'));
 app.get('/',(req,res)=>{
     res.sendFile(__dirname + "/Client/StylizedWebsite.html");
