@@ -308,18 +308,21 @@ class WorkingClass
         multiverseInputCopy[secondRandomSchedule].set_percentage(this.fitness(multiverseInputCopy[secondRandomSchedule].schedule));
 
         //Checking the percentages such that if one schedule is improved we should keep that. 
-        if (this.mutateChecker(multiverseInput[firstRandomSchedule], multiverseInputCopy[firstRandomSchedule]) > 0 && this.mutateChecker(multiverseInput[secondRandomSchedule], multiverseInputCopy[secondRandomSchedule]) > 0)
-        {
-            return multiverseInputCopy;
-        }
-        else if ()
-        {
-            
 
+        // if fitness val of old schedule > new schedule
+        if (this.mutateChecker(multiverseInput[firstRandomSchedule], multiverseInputCopy[firstRandomSchedule]) < 0 )
+        {
+            multiverseInputCopy[firstRandomSchedule].schedule = multiverseInput[firstRandomSchedule];
+            multiverseInputCopy[firstRandomSchedule].percentage = this.fitness(multiverseInput[firstRandomSchedule].schedule);
         }
 
-        // NOTEEEEEEEEEEEEEE:
-        // check if they are better
+        if (this.mutateChecker(multiverseInput[secondRandomSchedule], multiverseInputCopy[secondRandomSchedule]) < 0)
+        {
+            multiverseInputCopy[secondRandomSchedule].schedule = multiverseInput[secondRandomSchedule];
+            multiverseInputCopy[secondRandomSchedule].percentage = this.fitness(multiverseInput[secondRandomSchedule].schedule);
+        }
+
+        return multiverseInputCopy;
 
 
     }
