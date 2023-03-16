@@ -292,11 +292,12 @@ class WorkingClass
         while (secondRandomSchedule == firstRandomSchedule)
         {
             secondRandomSchedule = this.rand(0, multiverseInput.length - 1);
+            console.log(secondRandomSchedule);
         }
         
 
         //Generating a random class period to use
-        console.log(multiverseInput[firstRandomSchedule].schedule[randPeriod].length);
+        //console.log(multiverseInput[firstRandomSchedule].schedule[randPeriod].length);
         var firstRandRoomIndex = this.rand(0, multiverseInput[firstRandomSchedule].schedule[randPeriod].length - 1);
         var secondRandRoomIndex = this.rand(0, multiverseInput[secondRandomSchedule].schedule[randPeriod].length - 1);
 
