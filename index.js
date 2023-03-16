@@ -6,15 +6,15 @@ var app = express();
 app.use(express.json());       
 app.use(express.urlencoded({extended: true}));
 app.post("/logs", (req, res) => {
-   let scheduleNumber = req.body.scheduleNumber;
+   let scheduleNumber = req.body.scheduleNumber - 1;
    let fileNames = fs.readdirSync(__dirname + "/ScheduleLogs");
-   let csvString = fs.readFile(__dirname + "/ScheduleLogs/" + fileNames[scheduleNumber]);
-   res.send(csvString, "utf8", (err) => err && console.error(err));
+   let csvString = fs.readFileSync(__dirname + "/ScheduleLogs/" + fileNames[scheduleNumber]);
+   res.download(__dirname + "/ScheduleLogs/" + fileNames[scheduleNumber], fileNames[scheduleNumber], (err) => err && console.error(err));
 });
 
 app.use(express.static('Client'));
 app.get('/',(req,res)=>{
-    res.sendFile(__dirname + "/Client/StylizedWebsite.html");
+    res.sendFile(__dirname + "/Client/LogViewer.html");
 });
 
 app.get('/database', async (req,res)=>{
@@ -22,7 +22,7 @@ app.get('/database', async (req,res)=>{
     fileNames = fs.readdirSync(__dirname + "/ScheduleLogs");
     if(fileNames.length >= 10)
     {
-        var fileToDelete = fileNames[0];
+        /*var fileToDelete = fileNames[0];
         fileNames.forEach(name => {
             var check = +name.substring(11, name.indexOf('_')) < +fileToDelete.substring(11, fileToDelete.indexOf('_'));
             var check2 = +name.substring(11, name.indexOf('_')) == +fileToDelete.substring(11, fileToDelete.indexOf('_'));
@@ -39,7 +39,8 @@ app.get('/database', async (req,res)=>{
                 }
             }
         })
-        fs.unlinkSync("ScheduleLogs/" + fileToDelete, (err) => err && console.error(err));
+        fs.unlinkSync("ScheduleLogs/" + fileToDelete, (err) => err && console.error(err));*/
+        fs.unlinkSync("ScheduleLogs/" + fileNames[0], (err) => err && console.error(err));
     }
     var today = new Date();
     var dateTime = "ScheduleLog" + today.getFullYear();
