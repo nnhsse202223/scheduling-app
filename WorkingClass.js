@@ -302,10 +302,11 @@ class WorkingClass
 
 
         //Generating a random class period to use
-        //var firstRandRoomIndex = this.rand(0, multiverseInput[firstRandomScheduleIndex].schedule[randPeriod].length - 1);
-        var secondRandRoomIndex = this.rand(0, (multiverseInputCopy[secondRandomScheduleIndex].schedule[randPeriod].length - 1));     
-        console.log("Second random index :" + secondRandRoomIndex);
         var firstRandRoomIndex = 7;
+        //var firstRandRoomIndex = this.rand(0, multiverseInput[firstRandomScheduleIndex].schedule[randPeriod].length - 1);
+        console.log(multiverseInputCopy[secondRandomScheduleIndex].schedule[randPeriod]);
+        var secondRandRoomIndex = this.rand(0, (multiverseInputCopy[secondRandomScheduleIndex].schedule[randPeriod].length-1));     
+        console.log("Second random index :" + secondRandRoomIndex);
         // var secondRandRoomIndex = 5;
         
         //NOTE: I've tried constant values and that's worked. I tried to randomize one (above) and it's not working. gl. 
