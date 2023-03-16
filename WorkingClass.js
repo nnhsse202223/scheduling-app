@@ -1,4 +1,4 @@
-const { Room } = require("./Room.js");
+const { Room } = require("./room.js");
 const {Schedule} = require("./Schedule.js");
 const {Multiverse, Generation} = require("./Generation.js");
 
@@ -276,7 +276,6 @@ class WorkingClass
 
     //crosses two different schedules -> switching 1 class.
     //horizontal
-    // 8, 5
     crossover(multiverseInput)
     {
         var multiverseInputCopy = [];
@@ -286,51 +285,34 @@ class WorkingClass
             multiverseInputCopy.push(new Schedule(multiverseInput[i].schedule, multiverseInput[i].percentage));
         }
         
-        var randPeriod = this.rand(0,7);
-        console.log(/*"Period No: " + */ randPeriod);
-        var firstRandomScheduleIndex = this.rand(0, multiverseInput.length - 1);   
-        console.log("First Schedule Index: " + firstRandomScheduleIndex);
-        var secondRandomScheduleIndex = this.rand(0, multiverseInput.length - 1);
-        while (secondRandomScheduleIndex == firstRandomScheduleIndex)
-        {
-            secondRandomScheduleIndex = this.rand(0, multiverseInput.length - 1);
+        //var randPeriod = this.rand(0,7);
+        var randPeriod = 0;
+
+        // var firstRandomScheduleIndex = this.rand(0, multiverseInput.length - 1);   
+        // var secondRandomScheduleIndex = this.rand(0, multiverseInput.length - 1);
+
+        var firstRandomScheduleIndex = 1;
+        var secondRandomScheduleIndex = 1;
+
+        // while (secondRandomScheduleIndex == firstRandomScheduleIndex)
+        // {
+        //     secondRandomScheduleIndex = this.rand(0, multiverseInput.length - 1);
             
-        }
-        console.log("Second Schedule Index: " + secondRandomScheduleIndex);
-        
+        // }        
+
 
         //Generating a random class period to use
-        //console.log(multiverseInput[firstRandomScheduleIndex].schedule[randPeriod]);
-       
+        //var firstRandRoomIndex = this.rand(0, multiverseInput[firstRandomScheduleIndex].schedule[randPeriod].length - 1);
+        var secondRandRoomIndex = this.rand(0, (multiverseInputCopy[secondRandomScheduleIndex].schedule[randPeriod].length - 1));     
+        console.log("Second random index :" + secondRandRoomIndex);
+        var firstRandRoomIndex = 7;
+        // var secondRandRoomIndex = 5;
         
+        //NOTE: I've tried constant values and that's worked. I tried to randomize one (above) and it's not working. gl. 
 
         //Accessing that random room
-
-        try {
-            var firstRandRoomIndex = this.rand(0, multiverseInput[firstRandomScheduleIndex].schedule[randPeriod].length - 1);
-          } catch (TypeError) {
-            //console.error(TypeError);
-            
-            
-            console.log("FIRST SCHEDULE ERROR");
-            console.log(multiverseInput[firstRandomScheduleIndex].schedule.toString());
-            console.log("Random Period: " + randPeriod);
-            console.log("SCHEDULE PERIOD :" + multiverseInput[firstRandomScheduleIndex].schedule[randPeriod]);
-          }
-          
-
-        try {
-            var secondRandRoomIndex = this.rand(0, multiverseInput[secondRandomScheduleIndex].schedule[randPeriod].length - 1);     
-        } catch (TypeError) {
-            //console.error(TypeError);
-            console.log("SECOND SCHEDULE ERROR");
-            console.log("Random Period: " + randPeriod);
-            console.log(multiverseInput[secondRandomScheduleIndex].schedule.toString());
-          }
-       
-
-        var firstRoom = multiverseInput[firstRandomScheduleIndex].schedule[randPeriod][firstRandRoomIndex];
-        var secondRoom = multiverseInput[secondRandomScheduleIndex].schedule[randPeriod][secondRandRoomIndex];  
+        var firstRoom = multiverseInputCopy[firstRandomScheduleIndex].schedule[randPeriod][firstRandRoomIndex];
+        var secondRoom = multiverseInputCopy[secondRandomScheduleIndex].schedule[randPeriod][secondRandRoomIndex];  
 
         //Swapping classes
         multiverseInputCopy[firstRandomScheduleIndex].schedule[randPeriod][firstRandRoomIndex].set_room_teacher(secondRoom.room_teacher);
