@@ -69,15 +69,16 @@ class WorkingClass
 
         for (let j = 0; j < 8; j++)
         {
+            //Making a copy that we can use of the main rooms -> due to weird reference properties
             var dupRoomArray = this.roomArray.slice();
 
-            //Not enough classes to fill all rooms
+            //Not enough classes to fill all rooms -> repeat classes
             if (dupClassArray.length < dupRoomArray.length)
             {
                 dupClassArray = this.classArray.slice();
             }
             
-            //Not enough teachers to fill all rooms
+            //Not enough teachers to fill all rooms -> repeat teachers
             if (dupTeacherArray.length < dupRoomArray.length)
             {
                 dupTeacherArray = this.teacherArray.slice();
@@ -86,25 +87,38 @@ class WorkingClass
             
             for (let i = 0; i < this.roomArray.length; i++)
             {
- 
+                //Getting a random teacher
                 randomTeacherIndex = this.rand(0, dupTeacherArray.length - 1);
+
+                //Getting a random class
                 randomClassIndex = this.rand(0, dupClassArray.length - 1);
+
+                //creating a room object -> weird reference issues
                 var THE_OTHER_ROOM = dupRoomArray.pop();
+
+                //Creating new class with each random attribute with generated earlier. 
                 var theRoom = new Room(THE_OTHER_ROOM.room_number, THE_OTHER_ROOM.classList);
 
+                //Adding the teacher to the room
                 theRoom.set_room_teacher(dupTeacherArray[randomTeacherIndex])
+
+                //Getting rid of this teacher from the list
                 dupTeacherArray.splice(randomTeacherIndex,1);
                 
+                //Adding the class to the room
                 theRoom.set_room_class(dupClassArray[randomClassIndex]);
+
+                //Removing from the array
                 dupClassArray.splice(randomClassIndex, 1);
 
-
+                //Adding this new room to the array
                 myClassPeriodArray.push(theRoom);
 
-                //NOTE: KEEP THE LINE BELOW, THIS IS USED TO VIEW THE SCHEDULE!!!!!
+                //This will print out the full schedule, although not as nice as GeneticRepresentation.represent() will. 
                 //console.log("Period " + (j+1) + ": Room: " + myClassPeriodArray[i].room_number + ", Teacher: "+ myClassPeriodArray[i].room_teacher + ",  \t" + "Class: " + myClassPeriodArray[i].room_class);
             }
 
+            //Reference issues
             var copyBecauseCodeDoesntWork = myClassPeriodArray.slice();
             scheduleArray1.push(copyBecauseCodeDoesntWork);
 
@@ -290,11 +304,12 @@ class WorkingClass
         //     secondRandomScheduleIndex = this.rand(0, multiverseInput.length - 1);
             
         // }   
-        var firstRandomScheduleIndex = 0;
-        var secondRandomScheduleIndex = 1;
+        var firstRandomScheduleIndex = 8;
+        var secondRandomScheduleIndex = 9;
 
         //Generating a random class period to use -> values 0-7
-        var randPeriod = this.rand(0,7);
+        // var randPeriod = this.rand(0-7);
+        var randPeriod = 0;
 
         //Generating a random class in this period to swap -> Values 0-16
         var firstRandRoomIndex = 0;
@@ -304,10 +319,22 @@ class WorkingClass
         // var secondRandRoomIndex = this.rand(0, (multiverseInputCopy[secondRandomScheduleIndex].schedule[randPeriod].length-1));     
 
         console.log("first rand period: " + multiverseInputCopy[firstRandomScheduleIndex].schedule[randPeriod]);
-        
+        console.log("second rand period: " + multiverseInputCopy[secondRandomScheduleIndex].schedule[randPeriod]);
+
         //Accessing that random room
-        var firstRoom = multiverseInputCopy[firstRandomScheduleIndex].schedule[randPeriod][firstRandRoomIndex];
-        var secondRoom = multiverseInputCopy[secondRandomScheduleIndex].schedule[randPeriod][secondRandRoomIndex];  
+        try{
+            var firstRoom = multiverseInputCopy[firstRandomScheduleIndex].schedule[randPeriod][firstRandRoomIndex];
+        }
+        catch(TypeError){
+            console.log("First room error");
+        }
+
+        try{
+            var secondRoom = multiverseInputCopy[secondRandomScheduleIndex].schedule[randPeriod][secondRandRoomIndex];  
+        }
+        catch(TypeError){
+            console.log("Second room error");
+        }
 
         //Swapping classes
         multiverseInputCopy[firstRandomScheduleIndex].schedule[randPeriod][firstRandRoomIndex].set_room_teacher(secondRoom.room_teacher);
