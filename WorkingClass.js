@@ -71,7 +71,7 @@ class WorkingClass
         {
             var dupRoomArray = this.roomArray.slice();
 
-            //Not enough classes to fil all rooms
+            //Not enough classes to fill all rooms
             if (dupClassArray.length < dupRoomArray.length)
             {
                 dupClassArray = this.classArray.slice();
@@ -93,15 +93,12 @@ class WorkingClass
                 var theRoom = new Room(THE_OTHER_ROOM.room_number, THE_OTHER_ROOM.classList);
 
                 theRoom.set_room_teacher(dupTeacherArray[randomTeacherIndex])
-                //dupRoomArray[i].set_room_teacher();
                 dupTeacherArray.splice(randomTeacherIndex,1);
                 
                 theRoom.set_room_class(dupClassArray[randomClassIndex]);
-                //dupRoomArray[i].set_room_class(dupClassArray[randomClassIndex]);
                 dupClassArray.splice(randomClassIndex, 1);
 
 
-                //myClassPeriodArray  = dupRoomArray.slice();
                 myClassPeriodArray.push(theRoom);
 
                 //NOTE: KEEP THE LINE BELOW, THIS IS USED TO VIEW THE SCHEDULE!!!!!
@@ -191,7 +188,7 @@ class WorkingClass
              
             
             var mutated_Schedules = new Schedule(schedules.schedule, schedules.percentage);
-            omniverse.push(mutated_Schedules );
+            omniverse.push(mutated_Schedules);
             
         } 
 
@@ -284,32 +281,34 @@ class WorkingClass
         {
             multiverseInputCopy.push(new Schedule(multiverseInput[i].schedule, multiverseInput[i].percentage));
         }
-        
-        //Generating a random class period to use -> values 0-7
-        //var randPeriod = this.rand(0,7);
-        var randPeriod = "0";
 
+        //Generating 2 random schedules -> values 0-length of multiverse
         // var firstRandomScheduleIndex = this.rand(0, multiverseInput.length - 1);   
         // var secondRandomScheduleIndex = this.rand(0, multiverseInput.length - 1);
-
-        var firstRandomScheduleIndex = 1;
-        var secondRandomScheduleIndex = 1;
-
         // while (secondRandomScheduleIndex == firstRandomScheduleIndex)
         // {
         //     secondRandomScheduleIndex = this.rand(0, multiverseInput.length - 1);
             
-        // }        
+        // }   
 
-        //Values 0-16
-        var firstRandRoomIndex = 7;
-        //var firstRandRoomIndex = this.rand(0, multiverseInput[firstRandomScheduleIndex].schedule[randPeriod].length - 1);
-        // console.log("rand schedule: " + multiverseInputCopy[secondRandomScheduleIndex].schedule);
-        //var secondRandRoomIndex = this.rand(0, (multiverseInputCopy[secondRandomScheduleIndex].schedule[randPeriod].length-1));     
-        var secondRandRoomIndex = 13;
+        var firstRandomScheduleIndex = 0;
+        var secondRandomScheduleIndex = 1;
 
-        
-        // var secondRandRoomIndex = 5;
+        //Generating a random class period to use -> values 0-7
+        var randPeriod = this.rand(0,7);
+
+
+        //Generating a random class in this period to swap -> Values 0-16
+        var periodLength = 0;
+        for(const element in multiverseInput[firstRandomScheduleIndex].schedule[randPeriod]){
+            //run randPeriod through the debugger?
+
+        }
+        var firstRandRoomIndex = this.rand(0, multiverseInput[firstRandomScheduleIndex].schedule[randPeriod].length - 1);
+        var secondRandRoomIndex = this.rand(0, (multiverseInputCopy[secondRandomScheduleIndex].schedule[randPeriod].length-1));     
+
+
+        // console.log("first rand period: " + multiverseInputCopy[firstRandomScheduleIndex].schedule[randPeriod]);
         
         //Accessing that random room
         var firstRoom = multiverseInputCopy[firstRandomScheduleIndex].schedule[randPeriod][firstRandRoomIndex];
@@ -327,7 +326,6 @@ class WorkingClass
         multiverseInputCopy[secondRandomScheduleIndex].set_percentage(this.fitness(multiverseInputCopy[secondRandomScheduleIndex].schedule));
 
         //Checking the percentages such that if one schedule is improved we should keep that. 
-
         // if fitness val of old schedule > new schedule
         if (this.mutateChecker(multiverseInput[firstRandomScheduleIndex], multiverseInputCopy[firstRandomScheduleIndex]) < 0 )
         {

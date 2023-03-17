@@ -88,7 +88,7 @@ async function script(){
     //Making multiple generations of schedules
     var gene = new GeneticRepresentation(theObj.verse);
     //console.log(theObj.verse.theMultiverseArray);
-    gene.represent();
+    // gene.represent();
 
     var theActualVerse;
 
@@ -97,7 +97,7 @@ async function script(){
     {
         theActualVerse = theObj.regenerate(theObj.verse);
         var gene = new GeneticRepresentation(theActualVerse);
-        gene.represent();        
+        // gene.represent();        
     }
     
     // var schedular = theObj.multiverseArray[Math.floor(Math.random() * theObj.multiverseArray.length)].schedule; //schedule[1]
