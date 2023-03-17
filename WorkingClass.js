@@ -285,8 +285,9 @@ class WorkingClass
             multiverseInputCopy.push(new Schedule(multiverseInput[i].schedule, multiverseInput[i].percentage));
         }
         
+        //Generating a random class period to use -> values 0-7
         //var randPeriod = this.rand(0,7);
-        var randPeriod = 0;
+        var randPeriod = "0";
 
         // var firstRandomScheduleIndex = this.rand(0, multiverseInput.length - 1);   
         // var secondRandomScheduleIndex = this.rand(0, multiverseInput.length - 1);
@@ -300,17 +301,16 @@ class WorkingClass
             
         // }        
 
-
-        //Generating a random class period to use
+        //Values 0-16
         var firstRandRoomIndex = 7;
         //var firstRandRoomIndex = this.rand(0, multiverseInput[firstRandomScheduleIndex].schedule[randPeriod].length - 1);
-        console.log(multiverseInputCopy[secondRandomScheduleIndex].schedule[randPeriod]);
-        var secondRandRoomIndex = this.rand(0, (multiverseInputCopy[secondRandomScheduleIndex].schedule[randPeriod].length-1));     
-        console.log("Second random index :" + secondRandRoomIndex);
+        // console.log("rand schedule: " + multiverseInputCopy[secondRandomScheduleIndex].schedule);
+        //var secondRandRoomIndex = this.rand(0, (multiverseInputCopy[secondRandomScheduleIndex].schedule[randPeriod].length-1));     
+        var secondRandRoomIndex = 13;
+
+        
         // var secondRandRoomIndex = 5;
         
-        //NOTE: I've tried constant values and that's worked. I tried to randomize one (above) and it's not working. gl. 
-
         //Accessing that random room
         var firstRoom = multiverseInputCopy[firstRandomScheduleIndex].schedule[randPeriod][firstRandRoomIndex];
         var secondRoom = multiverseInputCopy[secondRandomScheduleIndex].schedule[randPeriod][secondRandRoomIndex];  
