@@ -6,10 +6,12 @@
 </head> 
 <body>
     <form action="/logs" method="post" onkeydown="return event.key != 'Enter';">
-        <label>Type in a number for the schedule you want to download (1 is the newest, 10 is the oldest one saved)</label>
+        <label>Type in a number for the schedule you want to download (1 is the oldest, 10 is the newest one saved)</label>
         <input type="number" name="scheduleNumber" min="1" max="10" required>
         <button type="submit">Download</button>
     </form>
-
+    <form action="/switchDownload" method = "get">
+        <button id="switch" type="submit">Switch</button>
+    </form>
 </body>  
 </html>  

@@ -17,6 +17,10 @@ app.get('/',(req,res)=>{
     res.sendFile(__dirname + "/Client/LogViewer.html");
 });
 
+app.get("/switchDownload", (req,res)=>{
+    res.sendFile(__dirname + "/Client/StylizedWebsite.html");
+});
+
 app.get('/database', async (req,res)=>{
     let csvString = await script();
     fileNames = fs.readdirSync(__dirname + "/ScheduleLogs");

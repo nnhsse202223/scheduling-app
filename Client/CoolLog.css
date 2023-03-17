@@ -41,4 +41,8 @@ body {
       background-position: 0% 50%;
     }
   }
+
+  #switch {
+    top: 80%;
+  }
   
