@@ -290,25 +290,20 @@ class WorkingClass
         //     secondRandomScheduleIndex = this.rand(0, multiverseInput.length - 1);
             
         // }   
-
         var firstRandomScheduleIndex = 0;
         var secondRandomScheduleIndex = 1;
 
         //Generating a random class period to use -> values 0-7
         var randPeriod = this.rand(0,7);
 
-
         //Generating a random class in this period to swap -> Values 0-16
-        var periodLength = 0;
-        for(const element in multiverseInput[firstRandomScheduleIndex].schedule[randPeriod]){
-            //run randPeriod through the debugger?
+        var firstRandRoomIndex = 0;
+        var secondRandRoomIndex = 1;
 
-        }
-        var firstRandRoomIndex = this.rand(0, multiverseInput[firstRandomScheduleIndex].schedule[randPeriod].length - 1);
-        var secondRandRoomIndex = this.rand(0, (multiverseInputCopy[secondRandomScheduleIndex].schedule[randPeriod].length-1));     
+        // var firstRandRoomIndex = this.rand(0, multiverseInput[firstRandomScheduleIndex].schedule[randPeriod].length - 1);
+        // var secondRandRoomIndex = this.rand(0, (multiverseInputCopy[secondRandomScheduleIndex].schedule[randPeriod].length-1));     
 
-
-        // console.log("first rand period: " + multiverseInputCopy[firstRandomScheduleIndex].schedule[randPeriod]);
+        console.log("first rand period: " + multiverseInputCopy[firstRandomScheduleIndex].schedule[randPeriod]);
         
         //Accessing that random room
         var firstRoom = multiverseInputCopy[firstRandomScheduleIndex].schedule[randPeriod][firstRandRoomIndex];
