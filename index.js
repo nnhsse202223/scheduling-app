@@ -14,11 +14,11 @@ app.post("/logs", (req, res) => {
 
 app.use(express.static('Client'));
 app.get('/',(req,res)=>{
-    res.sendFile(__dirname + "/Client/LogViewer.html");
+    res.sendFile(__dirname + "/Client/StylizedWebsite.html");
 });
 
-app.get("/switchDownload", (req,res)=>{
-    res.sendFile(__dirname + "/Client/StylizedWebsite.html");
+app.get("/Logs", (req,res)=>{
+    res.sendFile(__dirname + "/Client/LogViewer.html");
 });
 
 app.get('/database', async (req,res)=>{

@@ -1,23 +1,26 @@
 body {
   background: linear-gradient(45deg, rgb(255, 166, 33) 0%, rgb(253, 18, 89) 33%, rgb(132, 25, 255) 67%, rgb(74, 204, 255) 100%);
-  background-size: 300% 300%;
+  background-size: 300vw 300vh;
   animation: gradient 60s ease infinite;
+}
+
+body * {
+  font-family: Arial;
+  font-size: 10vmin;
 }
 
 button {
   position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
-  height: 15rem;
-  width: 30rem;
-  font-size: 5rem;
-  border-radius: 15px;
+  height: 3em;
+  width: 6em;
+  border-radius: .5em;
   border: none;
   box-shadow: 0px 0px 30px 0px black;
   color: #ffffff;
   background: #0c339e;
   cursor: pointer;
+  overflow: hidden;
 }
 
 button:hover
@@ -33,13 +36,13 @@ button:active
 #loader {
   position: absolute;
   left: 50%;
-  top: 50%;
-  margin: -76px 0 0 -76px;
-  width: 120px;
-  height: 120px;
-  border: 16px solid #ffffff;
+  top: 25%;
+  margin: -1.3em 0 0 -1.3em;
+  width: 2em;
+  height: 2em;
+  border: .3em solid #ffffff;
   border-radius: 50%;
-  border-top: 16px solid #0c339e;
+  border-top: .3em solid #0c339e;
   animation: spin 2s linear infinite, fadeIn 1.5s;
 }
 
@@ -75,4 +78,44 @@ button:active
   100% {
     background-position: 0% 50%;
   }
+}
+
+#create, #download {
+  top: 25%;
+  left: 50%;
+}
+
+#switch {
+  top: 75%;
+  left: 50%;
+}
+
+#downloadLogs{
+  top: 75%;
+  left: 25%;
+}
+
+#switchLogs{
+  top: 75%;
+  left: 75%;
+}
+
+#numberInput * {
+  font-size: 5vmin;
+}
+
+#numberInput {
+  color: #ffffff;
+  background: #0c339e;
+  margin: .5em;
+  padding: .5em .5em 0 .5em;
+  border-radius: .5em;
+  border: none;
+  box-shadow: 0px 0px 30px 0px black;
+  text-align: center;
+}
+
+#logInput {
+  width: 5em;
+  margin: 1em;
 }
