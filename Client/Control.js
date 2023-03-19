@@ -2,12 +2,12 @@ var csvString;
 
 function startCSV() {
     document.getElementById("create").style.display = "none";
-    document.getElementById("loader").style.display = "block";
+    document.getElementById("loader").style.display = "inline-block";
 }
 
 function endCSV() {
     document.getElementById("loader").style.display = "none";
-    document.getElementById("download").style.display = "block";
+    document.getElementById("download").style.display = "inline-block";
 }
 
 function downloadCSV() {
