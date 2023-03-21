@@ -21,6 +21,38 @@ The main files are such:
   - The things.csv file just has a random schedule stored, it is just used to check if other files work properly.
 
 The fitness function will be your friend, it is used to determine the best schedule and rank all schedules.
+It takes in a lot of data and just spits out a percentage, which is very cool!
+
+Here is the naming glossary for most of the variables from the WorkingClass.js file:
+LOWEST LEVEL:
+Teacher
+	Class List → list of class they can teach
+	Name → their name
+
+Class
+	Class name → the rame of the class
+
+MID-LOWEST LEVEL:
+Room
+	Teacher → teacher associated with room
+	Class → class associated with room
+	Room Number → the room number
+	Class List → list of classes compatible with the room
+
+MIDDLE LEVEL:
+ClassPeriodArray
+	A array of rooms for a given period
+
+MID-HIGHEST LEVEl:
+Schedule
+	Array → array of classPeriodArrays
+	Percentage → fitness percentage
+
+HIGHEST LEVEL:
+Generation
+	MultiverseArray → array of Schedules
+	generation no → what number generation it is on
+
 
 Anyways, enjoy browsing the scheduling app!
 
