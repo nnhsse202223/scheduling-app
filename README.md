@@ -21,7 +21,8 @@ The GeneticRepresenation.js file contains the code that lets you see the schedul
 The things.csv file just has a random schedule stored, it is just used to check if other files work properly.
 The fitness function will be your friend, it is used to determine the best schedule and rank all schedules. It takes in a lot of data and just spits out a percentage, which is very cool!
 
-Here is the naming glossary for most of the variables from the WorkingClass.js file: LOWEST LEVEL: Teacher Class List → list of class they can teach Name → their name
+Here is the naming glossary for most of the variables from the WorkingClass.js file: 
+LOWEST LEVEL: Teacher Class List → list of class they can teach Name → their name
 
 Class Class name → the rame of the class
 
