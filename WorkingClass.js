@@ -213,11 +213,13 @@ class WorkingClass
         //     this.addition(omniverse, multiverseObject.genNo);
         // }
 
-        for (let i = 0; i < multiverseObject.genNo + 15; i++)
+        //for (let i = 0; i < multiverseObject.genNo + 15; i++)
         {
-            this.crossover(omniverse);
+            //this.crossover(omniverse);
         }
         //console.log("Crossover worked!");
+
+        this.line_swap(omniverse);
         
 
         //clear multiverseArray
@@ -281,10 +283,23 @@ class WorkingClass
 
     //Takes two Room objects within a Schedule and randomly mutates them -> swapping when classes take place inside a day. 
     //vertical
-    line_swap(theSchedule)
+    line_swap(multiverseInput)
     {
+        var randSchedule = multiverseInput[this.rand(0, multiverseInput.length - 1)];
 
-    }
+        var randPeriod1 = this.rand(0, 7);
+        var randPeriod2 = this.rand(0, 7);
+        while (randPeriod1 == randPeriod2)
+        {
+            randPeriod2 = this.rand(0, 7);
+        }
+
+        console.log(multiverseInput.schedule[randSchedule][randPeriod1]);
+        
+
+        //console.log(randPeriod1);
+        //console.log(randPeriod2);
+    }   
 
     //crosses two different schedules -> switching 1 class.
     //horizontal
@@ -406,43 +421,43 @@ class WorkingClass
 
     // }
 
-    crossover(multiverseInput)
-    {
-        var multiverseInputCopy = [];
-        //console.log(multiverseInput);
+    // crossover(multiverseInput)
+    // {
+    //     var multiverseInputCopy = [];
+    //     //console.log(multiverseInput);
 
-        for(let i = 0; i < multiverseInput.length; i++)
-        {
-            multiverseInputCopy.push(new Schedule(multiverseInput[i].schedule, multiverseInput[i].percentage));
-        }
+    //     for(let i = 0; i < multiverseInput.length; i++)
+    //     {
+    //         multiverseInputCopy.push(new Schedule(multiverseInput[i].schedule, multiverseInput[i].percentage));
+    //     }
 
-        var randPeriod = this.rand(1,8);
+    //     var randPeriod = this.rand(1,8);
         
-        var firstScheduleIndex = this.rand(0, multiverseInput.length - 1);
-        var secondScheduleIndex = this.rand(0, multiverseInput.length - 1);
-        while (firstScheduleIndex == secondScheduleIndex)
-        {
-            var secondScheduleIndex = this.rand(0, multiverseInput.length - 1);
-        }
+    //     var firstScheduleIndex = this.rand(0, multiverseInput.length - 1);
+    //     var secondScheduleIndex = this.rand(0, multiverseInput.length - 1);
+    //     while (firstScheduleIndex == secondScheduleIndex)
+    //     {
+    //         var secondScheduleIndex = this.rand(0, multiverseInput.length - 1);
+    //     }
 
-        console.log(multiverseInput[firstScheduleIndex]);
-        console.log(multiverseInput[firstScheduleIndex].schedule);
-        console.log(multiverseInput[firstScheduleIndex].schedule[randPeriod]);
-        console.log(multiverseInput[firstScheduleIndex].schedule[randPeriod].length);
-        var firstRoomIndex = this.rand(0, multiverseInput[firstScheduleIndex].schedule[randPeriod].length - 1);
-        var secondRoomIndex = this.rand(0, multiverseInput[secondScheduleIndex].schedule[randPeriod].length - 1);
+    //     console.log(multiverseInput[firstScheduleIndex]);
+    //     console.log(multiverseInput[firstScheduleIndex].schedule);
+    //     console.log(multiverseInput[firstScheduleIndex].schedule[randPeriod]);
+    //     console.log(multiverseInput[firstScheduleIndex].schedule[randPeriod].length);
+    //     var firstRoomIndex = this.rand(0, multiverseInput[firstScheduleIndex].schedule[randPeriod].length - 1);
+    //     var secondRoomIndex = this.rand(0, multiverseInput[secondScheduleIndex].schedule[randPeriod].length - 1);
 
-        var firstRoom = multiverseInput[firstScheduleIndex].schedule[randPeriod][firstRoomIndex];
-        var secondRoom = multiverseInput[secondScheduleIndex].schedule[randPeriod][secondRoomIndex];
-        //console.log(firstRoom);
-        //console.log(secondRoom);
+    //     var firstRoom = multiverseInput[firstScheduleIndex].schedule[randPeriod][firstRoomIndex];
+    //     var secondRoom = multiverseInput[secondScheduleIndex].schedule[randPeriod][secondRoomIndex];
+    //     //console.log(firstRoom);
+    //     //console.log(secondRoom);
 
-        multiverseInputCopy[firstScheduleIndex].schedule[randPeriod][firstRoomIndex].set_room_teacher(secondRoom.teacher);
-        multiverseInputCopy[secondScheduleIndex].schedule[randPeriod][secondRoomIndex].set_room_teacher(firstRoom.teacher);
+    //     multiverseInputCopy[firstScheduleIndex].schedule[randPeriod][firstRoomIndex].set_room_teacher(secondRoom.teacher);
+    //     multiverseInputCopy[secondScheduleIndex].schedule[randPeriod][secondRoomIndex].set_room_teacher(firstRoom.teacher);
 
-        //multiverseInputCopy[firstScheduleIndex].set_percentage(fitness(multiverseInputCopy[firstScheduleIndex].schedule));
+    //     //multiverseInputCopy[firstScheduleIndex].set_percentage(fitness(multiverseInputCopy[firstScheduleIndex].schedule));
 
-    }
+    // }
 
     //Checks if changes made to individual schedules from line_change or crossover were better or worse than just leaving it alone. 
     //Return 1 if Old schedule is worse than new schedule
