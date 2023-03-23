@@ -3,7 +3,7 @@
 
 ### Node ###
 # Logs
-ScheduleLogs/*.csv
+ScheduleLogs
 logs
 *.log
 npm-debug.log*
