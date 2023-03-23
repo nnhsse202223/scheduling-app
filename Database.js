@@ -21,7 +21,7 @@ class Database
         this.myRoomArray = [];
         this.myTeacherArray = [];
         this.myClassArray = [];
-        this.numbers_of_generations = 1;
+        this.numbers_of_generations = 10;
         
 
         for (let i = 0; i < /*teacherArray.length*/ this.theTeacherArray.length; i++)
