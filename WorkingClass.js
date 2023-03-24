@@ -207,11 +207,11 @@ class WorkingClass
         } 
 
         //Multiverse Mutators
-        // omniverse = this.eaglePurge(omniverse, multiverseObject.genNo);
-        // if (multiverseObject.genNo > 2)
-        // {
-        //     this.addition(omniverse, multiverseObject.genNo);
-        // }
+        omniverse = this.eaglePurge(omniverse, multiverseObject.genNo);
+        if (multiverseObject.genNo > 2)
+        {
+            this.addition(omniverse, multiverseObject.genNo);
+        }
 
         //for (let i = 0; i < multiverseObject.genNo + 15; i++)
         {
@@ -219,9 +219,11 @@ class WorkingClass
         }
         //console.log("Crossover worked!");
 
-        this.line_swap(omniverse);
+        for (let i = 0; i < 15; i++)
+        {
+            omniverse = this.line_swap(omniverse);
+        }
         
-
         //clear multiverseArray
         multiver = [];
         multiver = omniverse.slice();
@@ -285,7 +287,13 @@ class WorkingClass
     //vertical
     line_swap(multiverseInput)
     {
-        var randSchedule = multiverseInput[this.rand(0, multiverseInput.length - 1)];
+        var multiverseInputCopy = [];
+        for (let i = 0; i < multiverseInput.length; i++)
+        {
+            multiverseInputCopy.push(new Schedule(multiverseInput[i].schedule, multiverseInput[i].percentage));
+        }
+
+        var randSchedule = this.rand(0, multiverseInput.length - 1);
 
         var randPeriod1 = this.rand(0, 7);
         var randPeriod2 = this.rand(0, 7);
@@ -294,11 +302,30 @@ class WorkingClass
             randPeriod2 = this.rand(0, 7);
         }
 
-        console.log(multiverseInput.schedule[randSchedule][randPeriod1]);
-        
+        var randRoom = this.rand(0, multiverseInput[randSchedule].schedule[randPeriod1].length - 1);
 
-        //console.log(randPeriod1);
-        //console.log(randPeriod2);
+        var firstRoom = multiverseInput[randSchedule].schedule[randPeriod1][randRoom];
+        var secondRoom = multiverseInput[randSchedule].schedule[randPeriod2][randRoom];
+
+        //multiverseInputCopy[randSchedule].schedule[randPeriod1][randRoom].set_room_teacher(secondRoom.room_teacher);
+        multiverseInputCopy[randSchedule].schedule[randPeriod1][randRoom].set_room_class(secondRoom.room_class);
+
+        //multiverseInputCopy[randSchedule].schedule[randPeriod2][randRoom].set_room_teacher(firstRoom.room_teacher);
+        multiverseInputCopy[randSchedule].schedule[randPeriod2][randRoom].set_room_class(firstRoom.room_class);
+
+        multiverseInputCopy[randSchedule].set_percentage(this.fitness(multiverseInputCopy[randSchedule].schedule));
+
+        //console.log(multiverseInput[randSchedule].percentage);
+        //console.log(multiverseInputCopy[randSchedule].percentage);
+        //console.log(this.mutateChecker(multiverseInput[randSchedule], multiverseInputCopy[randSchedule]) > 0);
+        if(this.mutateChecker(multiverseInput[randSchedule], multiverseInputCopy[randSchedule]) > 0)
+        {
+            return multiverseInputCopy;
+        }
+        else
+        {
+            return multiverseInput;
+        }
     }   
 
     //crosses two different schedules -> switching 1 class.
@@ -529,12 +556,12 @@ class WorkingClass
     {
         if (type == "add")
         {
-            return 10 + gen; //change to algorithm
+            return 5 + gen*0.012; //change to algorithm
         }
 
         if (type == "subtract")
         {
-            return 10 + gen; //change to algorithm
+            return 10 + gen*0.01; //change to algorithm
         }
 
         if (type == "end")
