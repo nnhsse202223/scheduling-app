@@ -22,6 +22,7 @@ class GeneticRepresentation
 
     represent()
     {
+        var best_schedule_percent = 0;
         console.log("Generation: " + this.gen);
         for(var value = 0; value < this.teachersSchedulesArray.length; value++){
             this.schedule = this.teachersSchedulesArray[value].schedule;
@@ -50,9 +51,12 @@ class GeneticRepresentation
             //     console.log();
             // }
 
-
-            console.log("Fitness %: " + this.teachersSchedulesArray[value].percent /*this.workingClass.fitness(this.schedule)*/ + "\n");
+            if(this.teachersSchedulesArray[value].percent > best_schedule_percent){
+                best_schedule_percent = this.teachersSchedulesArray[value].percent;
+            }
+            //console.log("Fitness %: " + this.teachersSchedulesArray[value].percent /*this.workingClass.fitness(this.schedule)*/ + "\n");
         }
+        console.log("Best Fitness for this schedule: " + best_schedule_percent);
     }
 }
 
