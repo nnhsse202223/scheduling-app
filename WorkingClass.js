@@ -222,9 +222,11 @@ class WorkingClass
         }
         //console.log("Crossover worked!");
 
-        this.line_swap(omniverse);
+        for (let i = 0; i < 15; i++)
+        {
+            this.line_swap(omniverse);
+        }
         
-
         //clear multiverseArray
         multiver = [];
         multiver = omniverse.slice();
