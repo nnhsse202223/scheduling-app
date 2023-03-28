@@ -3,7 +3,7 @@ const {Schedule} = require("./Schedule.js");
 const {Multiverse, Generation} = require("./Generation.js");
 
 //the number of schedules we want to generate
-const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 20;
+const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 6;
 
 class WorkingClass
 {
@@ -208,9 +208,15 @@ class WorkingClass
 
         var amount_of_times_we_should_crossover = 10;
 
-        //for (let i = 0; i < multiverseObject.genNo + amount_of_times_we_should_crossover; i++)
+        for (let i = 0; i < multiverseObject.genNo + amount_of_times_we_should_crossover; i++)
         {
-            //this.crossover(omniverse);
+            //omniverse = this.crossover(omniverse);
+        }
+
+        omniverse = this.eaglePurge(omniverse, multiverseObject.genNo);
+        if (multiverseObject.genNo > 2)
+        {
+            omniverse = this.addition(omniverse);
         }
 
         for (let i = 0; i < 1; i++)
@@ -252,6 +258,8 @@ class WorkingClass
                 missingSchedules--;
             }
         }
+
+        return multiverseInput;
     }
 
     //Deletes bad schedules from multiverse array
