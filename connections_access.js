@@ -1,5 +1,6 @@
 const { MongoClient } = require("mongodb");
 const { WorkingClass} = require("./WorkingClass.js");
+let fs = require('fs');
 require('dotenv').config();
 
 // Replace the uri string with your MongoDB deployment's connection string.
@@ -8,6 +9,8 @@ require('dotenv').config();
 const uri = "mongodb+srv://"+process.env.ADMIN_USERNAME+":"+process.env.ADMIN_PASSWORD+"@cluster0.gnworbx.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
 
+const teacherData = fs.readFileSync('TeacherData.csv',{encoding:'utf8'}, (err) => err && console.error(err));
+let csvArray = teacherData.split(/\r?\n|\r|\n/g); //I dont know how that splits it, but it worked!!!
 
 async function run() {
   var json_data = [];
@@ -25,9 +28,18 @@ async function run() {
     await cursor.forEach( function(myDoc) { json_data.push(myDoc); } );
     
     //Separating data into just classes
-    for (const element of json_data) {
+    /*for (const element of json_data) {
       class_array.push(element["Class"]);
       class_array.push(element["Class_Type"]);
+    }*/
+    let classes = csvArray[7].split(',');
+    let classTypes = csvArray[2].split(',');
+    console.log(classes);
+    console.log(classTypes);
+    for(let i = 1; i < classes.length; i++)
+    {
+      class_array.push(classes[i]);
+      class_array.push(classTypes[i]);
     }
 
     //Separating data into just teachers

@@ -1,5 +1,5 @@
 const { WorkingClass} = require("./WorkingClass.js");
-const {Room} = require("./Room.js");
+const {Room} = require("./room.js");
 const {Teacher} = require("./Teacher.js");
 const {Classes} = require("./Classes.js");
 const {Schedule} = require("./Schedule.js");
