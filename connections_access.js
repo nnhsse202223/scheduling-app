@@ -13,14 +13,14 @@ function run() {
   var room_array = [];
   var class_array = [];
   var roomDictWithClasses = {};
-  var TeacherDictWithClasses = {}
+  var TeacherDictWithClasses = {};
 
   //Separating data into just teachers
   for(let i = 8; i < csvArray.length; i++)
   {
-    let teacherName = csvArray[i].substring(0, csvArray[i].indexOf(','));
-    teacher_array.push(teacherName);
-    TeacherDictWithClasses[teacherName] = [];
+    let taughtClasses = csvArray[i].split(',');
+    teacher_array.push(taughtClasses[0]);
+    TeacherDictWithClasses[taughtClasses[0]] = [];
   }
 
   //Separating data into just rooms
@@ -30,7 +30,7 @@ function run() {
     for(let j = 0; j < roomNumbers.length; j++)
     {
       let roomNumber = roomNumbers[j]
-      if(!(room_array.includes(roomNumber)))
+      if(!room_array.includes(roomNumber))
       {
         room_array.push(roomNumber);
         roomDictWithClasses[roomNumber] = [];
@@ -41,7 +41,10 @@ function run() {
   //Separating data into just classes
   for(let i = 1; i < classes.length; i++)
   {
-    class_array.push(classes[i]);
+    if(!class_array.includes(classes[i]))
+    {
+      class_array.push(classes[i]);
+    }
   }
 
   //Getting all possible classes into rooms in format {room,[Class]}
@@ -50,8 +53,11 @@ function run() {
     let roomNumbers = rooms[i].split(' | ');
     for(let j = 0; j < roomNumbers.length; j++)
     {
-      roomNumber = roomNumbers[j];
-      roomDictWithClasses[roomNumber].push(classes[i]);
+      let roomNumber = roomNumbers[j];
+      if(!roomDictWithClasses[roomNumber].includes(classes[i]))
+      {
+        roomDictWithClasses[roomNumber].push(classes[i]);
+      }
     }
   }
 
@@ -63,7 +69,10 @@ function run() {
     {
       if(taughtClasses[j] != "")
       {
-        TeacherDictWithClasses[taughtClasses[0]].push(classes[j]); 
+        if(!TeacherDictWithClasses[taughtClasses[0]].includes(classes[j]))
+        {
+          TeacherDictWithClasses[taughtClasses[0]].push(classes[j]); 
+        }
       }
     }
   }

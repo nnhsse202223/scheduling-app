@@ -172,10 +172,9 @@ class WorkingClass
                     let classIndex = classes.indexOf(theSchedule[j][i].room_class.name);
                     for(let m = 8; m < csvArray.length; m++)
                     {
-                        let teacherName = csvArray[m].substring(0, csvArray[m].indexOf(','));
-                        if(teacherName == theSchedule[j][i].room_teacher)
+                        let taughtClasses = csvArray[i].split(',');
+                        if(taughtClasses[0] == theSchedule[j][i].room_teacher)
                         {
-                            let taughtClasses = csvArray[m].split(',');
                             this.fitness_value += +taughtClasses[classIndex];
                         }
                     }
@@ -192,6 +191,7 @@ class WorkingClass
             this.fitness_value -= this.maxfitness;
         }
         this.fitness_value /= this.maxfitness;
+        this.fitness_value *= 100;
         return this.fitness_value;
     }
 
