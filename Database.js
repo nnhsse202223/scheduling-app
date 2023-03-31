@@ -64,10 +64,10 @@ class Database
     }
 }
 
-async function script(){
-    console.log("BEGINNING TESTING");
-    console.log("-----------------");
-    var returned_data = await run();
+function script(){
+    //console.log("BEGINNING TESTING");
+    //console.log("-----------------");
+    var returned_data = run();
 
     //NEED TO CREATE LOCAL VARIABLES WITH ROOMWITHCLASSES AND ROOM WITH TEACHERS FOR USE 
 

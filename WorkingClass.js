@@ -1,9 +1,14 @@
 const { Room } = require("./room.js");
 const {Schedule} = require("./Schedule.js");
 const {Multiverse, Generation} = require("./Generation.js");
+let fs = require('fs');
 
 //the number of schedules we want to generate
 const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 6;
+
+let teacherData = fs.readFileSync('TeacherData.csv',{encoding:'utf8'}, (err) => err && console.error(err));
+let csvArray = teacherData.split(/\r?\n|\r|\n/g); //I dont know how that splits it, but it worked!!!
+let classes = csvArray[7].split(',');
 
 class WorkingClass
 {
@@ -17,7 +22,6 @@ class WorkingClass
         this.fitness_value = 0;
         this.maxfitness = 0;
         this.verse;
-        var teacherPreferenceData = require('./teachers.json');
 
         //this is to let us know what schedules are which, it is only for organization.
         this.scheduleNo = 1;
@@ -150,27 +154,45 @@ class WorkingClass
     {
         this.fitness_value = 0;
         this.maxfitness = 0;
+        let negate = false;
         for (let j = 0; j < theSchedule.length; j++) //checks class period
         {
             for(let i = 0; i < theSchedule[j].length; i++) //rooms within each period
             {
-                if (theSchedule[j][i].classList.includes(theSchedule[j][i].room_class.name))
+                if(theSchedule[j][i].classList.includes(theSchedule[j][i].room_class.name))
                 {
-                    this.fitness_value++;
+                    this.fitness_value += 10; //Technically unnesscary, given that we do not have room weights and we are negating fitness if the room is wrong
                 }
-
-                this.maxfitness++;
-                
+                else
+                {
+                    negate = true;
+                }
                 if (theSchedule[j][i].room_teacher.classList.includes(theSchedule[j][i].room_class.name))
                 {
-                    this.fitness_value++;
-                    
+                    let classIndex = classes.indexOf(theSchedule[j][i].room_class.name);
+                    for(let m = 8; m < csvArray.length; m++)
+                    {
+                        let teacherName = csvArray[m].substring(0, csvArray[m].indexOf(','));
+                        if(teacherName == theSchedule[j][i].room_teacher)
+                        {
+                            let taughtClasses = csvArray[m].split(',');
+                            this.fitness_value += +taughtClasses[classIndex];
+                        }
+                    }
                 }
-                this.maxfitness++;
+                else
+                {
+                    negate = true;
+                }
+                this.maxfitness += 20; //10 for rooms and 10 for classes
             }
         }
-
-        return this.fitness_value/this.maxfitness * 100;
+        if(negate)
+        {
+            this.fitness_value -= this.maxfitness;
+        }
+        this.fitness_value /= this.maxfitness;
+        return this.fitness_value;
     }
 
 

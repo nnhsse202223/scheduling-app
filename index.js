@@ -7,8 +7,8 @@ app.get('/',(req,res)=>{
     res.sendFile(__dirname + "/Client/StylizedWebsite.html");
 });
 
-app.get('/database', async (req,res)=>{
-    let theObj = await script();
+app.get('/database', (req,res)=>{
+    let theObj = script();
     res.send(theObj);
 })
 

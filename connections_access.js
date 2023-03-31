@@ -3,23 +3,22 @@ let fs = require('fs');
 // Replace the uri string with your MongoDB deployment's connection string.
 //this code is all pretty simple, honestly, if you don't know any of the code, you shouldn't be in class, ngl.
 //^^ kidding btw ;)
-const teacherData = fs.readFileSync('TeacherData.csv',{encoding:'utf8'}, (err) => err && console.error(err));
+let teacherData = fs.readFileSync('TeacherData.csv',{encoding:'utf8'}, (err) => err && console.error(err));
 let csvArray = teacherData.split(/\r?\n|\r|\n/g); //I dont know how that splits it, but it worked!!!
+let classes = csvArray[7].split(',');
+let rooms = csvArray[1].split(',');
 
-async function run() {
+function run() {
   var teacher_array = [];
   var room_array = [];
   var class_array = [];
   var roomDictWithClasses = {};
   var TeacherDictWithClasses = {}
 
-  let classes = csvArray[7].split(',');
-  let rooms = csvArray[1].split(',');
-
   //Separating data into just teachers
   for(let i = 8; i < csvArray.length; i++)
   {
-    teacherName = csvArray[i].substring(0, csvArray[i].indexOf(','));
+    let teacherName = csvArray[i].substring(0, csvArray[i].indexOf(','));
     teacher_array.push(teacherName);
     TeacherDictWithClasses[teacherName] = [];
   }
@@ -30,7 +29,7 @@ async function run() {
     let roomNumbers = rooms[i].split(' | ');
     for(let j = 0; j < roomNumbers.length; j++)
     {
-      roomNumber = roomNumbers[j]
+      let roomNumber = roomNumbers[j]
       if(!(room_array.includes(roomNumber)))
       {
         room_array.push(roomNumber);
