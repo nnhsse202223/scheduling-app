@@ -83,7 +83,6 @@ function script(){
     //this is a WorkingClass object that does the initiial generation within the constructor, so the initial gens of schedule are already set, you only need
     //  call the mutation and eagle_purge method when you want
     let theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
-    return theObj;
     
     //Making multiple generations of schedules
     var gene = new GeneticRepresentation(theObj.verse);
@@ -99,19 +98,7 @@ function script(){
         var gene = new GeneticRepresentation(theActualVerse);
         gene.represent();        
     }
-    
-    // var schedular = theObj.multiverseArray[Math.floor(Math.random() * theObj.multiverseArray.length)].schedule; //schedule[1]
-    // var csvString = "Period, Room, Teacher, Class\n";
-    // let n = 0;
-    // schedular.forEach((period) => {
-    //     n++;
-    //     period.forEach((room) => csvString += n + ',' + room.room_number + ',' + room.room_teacher + ',' + room.room_class + '\n');
-    // });
-    
-    // fs.writeFile("thingy.csv",csvString,(err) => err && console.error(err));
-    
-    
     return theObj;
 }
-//cript();
+script();
 module.exports.script = script; 
