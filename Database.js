@@ -83,7 +83,7 @@ async function script(){
     //this is a WorkingClass object that does the initiial generation within the constructor, so the initial gens of schedule are already set, you only need
     //  call the mutation and eagle_purge method when you want
     let theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
-    
+    return theObj;
     
     //Making multiple generations of schedules
     var gene = new GeneticRepresentation(theObj.verse);
@@ -113,5 +113,5 @@ async function script(){
     
     return theObj;
 }
-script();
+//cript();
 module.exports.script = script; 
