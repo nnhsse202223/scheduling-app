@@ -152,7 +152,7 @@ class WorkingClass
     */
     fitness(theSchedule)
     {
-        this.fitness_value = 0;
+        /*this.fitness_value = 0;
         this.maxfitness = 0;
         let negate = false;
         for (let j = 0; j < theSchedule.length; j++) //checks class period
@@ -188,11 +188,34 @@ class WorkingClass
         }
         if(negate)
         {
-            this.fitness_value -= this.maxfitness;
+            //this.fitness_value -= this.maxfitness;
         }
         this.fitness_value /= this.maxfitness;
         this.fitness_value *= 100;
-        return this.fitness_value;
+        return this.fitness_value;*/
+        this.fitness_value = 0;
+        this.maxfitness = 0;
+        for (let j = 0; j < theSchedule.length; j++) //checks class period
+        {
+            for(let i = 0; i < theSchedule[j].length; i++) //rooms within each period
+            {
+                if (theSchedule[j][i].classList.includes(theSchedule[j][i].room_class.name))
+                {
+                    this.fitness_value++;
+                }
+
+                this.maxfitness++;
+                
+                if (theSchedule[j][i].room_teacher.classList.includes(theSchedule[j][i].room_class.name))
+                {
+                    this.fitness_value++;
+                    
+                }
+                this.maxfitness++;
+            }
+        }
+
+        return this.fitness_value/this.maxfitness * 100;
     }
 
 
@@ -209,7 +232,7 @@ class WorkingClass
         var omniverse = [];
 
         var multiver = [];
-
+    
         for(let i = 0; i < multiverseObject.theMultiverseArray.length; i++)
         {
             var schedules = multiverseObject.theMultiverseArray[i];
@@ -227,7 +250,7 @@ class WorkingClass
             omniverse.push(mutated_Schedules);
             
         } 
-
+        
         var amount_of_times_we_should_crossover = 10;
 
         for (let i = 0; i < multiverseObject.genNo + amount_of_times_we_should_crossover; i++)
@@ -291,7 +314,6 @@ class WorkingClass
     eaglePurge(multiverseInput, gen) 
     {
         var goodSchedules = [];
-        
         //Restricting the amount of deletions to to under a certain percent -->  .5 would enable eagle purge to delete up to half of all schedules in multiverseInput if the fitness vals are small
         // var percent_of_schedules_to_delete = .5; 
         
@@ -305,7 +327,6 @@ class WorkingClass
                 goodSchedules.push(multiverseInput[i]);
             }
         }
-
         return goodSchedules;
     }
 
