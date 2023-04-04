@@ -264,7 +264,7 @@ class WorkingClass
             omniverse = this.addition(omniverse);
         }
 
-        for (let i = 0; i < 1; i++)
+        for (let i = 0; i < 3; i++)
         {
             for (let j = 0; j < omniverse.length; j++)
             {
@@ -504,7 +504,7 @@ class WorkingClass
     {
         if (type == "add")
         {
-            return -100 + gen*0.012; //change to algorithm
+            return -100 //+gen*0.0000012; //change to algorithm
         }
 
         if (type == "subtract")
