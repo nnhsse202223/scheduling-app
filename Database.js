@@ -6,6 +6,7 @@ const {Schedule} = require("./Schedule.js");
 const {run} = require("./connections_access.js");
 const {GeneticRepresentation} = require("./GeneticRepresentation.js")
 let fs = require('fs');
+const { start } = require("repl");
 
 class Database
 {
@@ -100,5 +101,8 @@ function script(){
     }
     return theObj;
 }
+var startTime = performance.now();
 script();
 module.exports.script = script; 
+var endTime = performance.now();
+console.log("The time taken to run is " + ((endTime-startTime)/1000) + " seconds")
