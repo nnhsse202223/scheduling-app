@@ -504,7 +504,7 @@ class WorkingClass
     {
         if (type == "add")
         {
-            return -100 //+gen*0.0000012; //change to algorithm
+            return -100 //+gen*0.0000000000012; //change to algorithm
         }
 
         if (type == "subtract")

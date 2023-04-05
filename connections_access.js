@@ -1,8 +1,5 @@
 let fs = require('fs');
 
-// Replace the uri string with your MongoDB deployment's connection string.
-//this code is all pretty simple, honestly, if you don't know any of the code, you shouldn't be in class, ngl.
-//^^ kidding btw ;)
 let teacherData = fs.readFileSync('TeacherData.csv',{encoding:'utf8'}, (err) => err && console.error(err));
 let csvArray = teacherData.split(/\r?\n|\r|\n/g); //I dont know how that splits it, but it worked!!!
 let classes = csvArray[7].split(',');
