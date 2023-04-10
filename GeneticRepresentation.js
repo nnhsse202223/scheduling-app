@@ -25,6 +25,8 @@ class GeneticRepresentation
         var best_schedule_percent = 0;
         console.log("Generation: " + this.gen);
         for(var value = 0; value < this.teachersSchedulesArray.length; value++){
+            /* This is the representation for the old version of the genetic algorithm (prior to classes listing teachers & rooms) */
+
             //  this.schedule = this.teachersSchedulesArray[value].schedule;
             
             
