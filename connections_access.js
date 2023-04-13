@@ -109,7 +109,7 @@ function run() {
     }
   }
 
-  return {class: class_array, teacher: teacher_array, room: room_array, roomWithClasses: roomDictWithClasses, TeachersWithClasses: TeacherDictWithClasses};
+  return {class: class_array, teacher: teacher_array, room: room_array, roomWithClasses: roomDictWithClasses, TeachersWithClasses: TeacherDictWithClasses, classWithTeachers: classDictWithTeachers, classWithRooms: classDictWithRooms};
 }
 
 module.exports.run = run;
