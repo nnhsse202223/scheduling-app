@@ -27,22 +27,21 @@ class Database
 
         for (let i = 0; i < /*teacherArray.length*/ this.theTeacherArray.length; i++)
         {
-            var teacher = new Teacher(this.theTeacherArray[i], this.teacherCLog[this.theTeacherArray[i]]);
+            var teacher = new Teacher(this.theTeacherArray[i]);
             this.myTeacherArray.push(teacher);
-        }
-
-        for (let i = 0; i < /*classArray.length*/ this.theClassArray.length; i++)
-        {
-            var classes = new Classes(this.theClassArray[i]);
-            this.myClassArray.push(classes);
         }
 
         for (let i = 0; i < /*roomArray.length*/ this.theRoomArray.length; i++)
         {
-            var room = new Room(this.theRoomArray[i], this.roomCLog[this.theRoomArray[i]]);
+            var room = new Room(this.theRoomArray[i]);
             this.myRoomArray.push(room);
         }
         
+        for (let i = 0; i < /*classArray.length*/ this.theClassArray.length; i++)
+        {
+            var classes = new Classes(this.theClassArray[i], this.teacherCLog[this.theClassArray[i]], this.roomCLog[this.theClassArray[i]]);
+            this.myClassArray.push(classes);
+        }
 
     }
 
@@ -79,8 +78,10 @@ function script(){
     let teacherClassLog = returned_data['TeachersWithClasses'];
     let roomClassLog = returned_data['roomWithClasses'];
 
-    var data = new Database(room_data, class_data, teacher_data,teacherClassLog,roomClassLog);
-    
+    let classDictWithTeachers = returned_data["classWithTeachers"];
+    let classDictWithRooms = retured_data["classWithRooms"];
+
+    var data = new Database(room_data, class_data, teacher_data, classDictWithTeachers, classDictWithRooms);
     //this is a WorkingClass object that does the initiial generation within the constructor, so the initial gens of schedule are already set, you only need
     //  call the mutation and eagle_purge method when you want
     let theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);

@@ -9,40 +9,42 @@ class Classes
         this.classPeriod;
 
         this.possibleTeachers = [];
-        this.possibleTeachers = teacherListInput;
+        this.possibleTeachers = possibleTeachersInput;
         this.possibleRooms = [];
         this.possibleRooms = possibleRoomsInput;
     }
      
     //get functions
-    get class_name()
+    get get_class_name()
     {
         return this.name;
     }
 
-    get class_teacher(){
+    get get_class_teacher(){
         return this.teacher;
     }
 
-    get class_room(){
+    get get_class_room(){
         return this.room;
     }
     
-    get possibleRooms(){
+    get get_possibleRooms(){
         return this.possibleRooms;
     }
 
-    get possibleTeachers(){
+    get get_possibleTeachers(){
         return this.possibleTeachers;
     }
 
-    set_class_teacher()
+    set_class_teacher(teach)
+    {
+        this.teacher = teach;
+    }
 
-
-    
-    
-    
-    
+    set_class_room(roomy)
+    {
+        this.room = roomy;
+    }    
     
     
     toString()

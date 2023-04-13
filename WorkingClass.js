@@ -45,7 +45,7 @@ class WorkingClass
     */
     rand(min, max) 
     {
-        return Math.round(Math.random() * (max - min) + min);
+        return Math.trunc(Math.random() * (max - min) + min);
     }
 
 
@@ -63,7 +63,7 @@ class WorkingClass
     {
         var scheduleArray1 = [];
         var aSchedule = new Schedule([]);
-        var dupClassArray = this.classArray.slice();
+        var dupRoomArray = this.roomArray.slice();
         var dupTeacherArray = this.teacherArray.slice();
         var randomClassIndex  = 0;
         var randomTeacherIndex = 0;
@@ -74,7 +74,7 @@ class WorkingClass
         for (let j = 0; j < 8; j++)
         {
             //Making a copy that we can use of the main rooms -> due to weird reference properties
-            var dupRoomArray = this.roomArray.slice();
+            var dupClassArray = this.classArray.slice();
 
             //Not enough classes to fill all rooms -> repeat classes
             if (dupClassArray.length < dupRoomArray.length)

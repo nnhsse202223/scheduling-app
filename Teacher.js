@@ -1,7 +1,7 @@
 class Teacher
 {
     //constructor
-    constructor (name, classLogArray)
+    constructor (name)
     {
         this.name = name;
     }
