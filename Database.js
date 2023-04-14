@@ -123,8 +123,10 @@ function script(){
         theActualVerse = theObj.regenerate(theObj.verse);
         var gene = new GeneticRepresentation(theActualVerse);
         gene.represent();        
-    }
+    } */
 }
+
+
 /*var startTime = performance.now();
 script();*/
 module.exports.script = script; 
