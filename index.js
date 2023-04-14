@@ -20,8 +20,8 @@ app.get("/logs", (req,res)=>{
     res.sendFile(__dirname + "/Client/LogViewer.html");
 });
 
-app.get('/database', async (req,res)=>{
-    let csvString = await script();
+app.get('/database', (req,res)=>{
+    let csvString = script();
     let fileNames = fs.readdirSync(__dirname + "/ScheduleLogs");
     if(fileNames.length >= 10)
     {

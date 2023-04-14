@@ -1,21 +1,16 @@
 class Room 
 {
     //constructor
-    constructor (room_no, type)
+    constructor (room_no, classLogArray)
     {
         this.room_no = room_no;
-        this.type = type;
+        this.classLog = classLogArray;
         this.teacher;
         this.class;
         //JSON.stringify(this.type)
     }
 
     //get functions
-    get room_type()
-    {
-        return this.type;
-    }
-
     get room_number()
     {
         return this.room_no;
@@ -29,6 +24,11 @@ class Room
     get room_class()
     {
         return this.class;
+    }
+
+    get classList()
+    {
+        return this.classLog;
     }
 
     set_room_teacher(new_teacher)

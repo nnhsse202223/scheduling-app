@@ -1,10 +1,10 @@
 class Classes
 {
     //constructor
-    constructor (name, type)
+    constructor (name)
     {
         this.name = name;
-        this.type = type;
+        //this.type = type;
         //JSON.stringify(this.type);
     }
     
@@ -15,10 +15,7 @@ class Classes
         return this.name;
     }
 
-    get class_type()
-    {
-        return this.type;
-    }
+    
 
     toString()
     {
