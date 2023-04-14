@@ -22,7 +22,7 @@ class Database
         this.myRoomArray = [];
         this.myTeacherArray = [];
         this.myClassArray = [];
-        this.numbers_of_generations = 3000;
+        this.numbers_of_generations = 10000;
         
 
         for (let i = 0; i < /*teacherArray.length*/ this.theTeacherArray.length; i++)
@@ -84,7 +84,7 @@ function script(){
     //this is a WorkingClass object that does the initiial generation within the constructor, so the initial gens of schedule are already set, you only need
     //  call the mutation and eagle_purge method when you want
     let theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
-    
+    return theObj;
     //Making multiple generations of schedules
     var gene = new GeneticRepresentation(theObj.verse);
     //console.log(theObj.verse.theMultiverseArray);
@@ -99,7 +99,6 @@ function script(){
         var gene = new GeneticRepresentation(theActualVerse);
         gene.represent();        
     }
-    return theObj;
 }
 var startTime = performance.now();
 script();
