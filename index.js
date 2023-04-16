@@ -1,14 +1,21 @@
 const {script} = require("./Database.js");
 const express = require('express');
+const fileUpload = require('express-fileupload');
 let fs = require('fs');
 var app = express();
 
-app.use(express.json());       
+app.use(fileUpload());   
 app.use(express.urlencoded({extended: true}));
-app.post("/logs", (req, res) => {
+app.post("/logsDownload", (req,res) => {
    let scheduleNumber = req.body.scheduleNumber - 1;
    let fileNames = fs.readdirSync(__dirname + "/ScheduleLogs");
    res.download(__dirname + "/ScheduleLogs/" + fileNames[scheduleNumber], fileNames[scheduleNumber], (err) => err && console.error(err));
+});
+
+app.post("/uploadFile", (req,res) => {
+    let data = req.files.file;
+    data.mv(__dirname + "/Test/" + data.name, (err) => err && console.error(err));
+    res.send("Success");
 });
 
 app.use(express.static('Client'));
@@ -20,6 +27,15 @@ app.get("/logs", (req,res)=>{
     res.sendFile(__dirname + "/Client/LogViewer.html");
 });
 
+app.get("/upload", (req,res)=>{
+    res.sendFile(__dirname + "/Client/UploadData.html");
+});
+
+app.get("/download", (req,res)=>{
+    let fileNames = fs.readdirSync(__dirname + "/ScheduleLogs");
+    res.download(__dirname + "/ScheduleLogs/" + fileNames[fileNames.length - 1], fileNames[fileNames.length - 1], (err) => err && console.error(err));
+})
+
 app.get('/database', (req,res)=>{
     let csvString = script();
     let fileNames = fs.readdirSync(__dirname + "/ScheduleLogs");
@@ -28,12 +44,12 @@ app.get('/database', (req,res)=>{
         fs.unlinkSync("ScheduleLogs/" + fileNames[0], (err) => err && console.error(err));
     }
     var today = new Date();
-    var dateTime = "ScheduleLog_" + today.getFullYear();
+    var dateTime = "Schedule_" + today.getFullYear();
     if(today.getMonth() + 1 < 10)
     {
         dateTime += 0;
     }
-    dateTime += today.getMonth()+1;
+    dateTime += today.getMonth() + 1;
     if(today.getDate() < 10)
     {
         dateTime += 0;
@@ -55,7 +71,7 @@ app.get('/database', (req,res)=>{
     }
     dateTime += today.getSeconds();
     fs.writeFileSync("ScheduleLogs/" + dateTime + ".csv",csvString,(err) => err && console.error(err));
-    res.send(csvString);
+    res.end();
 })
 
 app.listen(8080,()=>{

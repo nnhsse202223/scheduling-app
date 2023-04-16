@@ -1,5 +1,3 @@
-var csvString;
-
 function startCSV() {
     document.getElementById("create").style.display = "none";
     document.getElementById("loader").style.display = "inline-block";
@@ -10,16 +8,24 @@ function endCSV() {
     document.getElementById("download").style.display = "inline-block";
 }
 
-function downloadCSV() {
-    var hiddenElement = document.createElement('a');  
-    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvString);  
-    hiddenElement.target = '_blank';
-    hiddenElement.download = 'classes.csv';  
-    hiddenElement.click();  
+function fullCSV() {
+    startCSV();
+    fetch('/database').then(endCSV());
 }
 
-async function fullCSV() {
-    startCSV();
-    csvString = await fetch('/database').then(response => response.text());
-    endCSV();
+function changeText() {
+    let name = "File Chosen: ";
+    if(document.getElementById('uploadInput').files[0])
+    {
+        name += document.getElementById('uploadInput').files[0].name
+    }
+    else
+    {
+        name += "None";
+    }
+    document.getElementById("uploadDiv").innerHTML = name;
+}
+
+function changeTextUpload() {
+    document.getElementById("uploadDiv").innerHTML = "File Uploaded!"
 }
