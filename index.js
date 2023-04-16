@@ -17,7 +17,7 @@ app.post("/logsDownload", (req,res) => {
 
 app.post("/uploadFile", (req,res) => {
     let data = req.files.file;
-    data.mv(__dirname + "/Test/" + data.name, (err) => err && console.error(err));
+    data.mv(__dirname + "/TeacherData.csv", (err) => err && console.error(err));
     res.send("Success");
 });
 

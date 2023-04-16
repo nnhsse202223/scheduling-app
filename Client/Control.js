@@ -1,3 +1,5 @@
+var x = false;
+
 function startCSV() {
     document.getElementById("create").style.display = "none";
     document.getElementById("loader").style.display = "inline-block";
@@ -17,7 +19,8 @@ function changeText() {
     let name = "File Chosen: ";
     if(document.getElementById('uploadInput').files[0])
     {
-        name += document.getElementById('uploadInput').files[0].name
+        x = true;
+        name += document.getElementById('uploadInput').files[0].name;
     }
     else
     {
@@ -27,5 +30,7 @@ function changeText() {
 }
 
 function changeTextUpload() {
-    document.getElementById("uploadDiv").innerHTML = "File Uploaded!"
+    if(x){
+        document.getElementById("uploadDiv").innerHTML = "File Uploaded!";
+    }
 }
