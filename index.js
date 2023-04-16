@@ -7,8 +7,11 @@ var app = express();
 app.use(fileUpload());   
 app.use(express.urlencoded({extended: true}));
 app.post("/logsDownload", (req,res) => {
-   let scheduleNumber = req.body.scheduleNumber - 1;
+   let scheduleNumber = req.body.scheduleNumber;
    let fileNames = fs.readdirSync(__dirname + "/ScheduleLogs");
+   if(fileNames.length <= scheduleNumber) {
+    scheduleNumber = fileNames.length - 1;
+   }
    res.download(__dirname + "/ScheduleLogs/" + fileNames[scheduleNumber], fileNames[scheduleNumber], (err) => err && console.error(err));
 });
 
@@ -39,9 +42,9 @@ app.get("/download", (req,res)=>{
 app.get('/database', (req,res)=>{
     let csvString = script();
     let fileNames = fs.readdirSync(__dirname + "/ScheduleLogs");
-    if(fileNames.length >= 10)
+    if(fileNames.length >= 11)
     {
-        fs.unlinkSync("ScheduleLogs/" + fileNames[0], (err) => err && console.error(err));
+        fs.unlinkSync("ScheduleLogs/" + fileNames[1], (err) => err && console.error(err));
     }
     var today = new Date();
     var dateTime = "Schedule_" + today.getFullYear();
