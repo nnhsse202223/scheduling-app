@@ -1,8 +1,7 @@
-var x = false;
-
-function startCSV() {
+function fullCSV() {
     document.getElementById("create").style.display = "none";
     document.getElementById("loader").style.display = "inline-block";
+    fetch("/database").then(endCSV());
 }
 
 function endCSV() {
@@ -10,16 +9,10 @@ function endCSV() {
     document.getElementById("download").style.display = "inline-block";
 }
 
-function fullCSV() {
-    startCSV();
-    fetch('/database').then(endCSV());
-}
-
 function changeText() {
     let name = "File Chosen: ";
     if(document.getElementById('uploadInput').files[0])
     {
-        x = true;
         name += document.getElementById('uploadInput').files[0].name;
     }
     else
@@ -29,8 +22,15 @@ function changeText() {
     document.getElementById("uploadDiv").innerHTML = name;
 }
 
-function changeTextUpload() {
-    if(x){
-        document.getElementById("uploadDiv").innerHTML = "File Uploaded!";
-    }
+function verifyUpload(event) {
+    event.preventDefault();
+    fetch("/check").then(response => response.text()).then(text => {
+        console.log(text);
+        if(text == "true") {
+            document.getElementById("uploadDiv").innerHTML = "File Uploaded Succesfully!"
+        }
+        else {
+            document.getElementById("uploadDiv").innerHTML = "File Not Uploaded, Invalid Data"
+        }
+    });
 }

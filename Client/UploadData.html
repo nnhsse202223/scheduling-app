@@ -5,9 +5,7 @@
 <link rel="stylesheet" href="Cool.css">
 </head> 
 <body>
-    <iframe name="dummyframe" style="display: none;"></iframe>
-
-    <form id="uploadFileForm" action="/uploadFile" method="post" enctype="multipart/form-data" target="dummyframe"></form>
+    <form id="uploadFileForm" action="/uploadFile" method="post" enctype="multipart/form-data" onsubmit="verifyUpload(event)"></form>
     <form id="back" action="/" method="get"></form>
     
     <div id="uploadDiv"></div><br>
@@ -15,7 +13,7 @@
     <input id="uploadInput" type="file" name="file" form="uploadFileForm" style="display:none" onchange="changeText()" required>
 
     <button onclick="uploadInput.click()">Choose File</button>
-    <button type="submit" form="uploadFileForm" onclick="changeTextUpload()">Upload</button><br>
+    <button type="submit" form="uploadFileForm">Upload</button><br>
     <button form="back" type="submit">Back</button>
 
     <script style="display:none">

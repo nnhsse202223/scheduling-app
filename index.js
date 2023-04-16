@@ -6,6 +6,7 @@ var app = express();
 
 app.use(fileUpload());   
 app.use(express.urlencoded({extended: true}));
+
 app.post("/logsDownload", (req,res) => {
    let scheduleNumber = req.body.scheduleNumber;
    let fileNames = fs.readdirSync(__dirname + "/ScheduleLogs");
@@ -18,8 +19,15 @@ app.post("/logsDownload", (req,res) => {
 app.post("/uploadFile", (req,res) => {
     let data = req.files.file;
     data.mv(__dirname + "/TeacherData.csv", (err) => err && console.error(err));
-    res.send("Success");
+    res.end();
 });
+
+app.get("/check", (req,res) => {
+    //check if the spreadsheet is valid
+    let valid = true;
+    //if false, reinstate the previous spreadsheet
+    res.send(valid);
+})
 
 app.use(express.static('Client'));
 app.get('/',(req,res)=>{
