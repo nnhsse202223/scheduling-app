@@ -25,7 +25,6 @@ function changeText() {
 function verifyUpload(event) {
     event.preventDefault();
     fetch("/check").then(response => response.text()).then(text => {
-        console.log(text);
         if(text == "true") {
             document.getElementById("uploadDiv").innerHTML = "File Uploaded Succesfully!"
         }
