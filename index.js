@@ -1,10 +1,9 @@
 const {script} = require("./Database.js");
 const express = require('express');
-const fileUpload = require('express-fileupload');
 let fs = require('fs');
 var app = express();
 
-app.use(fileUpload());   
+app.use(express.json());  
 app.use(express.urlencoded({extended: true}));
 
 app.post("/logsDownload", (req,res) => {
@@ -17,17 +16,11 @@ app.post("/logsDownload", (req,res) => {
 });
 
 app.post("/uploadFile", (req,res) => {
-    let data = req.files.file;
-    data.mv(__dirname + "/TeacherData.csv", (err) => err && console.error(err));
-    res.end();
-});
-
-app.get("/check", (req,res) => {
-    //check if the spreadsheet is valid
+    console.log(req.body.data);
+    //check file here and submit it
     let valid = true;
-    //if false, reinstate the previous spreadsheet
     res.send(valid);
-})
+});
 
 app.use(express.static('Client'));
 app.get('/',(req,res)=>{

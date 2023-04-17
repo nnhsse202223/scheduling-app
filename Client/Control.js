@@ -11,9 +11,10 @@ function endCSV() {
 
 function changeText() {
     let name = "File Chosen: ";
-    if(document.getElementById('uploadInput').files[0])
+    let file = document.getElementById('uploadInput').files[0];
+    if(file)
     {
-        name += document.getElementById('uploadInput').files[0].name;
+        name += file.name;
     }
     else
     {
@@ -23,14 +24,27 @@ function changeText() {
 }
 
 function verifyUpload(event) {
+    let file = document.getElementById('uploadInput').files[0];
     event.preventDefault();
-    fetch("/check").then(response => response.text()).then(text => {
-        console.log(text);
-        if(text == "true") {
-            document.getElementById("uploadDiv").innerHTML = "File Uploaded Succesfully!"
-        }
-        else {
-            document.getElementById("uploadDiv").innerHTML = "File Not Uploaded, Invalid Data"
-        }
-    });
+
+    var reader = new FileReader();
+    reader.readAsText(file);
+    reader.onload = function (event) {
+        console.log(event.target.result);
+        fetch("/uploadFile", {
+            method: "POST",
+            body: JSON.stringify({data: event.target.result}),
+            headers: {
+                "Content-type": "application/json"
+            }
+        }).then(response => response.text()).then(text => {
+            console.log(text);
+            if(text == "true") {
+                document.getElementById("uploadDiv").innerHTML = "File Uploaded Succesfully!"
+            }
+            else {
+                document.getElementById("uploadDiv").innerHTML = "File Not Uploaded, Invalid Data"
+            }
+        });
+    };
 }
