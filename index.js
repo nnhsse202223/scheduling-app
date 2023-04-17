@@ -3,6 +3,7 @@ const express = require('express');
 let fs = require('fs');
 var app = express();
 
+app.use(express.static('Client'));
 app.use(express.json());  
 app.use(express.urlencoded({extended: true}));
 
@@ -16,13 +17,15 @@ app.post("/logsDownload", (req,res) => {
 });
 
 app.post("/uploadFile", (req,res) => {
-    console.log(req.body.data);
-    //check file here and submit it
+    let data = req.body.data;
+    //check file here
     let valid = true;
+    if(valid){
+        fs.writeFileSync("TeacherData.csv",data,(err) => err && console.error(err));
+    }
     res.send(valid);
 });
 
-app.use(express.static('Client'));
 app.get('/',(req,res)=>{
     res.sendFile(__dirname + "/Client/StylizedWebsite.html");
 });

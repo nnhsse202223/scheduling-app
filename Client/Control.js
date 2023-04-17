@@ -24,9 +24,8 @@ function changeText() {
 }
 
 function verifyUpload(event) {
-    let file = document.getElementById('uploadInput').files[0];
     event.preventDefault();
-
+    let file = document.getElementById('uploadInput').files[0];
     var reader = new FileReader();
     reader.readAsText(file);
     reader.onload = function (event) {
@@ -38,7 +37,6 @@ function verifyUpload(event) {
                 "Content-type": "application/json"
             }
         }).then(response => response.text()).then(text => {
-            console.log(text);
             if(text == "true") {
                 document.getElementById("uploadDiv").innerHTML = "File Uploaded Succesfully!"
             }
