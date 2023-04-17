@@ -4,6 +4,7 @@ class Room
     constructor (room_no)
     {
         this.room_no = room_no;
+        this.roomClassPeriodList = [1,2,3,4,5,6,7,8];
     }
 
     //get functions
@@ -12,10 +13,25 @@ class Room
         return this.room_no;
     }
 
+    get room_ClassPeriod()
+    {
+        return this.roomClassPeriodList;
+    }
+
+    set_roomClassPeriod(input)
+    {
+        this.roomClassPeriodList = input;
+    }
+
+    reset()
+    {
+        this.roomClassPeriodList = [1,2,3,4,5,6,7,8];
+    }
+
 
     toString()
     {
-        return "    Room " + this.room_no + ":  Teacher: " + this.room_teacher + "  Class: " + this.room_class;
+        return "    Room " + this.room_no + ":  Teacher: " + this.room_teacher + "  Class: " + this.room_class + this.roomClassPeriodList;
     }
 }
 

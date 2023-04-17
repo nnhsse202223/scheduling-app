@@ -36,6 +36,11 @@ class Classes
         return this.possibleTeachers;
     }
 
+    get get_classPeriod()
+    {
+        return this.classPeriod;
+    }
+
     set_class_teacher(teach)
     {
         this.teacher = teach;
@@ -44,7 +49,12 @@ class Classes
     set_class_room(roomy)
     {
         this.room = roomy;
-    }    
+    }
+    
+    set_classPeriod(period)
+    {
+        this.classPeriod = period;
+    }
     
     
     toString()

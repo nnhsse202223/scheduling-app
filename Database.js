@@ -79,7 +79,7 @@ function script(){
     let roomClassLog = returned_data['roomWithClasses'];
 
     let classDictWithTeachers = returned_data["classWithTeachers"];
-    let classDictWithRooms = retured_data["classWithRooms"];
+    let classDictWithRooms = returned_data["classWithRooms"];
 
     var data = new Database(room_data, class_data, teacher_data, classDictWithTeachers, classDictWithRooms);
     //this is a WorkingClass object that does the initiial generation within the constructor, so the initial gens of schedule are already set, you only need

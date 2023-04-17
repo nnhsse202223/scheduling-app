@@ -61,77 +61,41 @@ class WorkingClass
     */
     initialGeneration()
     {
-        var scheduleArray1 = [];
         var aSchedule = new Schedule([]);
         var dupRoomArray = this.roomArray.slice();
         var dupTeacherArray = this.teacherArray.slice();
-        var randomClassIndex  = 0;
+        var dupClassArray = this.classArray.slice();
+        var randomRoomIndex  = 0;
         var randomTeacherIndex = 0;
+        var randomClassPeriod = 0;
         var myClassPeriodArray = [];
 
         this.scheduleNo++;
 
-        for (let j = 0; j < 8; j++)
+        for(let i = 0; i < dupClassArray.length; i++)
         {
-            //Making a copy that we can use of the main rooms -> due to weird reference properties
-            var dupClassArray = this.classArray.slice();
+            randomClassPeriod = this.rand(1,8);
+            dupClassArray[i].set_classPeriod(randomClassPeriod);
+            randomRoomIndex = this.rand(0, dupClassArray[i].get_possibleRooms.length);
+            randomTeacherIndex = this.rand(0, dupClassArray[i].get_possibleTeachers.length);
+            // console.log(dupClassArray[i].get_possibleRooms[randomRoomIndex]);
+            // while(!dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod.includes(randomClassPeriod))
+            // {
+            //     randomClassPeriod = this.rand(0,8);
+            //     while(!dupClassArray[i].get_possibleTeachers[randomTeacherIndex].ClassPeriod().includes(randomClassPeriod))
+            //     randomTeacherIndex = this.rand(0, dupClassArray[i].get_possibleTeachers.length);
+            // }
 
-            //Not enough classes to fill all rooms -> repeat classes
-            if (dupClassArray.length < dupRoomArray.length)
-            {
-                dupClassArray = this.classArray.slice();
-            }
-            
-            //Not enough teachers to fill all rooms -> repeat teachers
-            if (dupTeacherArray.length < dupRoomArray.length)
-            {
-                dupTeacherArray = this.teacherArray.slice();
-            }
-            
-            
-            for (let i = 0; i < this.roomArray.length; i++)
-            {
-                //Getting a random teacher
-                randomTeacherIndex = this.rand(0, dupTeacherArray.length - 1);
+            // dupClassArray[i].get_possibleRooms[randomRoomIndex].filter(function (letter) {return letter == randomClassPeriod;});
+            // dupClassArray[i].get_possibleTeaches[randomTeachIndex].filter(function (letter) {return letter == randomClassPeriod;});
 
-                //Getting a random class
-                randomClassIndex = this.rand(0, dupClassArray.length - 1);
-
-                //creating a room object -> weird reference issues
-                var THE_OTHER_ROOM = dupRoomArray.pop();
-
-                //Creating new class with each random attribute with generated earlier. 
-                var theRoom = new Room(THE_OTHER_ROOM.room_number, THE_OTHER_ROOM.classList);
-
-                //Adding the teacher to the room
-                theRoom.set_room_teacher(dupTeacherArray[randomTeacherIndex])
-
-                //Getting rid of this teacher from the list
-                dupTeacherArray.splice(randomTeacherIndex,1);
-                
-                //Adding the class to the room
-                theRoom.set_room_class(dupClassArray[randomClassIndex]);
-
-                //Removing from the array
-                dupClassArray.splice(randomClassIndex, 1);
-
-                //Adding this new room to the array
-                myClassPeriodArray.push(theRoom);
-
-                //This will print out the full schedule, although not as nice as GeneticRepresentation.represent() will. 
-                //console.log("Period " + (j+1) + ": Room: " + myClassPeriodArray[i].room_number + ", Teacher: "+ myClassPeriodArray[i].room_teacher + ",  \t" + "Class: " + myClassPeriodArray[i].room_class);
-            }
-
-            //Reference issues
-            var copyBecauseCodeDoesntWork = myClassPeriodArray.slice();
-            scheduleArray1.push(copyBecauseCodeDoesntWork);
-
-            myClassPeriodArray = [];
-            copyBecauseCodeDoesntWork = [];
-            //console.log(this.scheduleArray[j]); //Backup printing method to display schedule
+            dupClassArray[i].set_class_room(dupClassArray[i].get_possibleRooms[randomRoomIndex]);
+            dupClassArray[i].set_class_teacher(dupClassArray[i].get_possibleTeachers[randomTeacherIndex]);
+            myClassPeriodArray.push(dupClassArray[i]);
         }
 
-        aSchedule.set_schedule(scheduleArray1);
+        aSchedule.set_schedule(myClassPeriodArray);
+        console.log(aSchedule);
         aSchedule.set_percentage(this.fitness(aSchedule.schedule));
 
         //NOTE: KEEP FOR ORGANIZATION
