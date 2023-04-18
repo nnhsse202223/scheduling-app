@@ -11,18 +11,16 @@ function run() {
   var teacher_array = [];
   var room_array = [];
   var class_array = [];
-  var roomDictWithClasses = {}; //probably getting rid of
-  var TeacherDictWithClasses = {}; //probably getting rid of
 
   var classDictWithTeachers = {}; //new
   var classDictWithRooms = {}; //new
+  var classDictWithPeriods = {}; //new
 
   //Separating data into just teachers
   for(let i = 8; i < csvArray.length; i++)
   {
     let taughtClasses = csvArray[i].split(',');
     teacher_array.push(taughtClasses[0]);
-    TeacherDictWithClasses[taughtClasses[0]] = [];
   }
 
   //Separating data into just rooms
@@ -35,7 +33,6 @@ function run() {
       if(!room_array.includes(roomNumber))
       {
         room_array.push(roomNumber);
-        roomDictWithClasses[roomNumber] = [];
       }
     }
   }
@@ -48,36 +45,7 @@ function run() {
       class_array.push(classes[i]);
       classDictWithTeachers[classes[i]] = [];
       classDictWithRooms[classes[i]] = [];
-    }
-  }
-
-  //Getting all possible classes into rooms in format {room,[Class]}
-  for(let i = 1; i < rooms.length; i++)
-  {
-    let roomNumbers = rooms[i].split(' | ');
-    for(let j = 0; j < roomNumbers.length; j++)
-    {
-      let roomNumber = roomNumbers[j];
-      if(!roomDictWithClasses[roomNumber].includes(classes[i]))
-      {
-        roomDictWithClasses[roomNumber].push(classes[i]);
-      }
-    }
-  }
-
-  //Getting all possible classes into rooms in format {teacher,[Class]}
-  for(let i = 8; i < csvArray.length; i++)
-  {
-    let taughtClasses = csvArray[i].split(',');
-    for(let j = 1; j < taughtClasses.length; j++)
-    {
-      if(taughtClasses[j] != "")
-      {
-        if(!TeacherDictWithClasses[taughtClasses[0]].includes(classes[j]))
-        {
-          TeacherDictWithClasses[taughtClasses[0]].push(classes[j]); 
-        }
-      }
+      classDictWithPeriods[classes[i]] = [1, 2, 3, 4, 5, 6, 7, 8];
     }
   }
 
@@ -90,7 +58,7 @@ function run() {
       if(taughtClasses[j] != "")
       {
         let teach = new Teacher(taughtClasses[0]);
-        console.log(teach);
+        //console.log(teach);
         if(!classDictWithTeachers[classes[j]].includes(teach))
         {
           //console.log(taughtClasses[0]);
@@ -115,7 +83,15 @@ function run() {
     }
   }
 
-  return {class: class_array, teacher: teacher_array, room: room_array, roomWithClasses: roomDictWithClasses, TeachersWithClasses: TeacherDictWithClasses, classWithTeachers: classDictWithTeachers, classWithRooms: classDictWithRooms};
+  //Getting all possible classes into rooms in format {class, [period]}
+  for(let i = 1; i < classes.length; i++)
+  {
+    //If the class equals some specific class name,
+    //remove specific periods from that class/periods dictionary
+    //if that class has specific period requirements
+  }
+
+  return {class: class_array, teacher: teacher_array, room: room_array, classWithTeachers: classDictWithTeachers, classWithRooms: classDictWithRooms, classWithPeriods: classDictWithPeriods};
 }
 
 module.exports.run = run;

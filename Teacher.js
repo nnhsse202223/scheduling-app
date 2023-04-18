@@ -19,9 +19,9 @@ class Teacher
         return this.classPeriodList;
     }
 
-    take(index)
+    fill_class(index_of_class_to_fill) // adds a class to a teachers' schedule: basically if they have a number that period is free, if they have a 0 in that slot they have a class. 
     {
-        this.classPeriodList.splice(index, 1);
+        this.classPeriodList[index_of_class_to_fill] = 0;    
     }
 
     reset()
