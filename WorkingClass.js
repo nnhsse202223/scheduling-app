@@ -74,35 +74,43 @@ class WorkingClass
 
         for(let i = 0; i < dupClassArray.length; i++)
         {
+            //Getting a random class period
             randomClassPeriod = this.rand(1,8);
+
             dupClassArray[i].set_classPeriod(randomClassPeriod);
+
             randomRoomIndex = this.rand(0, dupClassArray[i].get_possibleRooms.length);
+
             randomTeacherIndex = this.rand(0, dupClassArray[i].get_possibleTeachers.length);
+
             //console.log(dupClassArray[i].get_possibleTeacher[randomTeacherIndex]);
             //console.log(dupClassArray[i].get_possibleRooms[randomRoomIndex])
             //console.log(dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod);
-            //console.log(dupClassArray[i].get_possibleTeachers[randomTeacherIndex]);
+            console.log(dupClassArray[i].get_possibleTeachers[randomTeacherIndex]);
             ////console.log(randomClassPeriod);
             //console.log(!dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod.includes(randomClassPeriod));
+
+            //if class period is 
             while(!dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod.includes(randomClassPeriod))
             {
-                randomClassPeriod = this.rand(0,8);
-                // console.log(!dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod.includes(randomClassPeriod));
-                // while(!dupClassArray[i].get_possibleTeachers[randomTeacherIndex].ClassPeriod().includes(randomClassPeriod));
-                // {randomTeacherIndex = this.rand(0, dupClassArray[i].get_possibleTeachers.length);}
+                randomTeacherIndex = this.rand(0, dupClassArray[i].get_possibleTeachers.length);
+                console.log(!dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod.includes(randomClassPeriod));
+                while(!dupClassArray[i].get_possibleTeachers[randomTeacherIndex].ClassPeriod().includes(randomClassPeriod));
+                {randomTeacherIndex = this.rand(0, dupClassArray[i].get_possibleTeachers.length);}
             }
 
-            // for (let j = 0; j < dupClassArray[i].get_possibleTeachers[randomTeacherIndex].ClassPeriod().length; j++)
-            // {
-            //     if (dupClassArray[i].get_possibleTeachers[randomTeacherIndex].ClassPeriod()[j] = randomClassPeriod)
-            //     {dupClassArray[i].get_possibleTeachers[randomTeacherIndex].ClassPeriod().splice(j, 1)}
-            // }
-
-            for (let j = 0; j < dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod.length; j++)
+            //Gets rid of empty space in the teachers' period schedule, filling it with the class.
+            for (let j = 0; j < dupClassArray[i].get_possibleTeachers[randomTeacherIndex].ClassPeriod().length; j++)
             {
-                if (dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod[j] = randomClassPeriod)
-                {dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod.splice(j, 1)}
+                if (dupClassArray[i].get_possibleTeachers[randomTeacherIndex].ClassPeriod()[j] = randomClassPeriod){
+                    dupClassArray[i].get_possibleTeachers[randomTeacherIndex].fill_class(j);
             }
+
+            // for (let j = 0; j < dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod.length; j++)
+            // {
+            //     if (dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod[j] = randomClassPeriod)
+            //     {dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod.splice(j, 1)}
+            // }
 
             dupClassArray[i].set_class_room(dupClassArray[i].get_possibleRooms[randomRoomIndex]);
             dupClassArray[i].set_class_teacher(dupClassArray[i].get_possibleTeachers[randomTeacherIndex]);
@@ -112,7 +120,7 @@ class WorkingClass
 
 
         aSchedule.set_schedule(myClassPeriodArray);
-        //console.log(aSchedule);
+        console.log(aSchedule);
         aSchedule.set_percentage(this.fitness(aSchedule.schedule));
 
         //NOTE: KEEP FOR ORGANIZATION
