@@ -1,4 +1,6 @@
 let fs = require('fs');
+const {Room} = require("./room.js");
+const {Teacher} = require("./Teacher.js");
 
 let teacherData = fs.readFileSync('TeacherData.csv',{encoding:'utf8'}, (err) => err && console.error(err));
 let csvArray = teacherData.split(/\r?\n|\r|\n/g); //I dont know how that splits it, but it worked!!!
@@ -87,9 +89,12 @@ function run() {
     {
       if(taughtClasses[j] != "")
       {
-        if(!classDictWithTeachers[classes[j]].push(taughtClasses[0]))
+        let teach = new Teacher(taughtClasses[0]);
+        console.log(teach);
+        if(!classDictWithTeachers[classes[j]].includes(teach))
         {
-          classDictWithTeachers[classes[j]].push(taughtClasses[0]);
+          //console.log(taughtClasses[0]);
+          classDictWithTeachers[classes[j]].push(teach);
         }
       }
     }
@@ -102,9 +107,10 @@ function run() {
     for(let j = 0; j < roomNumbers.length; j++)
     {
       let roomNumber = roomNumbers[j];
-      if(!classDictWithRooms[classes[i]].includes(roomNumber))
+      let room = new Room(roomNumber);
+      if(!classDictWithRooms[classes[i]].includes(room))
       {
-        classDictWithRooms[classes[i]].push(roomNumber);
+        classDictWithRooms[classes[i]].push(room);
       }
     }
   }

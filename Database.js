@@ -89,7 +89,7 @@ function script(){
     //Making multiple generations of schedules
     var gene = new GeneticRepresentation(theObj.verse);
     //console.log(theObj.verse.theMultiverseArray);
-    gene.represent();
+    //gene.represent();
 
     var theActualVerse;
 

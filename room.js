@@ -31,7 +31,7 @@ class Room
 
     toString()
     {
-        return "    Room " + this.room_no + ":  Teacher: " + this.room_teacher + "  Class: " + this.room_class + this.roomClassPeriodList;
+        return "    Room " + this.room_no;
     }
 }
 

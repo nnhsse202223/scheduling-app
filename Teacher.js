@@ -14,7 +14,7 @@ class Teacher
         return this.name;
     }
     
-    classPeriod()
+    get classPeriod()
     {
         return this.classPeriodList;
     }
