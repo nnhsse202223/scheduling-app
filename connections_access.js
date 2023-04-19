@@ -6,6 +6,7 @@ let teacherData = fs.readFileSync('TeacherData.csv',{encoding:'utf8'}, (err) => 
 let csvArray = teacherData.split(/\r?\n|\r|\n/g); //I dont know how that splits it, but it worked!!!
 let classes = csvArray[7].split(',');
 let rooms = csvArray[1].split(',');
+let periods = csvArray[5].split(',');
 
 function run() {
   var teacher_array = [];
@@ -20,7 +21,10 @@ function run() {
   for(let i = 8; i < csvArray.length; i++)
   {
     let taughtClasses = csvArray[i].split(',');
-    teacher_array.push(taughtClasses[0]);
+    if(!teacher_array.includes(taughtClasses[0]))
+      {
+        teacher_array.push(taughtClasses[0]);
+      }
   }
 
   //Separating data into just rooms
@@ -45,7 +49,7 @@ function run() {
       class_array.push(classes[i]);
       classDictWithTeachers[classes[i]] = [];
       classDictWithRooms[classes[i]] = [];
-      classDictWithPeriods[classes[i]] = [1, 2, 3, 4, 5, 6, 7, 8];
+      classDictWithPeriods[classes[i]] = [];
     }
   }
 
@@ -58,10 +62,8 @@ function run() {
       if(taughtClasses[j] != "")
       {
         let teach = new Teacher(taughtClasses[0]);
-        //console.log(teach);
         if(!classDictWithTeachers[classes[j]].includes(teach))
         {
-          //console.log(taughtClasses[0]);
           classDictWithTeachers[classes[j]].push(teach);
         }
       }
@@ -86,9 +88,15 @@ function run() {
   //Getting all possible classes into rooms in format {class, [period]}
   for(let i = 1; i < classes.length; i++)
   {
-    //If the class equals some specific class name,
-    //remove specific periods from that class/periods dictionary
-    //if that class has specific period requirements
+    let periodNumbers = periods[i].split(' | ');
+    for(let j = 0; j < periodNumbers.length; j++)
+    {
+      let period = periodNumbers[j];
+      if(!classDictWithPeriods[classes[i]].includes(period))
+      {
+        classDictWithPeriods[classes[i]].push(period);
+      }
+    }
   }
 
   return {class: class_array, teacher: teacher_array, room: room_array, classWithTeachers: classDictWithTeachers, classWithRooms: classDictWithRooms, classWithPeriods: classDictWithPeriods};

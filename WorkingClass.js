@@ -206,6 +206,7 @@ class WorkingClass
 
         // return this.fitness_value/this.maxfitness * 100;
     }
+}
 
 
 
