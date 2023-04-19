@@ -6,12 +6,16 @@
 </head> 
 <body>
     <form id="logSwitchForm" action="/logs" method="get"></form>
+    <form id="downloadScheduleForm" action="/download" method="get"></form>
+    <form id="uploadSwitchForm" action="/upload" method="get"></form>
     <div>
         <div id=creationContainer>
             <button id="create" onclick="fullCSV()">Create Schedule</button>
             <div style="display:none" id="loader"></div>
-            <button style="display:none" id="download" onclick="downloadCSV()">Download Schedule</button>
-        </div><button form="logSwitchForm" type="submit">View Logs</button>
+            <button style="display:none" id="download" form="downloadScheduleForm" type="submit">Download Schedule</button>
+        </div><br>
+        <button form="logSwitchForm" type="submit">View Logs</button>
+        <button form="uploadSwitchForm" type="submit">Upload Data</button>
     </div>
 </body>  
 </html>  

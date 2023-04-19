@@ -1,8 +1,7 @@
-var csvString;
-
-function startCSV() {
+function fullCSV() {
     document.getElementById("create").style.display = "none";
     document.getElementById("loader").style.display = "inline-block";
+    fetch("/database").then(endCSV());
 }
 
 function endCSV() {
@@ -10,16 +9,40 @@ function endCSV() {
     document.getElementById("download").style.display = "inline-block";
 }
 
-function downloadCSV() {
-    var hiddenElement = document.createElement('a');  
-    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvString);  
-    hiddenElement.target = '_blank';
-    hiddenElement.download = 'classes.csv';  
-    hiddenElement.click();  
+function changeText() {
+    let name = "File Chosen: ";
+    let file = document.getElementById('uploadInput').files[0];
+    if(file)
+    {
+        name += file.name;
+    }
+    else
+    {
+        name += "None";
+    }
+    document.getElementById("uploadDiv").innerHTML = name;
 }
 
-async function fullCSV() {
-    startCSV();
-    csvString = await fetch('/database').then(response => response.text());
-    endCSV();
+function verifyUpload(event) {
+    event.preventDefault();
+    let file = document.getElementById('uploadInput').files[0];
+    var reader = new FileReader();
+    reader.readAsText(file);
+    reader.onload = function (event) {
+        console.log(event.target.result);
+        fetch("/uploadFile", {
+            method: "POST",
+            body: JSON.stringify({data: event.target.result}),
+            headers: {
+                "Content-type": "application/json"
+            }
+        }).then(response => response.text()).then(text => {
+            if(text == "true") {
+                document.getElementById("uploadDiv").innerHTML = "File Uploaded Succesfully!"
+            }
+            else {
+                document.getElementById("uploadDiv").innerHTML = "File Not Uploaded, Invalid Data"
+            }
+        });
+    };
 }
