@@ -86,7 +86,7 @@ class WorkingClass
             //console.log(dupClassArray[i].get_possibleTeacher[randomTeacherIndex]);
             //console.log(dupClassArray[i].get_possibleRooms[randomRoomIndex])
             //console.log(dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod);
-            console.log(dupClassArray[i].get_possibleTeachers[randomTeacherIndex]);
+            console.log(dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod);
             ////console.log(randomClassPeriod);
             //console.log(!dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod.includes(randomClassPeriod));
 
@@ -95,15 +95,15 @@ class WorkingClass
             {
                 randomTeacherIndex = this.rand(0, dupClassArray[i].get_possibleTeachers.length);
                 console.log(!dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod.includes(randomClassPeriod));
-                while(!dupClassArray[i].get_possibleTeachers[randomTeacherIndex].ClassPeriod().includes(randomClassPeriod));
+                while(!dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod.includes(randomClassPeriod));
                 {randomTeacherIndex = this.rand(0, dupClassArray[i].get_possibleTeachers.length);}
             }
 
             //Gets rid of empty space in the teachers' period schedule, filling it with the class.
-            for (let j = 0; j < dupClassArray[i].get_possibleTeachers[randomTeacherIndex].ClassPeriod().length; j++)
+            for (let j = 0; j < dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod.length; j++)
             {
-                if (dupClassArray[i].get_possibleTeachers[randomTeacherIndex].ClassPeriod()[j] = randomClassPeriod){
-                    dupClassArray[i].get_possibleTeachers[randomTeacherIndex].fill_class(j);
+                if (dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod[j] = randomClassPeriod){
+                    dupClassArray[i].get_possibleTeachers[randomTeacherIndex].fill_class(j);}
             }
 
             // for (let j = 0; j < dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod.length; j++)
