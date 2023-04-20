@@ -5,9 +5,13 @@ class Teacher
     {
         this.name = name;
         this.classPeriodList = [1,2,3,4,5,6,7,8];
+        this.otherROOOMList = [];
     }
 
-    
+    //NOTE: ADD 2 seperate arrays, one that contains room numbers with period as the index+1, and one with classes. 
+    //store teach ers????
+
+
     //get functions
     get teacher_name()
     {

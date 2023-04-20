@@ -206,7 +206,7 @@ class WorkingClass
 
         // return this.fitness_value/this.maxfitness * 100;
     }
-}
+
 
 
 
@@ -507,7 +507,7 @@ class WorkingClass
             return 97.5; //change to algorithm
         }
     }
-
 }
+
 
 module.exports.WorkingClass = WorkingClass;
