@@ -62,6 +62,7 @@ function run() {
       if(taughtClasses[j] != "")
       {
         let teach = new Teacher(taughtClasses[0]);
+        teach.addLunch();
         if(!classDictWithTeachers[classes[j]].includes(teach))
         {
           classDictWithTeachers[classes[j]].push(teach);

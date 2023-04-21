@@ -99,28 +99,29 @@ class WorkingClass
                 {randomTeacherIndex = this.rand(0, dupClassArray[i].get_possibleTeachers.length);}
             }
 
-            //Gets rid of empty space in the teachers' period schedule, filling it with the class.
-            for (let j = 0; j < dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod.length; j++)
-            {
-                if (dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod[j] = randomClassPeriod){
-                    dupClassArray[i].get_possibleTeachers[randomTeacherIndex].fill_class(j);}
-            }
 
+            dupClassArray[i].set_class_room(dupClassArray[i].get_possibleRooms[randomRoomIndex]);
             // for (let j = 0; j < dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod.length; j++)
             // {
             //     if (dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod[j] = randomClassPeriod)
             //     {dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod.splice(j, 1)}
             // }
 
-            dupClassArray[i].set_class_room(dupClassArray[i].get_possibleRooms[randomRoomIndex]);
             dupClassArray[i].set_class_teacher(dupClassArray[i].get_possibleTeachers[randomTeacherIndex]);
+            //Gets rid of empty space in the teachers' period schedule, filling it with the class.
+            for (let j = 0; j < dupClassArray[i].get_class_teacher.classPeriod.length; j++)
+            {
+                if (dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod[j] = randomClassPeriod){
+                    dupClassArray[i].get_possibleTeachers[randomTeacherIndex].fill_class(j-1,dupClassArray[i].get_class_name);}
+            }
+
             myClassPeriodArray.push(dupClassArray[i]);
         }
 
 
 
         aSchedule.set_schedule(myClassPeriodArray);
-        console.log(aSchedule);
+        //console.log(aSchedule);
         aSchedule.set_percentage(this.fitness(aSchedule.schedule));
 
         //NOTE: KEEP FOR ORGANIZATION
