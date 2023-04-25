@@ -7,6 +7,7 @@ let csvArray = teacherData.split(/\r?\n|\r|\n/g); //I dont know how that splits 
 let classes = csvArray[7].split(',');
 let rooms = csvArray[1].split(',');
 let periods = csvArray[5].split(',');
+let sections = csvArray[3].split(',');
 
 function run() {
   var teacher_array = [];
@@ -16,6 +17,7 @@ function run() {
   var classDictWithTeachers = {}; //new
   var classDictWithRooms = {}; //new
   var classDictWithPeriods = {}; //new
+  var classDictWithSections = {}; //new
 
   //Separating data into just teachers
   for(let i = 8; i < csvArray.length; i++)
@@ -50,6 +52,7 @@ function run() {
       classDictWithTeachers[classes[i]] = [];
       classDictWithRooms[classes[i]] = [];
       classDictWithPeriods[classes[i]] = [];
+      classDictWithSections[classes[i]] = [];
     }
   }
 
@@ -103,7 +106,19 @@ function run() {
     }
   }
 
-  return {class: class_array, teacher: teacher_array, room: room_array, classWithTeachers: classDictWithTeachers, classWithRooms: classDictWithRooms, classWithPeriods: classDictWithPeriods};
+  //Getting all possible classes into sections in format {class, [sections]}
+  for(let i = 1; i < classes.length; i++)
+  {
+    let section = sections[i];
+    if(!classDictWithSections[classes[i]].includes(section))
+    {
+      //console.log(section);
+      //classDictWithSections[classes[i]].push(section);
+      classDictWithSections[classes[i]].push(Number(section));
+    }
+  }
+
+  return {class: class_array, teacher: teacher_array, room: room_array, classWithTeachers: classDictWithTeachers, classWithRooms: classDictWithRooms, classWithPeriods: classDictWithPeriods, classWithSections: classDictWithSections};
 }
 
 module.exports.run = run;
