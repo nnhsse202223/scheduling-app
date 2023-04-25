@@ -27,6 +27,7 @@ class Database
 
         for (let i = 0; i < /*teacherArray.length*/ this.theTeacherArray.length; i++)
         {
+            //console.log(this.theTeacherArray[i]);
             var teacher = new Teacher(this.theTeacherArray[i]);
             this.myTeacherArray.push(teacher);
         }
@@ -39,6 +40,11 @@ class Database
         
         for (let i = 0; i < /*classArray.length*/ this.theClassArray.length; i++)
         {
+            //console.log(this.teacherCLog[this.theClassArray[i]][0][0]);
+            //for (let k = 0; k < /*teacherArray.length*/ this.myTeacherArray.length; k++) {this.myTeacherArray[k].set_weight(this.teacherCLog[this.theClassArray[i]][0][1])};
+            //console.log(this.teacherCLog[this.theClassArray[i]][0]);
+            //console.log(this.myTeacherArray[i]);
+            //for (let k = 0; k < /*teacherArray.length*/ this.myTeacherArray.length; k++) {this.myTeacherArray[k].set_weight(this.teacherCLog[this.theClassArray[i]])};
             var classes = new Classes(this.theClassArray[i], this.teacherCLog[this.theClassArray[i]], this.roomCLog[this.theClassArray[i]]);
             this.myClassArray.push(classes);
         }

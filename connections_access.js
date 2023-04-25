@@ -53,7 +53,7 @@ function run() {
     }
   }
 
-  //Getting all possible classes into rooms in format {class, [teacher]}
+  //Getting all possible classes into rooms in format {class, [teacher, weight]}
   for(let i = 8; i < csvArray.length; i++)
   {
     let taughtClasses = csvArray[i].split(',');
@@ -62,9 +62,12 @@ function run() {
       if(taughtClasses[j] != "")
       {
         let teach = new Teacher(taughtClasses[0]);
+        
         teach.addLunch();
         if(!classDictWithTeachers[classes[j]].includes(teach))
         {
+          //console.log(taughtClasses[j]);
+          teach.set_weight(Number(taughtClasses[j]));
           classDictWithTeachers[classes[j]].push(teach);
         }
       }

@@ -6,6 +6,7 @@ class Teacher
         this.name = name;
         this.classPeriodList = [1,2,3,4,5,6,7,8];
         this.otherROOOMList = [0,0,0,0,0,0,0,0];
+        this.weight = 0;
     }
 
     //NOTE: ADD 2 seperate arrays, one that contains room numbers with period as the index+1, and one with classes. 
@@ -23,9 +24,24 @@ class Teacher
         return this.classPeriodList;
     }
 
+    get weights()
+    {
+        return this.weight;
+    }
+
+    set_weight(mass)
+    {
+        this.weight = mass;
+    }
+
     fill_class(index_of_class_to_fill,class_name) // adds a class to a teachers' schedule: basically if they have a number that period is free, if they have a 0 in that slot they have a class. 
     {
         this.classPeriodList[index_of_class_to_fill] = class_name;    
+    }
+
+    fill_room(index, roomNo)
+    {
+        this.otherROOOMList[index] = roomNo;
     }
 
     addLunch()

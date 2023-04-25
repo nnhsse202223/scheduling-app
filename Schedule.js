@@ -1,14 +1,25 @@
 class Schedule
 {
-    constructor(array, percentage)
+    constructor(classArray, teachrArray, percentage)
     {
-        this.scheduleArray = array;
+        this.scheduleArray = classArray;
+        this.teacherArray = teachrArray;
         this.percentage = percentage;
     }
 
     get schedule()
     {
         return this.scheduleArray;
+    }
+
+    get teachers()
+    {
+        return this.teacherArray;
+    }
+
+    set_teachers(array)
+    {
+        this.teacherArray = array;
     }
 
     set_schedule(array)
