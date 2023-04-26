@@ -166,7 +166,7 @@ class WorkingClass
         aSchedule.set_schedule(myClassPeriodArray);
         aSchedule.set_teachers(dupTeacherArray);
         console.log(aSchedule);
-        aSchedule.set_percentage(this.fitness(aSchedule.schedule));
+        aSchedule.set_percentage(this.fitness(aSchedule));
 
         //NOTE: KEEP FOR ORGANIZATION
         //console.log("\n\n========================================\n========================================\n\n");
@@ -186,70 +186,12 @@ class WorkingClass
     */
     fitness(theSchedule)
     {
-        this.fitness_value = 0;
-        this.maxfitness = 0;
-        let negate = false;
-        for (let j = 0; j < theSchedule.length; j++) //checks class period
-        {
-            for(let i = 0; i < theSchedule[j].length; i++) //rooms within each period
-            {
-                if(theSchedule[j][i].classList.includes(theSchedule[j][i].room_class.name))
-                {
-                    this.fitness_value += 10; //Technically unnesscary, given that we do not have room weights and we are negating fitness if the room is wrong
-                }
-                else
-                {
-                    negate = true;
-                }
-                if (theSchedule[j][i].room_teacher.classList.includes(theSchedule[j][i].room_class.name))
-                {
-                    let classIndex = classes.indexOf(theSchedule[j][i].room_class.name);
-                    for(let m = 8; m < csvArray.length; m++)
-                    {
-                        let taughtClasses = csvArray[i].split(',');
-                        if(taughtClasses[0] == theSchedule[j][i].room_teacher)
-                        {
-                            this.fitness_value += +taughtClasses[classIndex];
-                        }
-                    }
-                }
-                else
-                {
-                    negate = true;
-                }
-                this.maxfitness += 20; //10 for rooms and 10 for classes
-            }
-        }
-        if(negate)
-        {
-            this.fitness_value -= this.maxfitness;
-        }
+        this.fitness_value = 100;
+        this.maxfitness = 100;
+        
         this.fitness_value /= this.maxfitness;
         this.fitness_value *= 100;
         return this.fitness_value;
-        // this.fitness_value = 0;
-        // this.maxfitness = 0;
-        // for (let j = 0; j < theSchedule.length; j++) //checks class period
-        // {
-        //     for(let i = 0; i < theSchedule[j].length; i++) //rooms within each period
-        //     {
-        //         if (theSchedule[j][i].classList.includes(theSchedule[j][i].room_class.name))
-        //         {
-        //             this.fitness_value++;
-        //         }
-
-        //         this.maxfitness++;
-                
-        //         if (theSchedule[j][i].room_teacher.classList.includes(theSchedule[j][i].room_class.name))
-        //         {
-        //             this.fitness_value++;
-                    
-        //         }
-        //         this.maxfitness++;
-        //     }
-        // }
-
-        // return this.fitness_value/this.maxfitness * 100;
     }
 
 

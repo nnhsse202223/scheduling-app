@@ -52,8 +52,9 @@ class Database
             for(let j = 0; j < this.myClassSections[this.theClassArray[i]]; j++)
             {
                 classes = new Classes(this.theClassArray[i] + " " + (this.theAlphabet[j]), this.teacherCLog[this.theClassArray[i]], this.roomCLog[this.theClassArray[i]]);
+                this.myClassArray.push(classes);
             }
-            this.myClassArray.push(classes);
+            
         }
 
     }

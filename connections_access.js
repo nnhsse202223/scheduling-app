@@ -7,7 +7,8 @@ let csvArray = teacherData.split(/\r?\n|\r|\n/g); //I dont know how that splits 
 let classes = csvArray[7].split(',');
 let rooms = csvArray[1].split(',');
 let periods = csvArray[5].split(',');
-let sections = csvArray[3].split(',');
+let sections = csvArray[3].split(',')
+let semesters = csvArray[4].split(',');;
 
 function run() {
   var teacher_array = [];
@@ -23,10 +24,7 @@ function run() {
   for(let i = 8; i < csvArray.length; i++)
   {
     let taughtClasses = csvArray[i].split(',');
-    if(!teacher_array.includes(taughtClasses[0]))
-      {
-        teacher_array.push(taughtClasses[0]);
-      }
+    teacher_array.push(taughtClasses[0]);
   }
 
   //Separating data into just rooms
@@ -46,7 +44,7 @@ function run() {
   //Separating data into just classes
   for(let i = 1; i < classes.length; i++)
   {
-    if(!class_array.includes(classes[i]))
+    if(semesters[i].split(" | ").includes("1"))
     {
       class_array.push(classes[i]);
       classDictWithTeachers[classes[i]] = [];
@@ -54,24 +52,31 @@ function run() {
       classDictWithPeriods[classes[i]] = [];
       classDictWithSections[classes[i]] = [];
     }
+    if(semesters[i].split(" | ").includes("2"))
+    {
+      //...
+    }
   }
 
-  //Getting all possible classes into rooms in format {class, [teacher, weight]}
+  //Getting all possible classes into rooms in format {class, [teacher]}
   for(let i = 8; i < csvArray.length; i++)
   {
     let taughtClasses = csvArray[i].split(',');
+    let teach = new Teacher(taughtClasses[0]);
+    teach.addLunch();
     for(let j = 1; j < taughtClasses.length; j++)
     {
       if(taughtClasses[j] != "")
       {
-        let teach = new Teacher(taughtClasses[0]);
         
-        teach.addLunch();
-        if(!classDictWithTeachers[classes[j]].includes(teach))
+        teach.set_weight(+taughtClasses[j]);
+        if(semesters[j].split(" | ").includes("1"))
         {
-          //console.log(taughtClasses[j]);
-          teach.set_weight(Number(taughtClasses[j]));
           classDictWithTeachers[classes[j]].push(teach);
+        }
+        if(semesters[j].split(" | ").includes("2"))
+        {
+          //...
         }
       }
     }
@@ -85,9 +90,13 @@ function run() {
     {
       let roomNumber = roomNumbers[j];
       let room = new Room(roomNumber);
-      if(!classDictWithRooms[classes[i]].includes(room))
+      if(semesters[i].split(" | ").includes("1"))
       {
         classDictWithRooms[classes[i]].push(room);
+      }
+      if(semesters[i].split(" | ").includes("2"))
+      {
+        //...
       }
     }
   }
@@ -99,9 +108,13 @@ function run() {
     for(let j = 0; j < periodNumbers.length; j++)
     {
       let period = periodNumbers[j];
-      if(!classDictWithPeriods[classes[i]].includes(period))
+      if(semesters[i].split(" | ").includes("1"))
       {
         classDictWithPeriods[classes[i]].push(period);
+      }
+      if(semesters[i].split(" | ").includes("2"))
+      {
+        //...
       }
     }
   }
@@ -110,11 +123,13 @@ function run() {
   for(let i = 1; i < classes.length; i++)
   {
     let section = sections[i];
-    if(!classDictWithSections[classes[i]].includes(section))
+    if(semesters[i].split(" | ").includes("1"))
     {
-      //console.log(section);
-      //classDictWithSections[classes[i]].push(section);
-      classDictWithSections[classes[i]].push(Number(section));
+      classDictWithSections[classes[i]].push(+section);
+    }
+    if(semesters[i].split(" | ").includes("2"))
+    {
+      //...
     }
   }
 
