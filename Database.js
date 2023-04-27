@@ -83,8 +83,6 @@ function script(){
     console.log("-----------------");
     var returned_data = run();
 
-    //NEED TO CREATE LOCAL VARIABLES WITH ROOMWITHCLASSES AND ROOM WITH TEACHERS FOR USE 
-
     let teacher_data = returned_data['teacher'];
     let room_data = returned_data['room'];
     let class_data = returned_data['class'];
