@@ -22,7 +22,7 @@ class GeneticRepresentation
 
     represent()
     {
-        var best_schedule_percent = 0;
+        var best_schedule_ = 0;
         console.log("Generation: " + this.gen);
         for(var value = 0; value < this.teachersSchedulesArray.length; value++){
             /* This is the representation for the old version of the genetic algorithm (prior to classes listing teachers & rooms) */
@@ -56,7 +56,7 @@ class GeneticRepresentation
             // if(this.teachersSchedulesArray[value].percent > best_schedule_percent){
             //     best_schedule_percent = this.teachersSchedulesArray[value].percent;
             // }
-            console.log("Fitness %: " + this.teachersSchedulesArray[value].percent /*this.workingClass.fitness(this.schedule)*/ + "\n");
+            console.log("Fitness %: " + fitness(this.teachersSchedulesArray[value]) /*this.workingClass.fitness(this.schedule)*/ + "\n");
         }
         //console.log("Best Fitness for this schedule: " + best_schedule_percent);
     }

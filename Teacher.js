@@ -7,6 +7,7 @@ class Teacher
         this.classPeriodList = [1,2,3,4,5,6,7,8];
         this.otherROOOMList = [0,0,0,0,0,0,0,0];
         this.weight = 0;
+        this.percent = 100;
     }
 
     //NOTE: ADD 2 seperate arrays, one that contains room numbers with period as the index+1, and one with classes. 
@@ -32,6 +33,10 @@ class Teacher
     set_weight(mass)
     {
         this.weight = mass;
+    }
+
+    set_percentage(new_percent){
+        this.percent = new_percent;
     }
 
     fill_class(index_of_class_to_fill,class_name) // adds a class to a teachers' schedule: basically if they have a number that period is free, if they have a 0 in that slot they have a class. 
