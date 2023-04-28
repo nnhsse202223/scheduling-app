@@ -9,9 +9,10 @@
 
 class GeneticRepresentation
 {
+    // the parameter 'schedules' is given by ... (workingclass multiversearray currently) (theObj.verse?) (theActualVerse?)
     constructor(schedules)
     {
-        this.teachersSchedulesArray = schedules.theMultiverseArray;
+        this.teachersSchedulesArray = schedules.theMultiverseArray;     //double check what theMultiverseArray does
         this.gen = schedules.genNo;
     }
     
@@ -25,41 +26,50 @@ class GeneticRepresentation
         var best_schedule_percent = 0;
         console.log("Generation: " + this.gen);
         for(var value = 0; value < this.teachersSchedulesArray.length; value++){
-            /* This is the representation for the old version of the genetic algorithm (prior to classes listing teachers & rooms) */
+            console.log("Schedule " + value);
+            this.schedule = this.teachersSchedulesArray[value].schedule;
+            this.periodSortedClasses = [[],[],[],[],[],[],[],[]];
 
-            //  this.schedule = this.teachersSchedulesArray[value].schedule;
-            
-            
-            // for(var period = 0; period < this.schedule.length; period++){
-            //     // For an entire period
-            //     console.log("Period " + (period+1));
-            //     for(var i = 0; i < this.schedule[period].length ; i++){
-            //         // For each room
+            // Sort each class into the period order
+            for(var course = 0; course < this.schedule.length; course++){
+                this.periodSortedClasses[this.schedule[course].get_classPeriod - 1].push(this.schedule[course]);
+            }
+            // console.log(this.periodSortedClasses.length + "\n");
+            // console.log(this.periodSortedClasses[0].length);
+            // console.log(this.periodSortedClasses[1].length);
+            // console.log(this.periodSortedClasses[2].length);
+            // console.log(this.periodSortedClasses[3].length);
+            // console.log(this.periodSortedClasses[4].length);
+            // console.log(this.periodSortedClasses[5].length);
+            // console.log(this.periodSortedClasses[6].length);
+            // console.log(this.periodSortedClasses[7].length);    // always 0
 
-
-            //         //console.log(this.schedule[period][i].room_teacher.toString().length)
-            //         if (this.schedule[period][i].room_teacher.toString().length < 14){
-            //         console.log("Room: " + this.schedule[period][i].room_number +
-            //             " \tTeacher: " + this.schedule[period][i].room_teacher +
-            //             " \t\tClass: " + this.schedule[period][i].room_class);
-            //         }
-            //         else
-            //         {
-            //             console.log("Room: " + this.schedule[period][i].room_number +
-            //             " \tTeacher: " + this.schedule[period][i].room_teacher +
-            //             " \tClass: " + this.schedule[period][i].room_class);
-            //         }
-            //     }
-            //     console.log();
-            // }
+            // for all periods
+            for(var period = 0; period < 8; period++){
+                console.log("Period " + (period + 1));
+                // For all classes within the period
+                for(var i = 0; i < this.periodSortedClasses[period].length; i++){
+                    this.class = this.periodSortedClasses[period][i]
+                    if(this.class.get_class_teacher.toString().length < 15){
+                        console.log("Room: " + this.class.get_class_room +
+                            "\tTeacher: " + this.class.get_class_teacher +
+                            "\t\tClass: " + this.class.get_class_name);
+                    }
+                    else{
+                        console.log("Room: " + this.class.get_class_room +
+                            "\tTeacher: " + this.class.get_class_teacher +
+                            "\tClass: " + this.class.get_class_name);
+                    }
+                }
+                console.log();
+            }
 
             // if(this.teachersSchedulesArray[value].percent > best_schedule_percent){
             //     best_schedule_percent = this.teachersSchedulesArray[value].percent;
             // }
             console.log("Fitness %: " + this.teachersSchedulesArray[value].percent /*this.workingClass.fitness(this.schedule)*/ + "\n");
-        }
         //console.log("Best Fitness for this schedule: " + best_schedule_percent);
+        }
     }
 }
-
 module.exports.GeneticRepresentation = GeneticRepresentation;
