@@ -6,7 +6,7 @@ const {Schedule} = require("./Schedule.js");
 const {run} = require("./connections_access.js");
 const {GeneticRepresentation} = require("./GeneticRepresentation.js")
 let fs = require('fs');
-const { start } = require("repl");
+// const { start } = require("repl");
 
 class Database
 {
@@ -100,6 +100,7 @@ function script(){
     
     //Making multiple generations of schedules
     var gene = new GeneticRepresentation(theObj.verse);
+
     //console.log(theObj.verse.theMultiverseArray);
     //gene.represent();
     
@@ -131,9 +132,9 @@ function script(){
     //console.log(`is schedule 1 == schedule 2: ${theObj.multiverseArray[0].schedule == theObj.multiverseArray[1].schedule}`)
     for (let i = 0; i < theObj.multiverseArray.length; i++)
     {
-        //theActualVerse = theObj.regenerate(theObj.verse);
-        //var gene = new GeneticRepresentation(theActualVerse);
-        //gene.represent();        
+        // theActualVerse = theObj.regenerate(theObj.verse);
+        // var gene = new GeneticRepresentation(theActualVerse);
+        // gene.represent();        
     }
     return theObj;
     */
