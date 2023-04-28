@@ -5,7 +5,7 @@ const {Multiverse, Generation} = require("./Generation.js");
 let fs = require('fs');
 
 //the number of schedules we want to generate
-const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 10;
+const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 100;
 
 let teacherData = fs.readFileSync('TeacherData.csv',{encoding:'utf8'}, (err) => err && console.error(err));
 let csvArray = teacherData.split(/\r?\n|\r|\n/g); //I dont know how that splits it, but it worked!!!
@@ -27,8 +27,7 @@ class WorkingClass
         //this is to let us know what schedules are which, it is only for organization.
         this.scheduleNo = 1;
 
-        //this piece of code runs the generation a certain number of times and then puts them in the multiverse array
-
+        //this piece of code runs the generation a certain number of times and then puts them in ths
         for (let i = 0; i < INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT; i++)
         {
             var mySchedule = this.initialGeneration();
@@ -165,8 +164,9 @@ class WorkingClass
 
         aSchedule.set_schedule(myClassPeriodArray);
         aSchedule.set_teachers(dupTeacherArray);
+        aSchedule.set_percentage(this.fitness(aSchedule));
         console.log(aSchedule);
-        aSchedule.set_percentage(this.fitness(aSchedule.schedule));
+        console.log( aSchedule.set_percentage(this.fitness(aSchedule)));
 
         //NOTE: KEEP FOR ORGANIZATION
         //console.log("\n\n========================================\n========================================\n\n");
@@ -186,70 +186,12 @@ class WorkingClass
     */
     fitness(theSchedule)
     {
-        this.fitness_value = 0;
-        this.maxfitness = 0;
-        let negate = false;
-        for (let j = 0; j < theSchedule.length; j++) //checks class period
-        {
-            for(let i = 0; i < theSchedule[j].length; i++) //rooms within each period
-            {
-                if(theSchedule[j][i].classList.includes(theSchedule[j][i].room_class.name))
-                {
-                    this.fitness_value += 10; //Technically unnesscary, given that we do not have room weights and we are negating fitness if the room is wrong
-                }
-                else
-                {
-                    negate = true;
-                }
-                if (theSchedule[j][i].room_teacher.classList.includes(theSchedule[j][i].room_class.name))
-                {
-                    let classIndex = classes.indexOf(theSchedule[j][i].room_class.name);
-                    for(let m = 8; m < csvArray.length; m++)
-                    {
-                        let taughtClasses = csvArray[i].split(',');
-                        if(taughtClasses[0] == theSchedule[j][i].room_teacher)
-                        {
-                            this.fitness_value += +taughtClasses[classIndex];
-                        }
-                    }
-                }
-                else
-                {
-                    negate = true;
-                }
-                this.maxfitness += 20; //10 for rooms and 10 for classes
-            }
-        }
-        if(negate)
-        {
-            this.fitness_value -= this.maxfitness;
-        }
+        this.fitness_value = 100;
+        this.maxfitness = 100;
+        
         this.fitness_value /= this.maxfitness;
         this.fitness_value *= 100;
         return this.fitness_value;
-        // this.fitness_value = 0;
-        // this.maxfitness = 0;
-        // for (let j = 0; j < theSchedule.length; j++) //checks class period
-        // {
-        //     for(let i = 0; i < theSchedule[j].length; i++) //rooms within each period
-        //     {
-        //         if (theSchedule[j][i].classList.includes(theSchedule[j][i].room_class.name))
-        //         {
-        //             this.fitness_value++;
-        //         }
-
-        //         this.maxfitness++;
-                
-        //         if (theSchedule[j][i].room_teacher.classList.includes(theSchedule[j][i].room_class.name))
-        //         {
-        //             this.fitness_value++;
-                    
-        //         }
-        //         this.maxfitness++;
-        //     }
-        // }
-
-        // return this.fitness_value/this.maxfitness * 100;
     }
 
 
@@ -286,11 +228,11 @@ class WorkingClass
             
         } 
         
-        var amount_of_times_we_should_crossover = 10;
+        var amount_of_times_we_should_crossover = 20;
 
         for (let i = 0; i < multiverseObject.genNo + amount_of_times_we_should_crossover; i++)
         {
-            //omniverse = this.crossover(omniverse);
+            omniverse = this.crossover(omniverse);
         }
 
         omniverse = this.eaglePurge(omniverse, multiverseObject.genNo);
@@ -299,7 +241,7 @@ class WorkingClass
             omniverse = this.addition(omniverse);
         }
 
-        for (let i = 0; i < 3; i++)
+        for (let i = 0; i < 20; i++)
         {
             for (let j = 0; j < omniverse.length; j++)
             {

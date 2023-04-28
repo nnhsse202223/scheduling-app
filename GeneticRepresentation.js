@@ -23,12 +23,13 @@ class GeneticRepresentation
 
     represent()
     {
-        var best_schedule_percent = 0;
+        var best_schedule_ = 0;
         console.log("Generation: " + this.gen);
         for(var value = 0; value < this.teachersSchedulesArray.length; value++){
             console.log("Schedule " + value);
             this.schedule = this.teachersSchedulesArray[value].schedule;
             this.periodSortedClasses = [[],[],[],[],[],[],[],[]];
+
 
             // Sort each class into the period order
             for(var course = 0; course < this.schedule.length; course++){
@@ -59,6 +60,7 @@ class GeneticRepresentation
                         console.log("Room: " + this.class.get_class_room +
                             "\tTeacher: " + this.class.get_class_teacher +
                             "\tClass: " + this.class.get_class_name);
+
                     }
                 }
                 console.log();
@@ -68,6 +70,7 @@ class GeneticRepresentation
             //     best_schedule_percent = this.teachersSchedulesArray[value].percent;
             // }
             console.log("Fitness %: " + this.teachersSchedulesArray[value].percent /*this.workingClass.fitness(this.schedule)*/ + "\n");
+
         //console.log("Best Fitness for this schedule: " + best_schedule_percent);
         }
     }
