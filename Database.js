@@ -136,7 +136,7 @@ function script(){
         //gene.represent();        
     }
     return theObj;
-
+    */
 }
 
 
