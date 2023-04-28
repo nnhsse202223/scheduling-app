@@ -5,7 +5,7 @@ const {Multiverse, Generation} = require("./Generation.js");
 let fs = require('fs');
 
 //the number of schedules we want to generate
-const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 10;
+const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 100;
 
 let teacherData = fs.readFileSync('TeacherData.csv',{encoding:'utf8'}, (err) => err && console.error(err));
 let csvArray = teacherData.split(/\r?\n|\r|\n/g); //I dont know how that splits it, but it worked!!!
@@ -27,8 +27,7 @@ class WorkingClass
         //this is to let us know what schedules are which, it is only for organization.
         this.scheduleNo = 1;
 
-        //this piece of code runs the generation a certain number of times and then puts them in the multiverse array
-
+        //this piece of code runs the generation a certain number of times and then puts them in ths
         for (let i = 0; i < INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT; i++)
         {
             var mySchedule = this.initialGeneration();
@@ -229,11 +228,11 @@ class WorkingClass
             
         } 
         
-        var amount_of_times_we_should_crossover = 10;
+        var amount_of_times_we_should_crossover = 20;
 
         for (let i = 0; i < multiverseObject.genNo + amount_of_times_we_should_crossover; i++)
         {
-            //omniverse = this.crossover(omniverse);
+            omniverse = this.crossover(omniverse);
         }
 
         omniverse = this.eaglePurge(omniverse, multiverseObject.genNo);
@@ -242,7 +241,7 @@ class WorkingClass
             omniverse = this.addition(omniverse);
         }
 
-        for (let i = 0; i < 3; i++)
+        for (let i = 0; i < 20; i++)
         {
             for (let j = 0; j < omniverse.length; j++)
             {

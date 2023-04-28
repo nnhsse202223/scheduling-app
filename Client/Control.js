@@ -1,32 +1,48 @@
-var theObj;
-
-function startCSV() {
+function fullCSV() {
     document.getElementById("create").style.display = "none";
-    document.getElementById("loader").style.display = "block";
+    document.getElementById("loader").style.display = "inline-block";
+    fetch("/database").then(endCSV());
 }
 
 function endCSV() {
     document.getElementById("loader").style.display = "none";
-    document.getElementById("download").style.display = "block";
+    document.getElementById("download").style.display = "inline-block";
 }
 
-function downloadCSV() {
-    var schedular = theObj.multiverseArray[Math.floor(Math.random() * 2)].scheduleArray; //schedule[1]
-    var csvString = "Period, Room, Teacher, Class\n";
-    let n = 0;
-    schedular.forEach((period) => {
-        n++;
-        period.forEach((room) => csvString += n + ',' + room.room_no + ',' + room.teacher.name + ',' + room.class.name + '\n');
-    });
-    var hiddenElement = document.createElement('a');  
-    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvString);  
-    hiddenElement.target = '_blank';
-    hiddenElement.download = 'classes.csv';  
-    hiddenElement.click();  
+function changeText() {
+    let name = "File Chosen: ";
+    let file = document.getElementById('uploadInput').files[0];
+    if(file)
+    {
+        name += file.name;
+    }
+    else
+    {
+        name += "None";
+    }
+    document.getElementById("uploadDiv").innerHTML = name;
 }
 
-async function fullCSV() {
-    startCSV();
-    theObj = await fetch('/database').then(response => response.json());
-    endCSV();
+function verifyUpload(event) {
+    event.preventDefault();
+    let file = document.getElementById('uploadInput').files[0];
+    var reader = new FileReader();
+    reader.readAsText(file);
+    reader.onload = function (event) {
+        console.log(event.target.result);
+        fetch("/uploadFile", {
+            method: "POST",
+            body: JSON.stringify({data: event.target.result}),
+            headers: {
+                "Content-type": "application/json"
+            }
+        }).then(response => response.text()).then(text => {
+            if(text == "true") {
+                document.getElementById("uploadDiv").innerHTML = "File Uploaded Succesfully!"
+            }
+            else {
+                document.getElementById("uploadDiv").innerHTML = "File Not Uploaded, Invalid Data"
+            }
+        });
+    };
 }

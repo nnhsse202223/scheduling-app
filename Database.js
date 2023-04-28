@@ -25,6 +25,7 @@ class Database
         this.myClassArray = [];
         this.numbers_of_generations = 3000;
         this.theAlphabet = ["A","B","C","D","E","F","G","H"];
+
         
 
         for (let i = 0; i < /*teacherArray.length*/ this.theTeacherArray.length; i++)
@@ -79,8 +80,8 @@ class Database
 }
 
 function script(){
-    console.log("BEGINNING TESTING");
-    console.log("-----------------");
+    //console.log("BEGINNING TESTING");
+    //console.log("-----------------");
     var returned_data = run();
 
     let teacher_data = returned_data['teacher'];
@@ -101,20 +102,46 @@ function script(){
     var gene = new GeneticRepresentation(theObj.verse);
     //console.log(theObj.verse.theMultiverseArray);
     //gene.represent();
+    
+    var csvString = "Period, 1, 2, 3, 4, 5, 6, 7, 8\n";
+    let teacherArray = [];
+    schedular.forEach((period) => {
+        period.forEach((room) => {let repeatedTeacher = false;
+            for(let i = 0; i < teacherArray.length ; i++){
+            if(room.room_teacher == teacherArray[i]){
+                repeatedTeacher = true;
+            }}
+            if(repeatedTeacher == false) {
+                let teacher = room.room_teacher;
+                csvString += teacher + ',';
 
-    var theActualVerse;
-
-    //This is to regenerate the schedules
-    for (let i = 0; i < data.numbers_of_generations; i++)
+                schedular.forEach((teacherPeriod) => {
+                    teacherPeriod.forEach((teacherRoom) => {if(teacherRoom.room_teacher == teacher){
+                        csvString += teacherRoom.room_class + " - " + teacherRoom.room_number + ',';
+                    }});
+                });
+                csvString += '\n';
+                teacherArray.push(teacher);
+    }});
+    });
+    //var gene = new GeneticRepresentation(theObj.multiverseArray);
+    //gene.represent();
+    return csvString;
+    /*
+    //console.log(`is schedule 1 == schedule 2: ${theObj.multiverseArray[0].schedule == theObj.multiverseArray[1].schedule}`)
+    for (let i = 0; i < theObj.multiverseArray.length; i++)
     {
         //theActualVerse = theObj.regenerate(theObj.verse);
         //var gene = new GeneticRepresentation(theActualVerse);
         //gene.represent();        
     }
     return theObj;
+
 }
-var startTime = performance.now();
-script();
+
+
+/*var startTime = performance.now();
+script();*/
 module.exports.script = script; 
-var endTime = performance.now();
-console.log("The time taken to run is " + ((endTime-startTime)/1000) + " seconds")
+/*var endTime = performance.now();
+console.log("The time taken to run is " + ((endTime-startTime)/1000) + " seconds")*/

@@ -1,0 +1,23 @@
+<html>  
+<head>  
+<title> Upload Data </title>
+<script src="Control.js"></script>
+<link rel="stylesheet" href="Cool.css">
+</head> 
+<body>
+    <form id="uploadFileForm" onsubmit="verifyUpload(event)"></form>
+    <form id="back" action="/" method="get"></form>
+    
+    <div id="uploadDiv"></div><br>
+
+    <input id="uploadInput" type="file" name="file" form="uploadFileForm" style="display:none" onchange="changeText()" required>
+
+    <button onclick="uploadInput.click()">Choose File</button>
+    <button type="submit" form="uploadFileForm">Upload</button><br>
+    <button form="back" type="submit">Back</button>
+
+    <script style="display:none">
+        changeText();
+    </script>
+</body>
+</html>  
