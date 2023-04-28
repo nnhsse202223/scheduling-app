@@ -99,10 +99,11 @@ function script(){
     let theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
     
     //Making multiple generations of schedules
-    var gene = new GeneticRepresentation(theObj.verse);
+    //var gene = new GeneticRepresentation(theObj.verse);
     //console.log(theObj.verse.theMultiverseArray);
     //gene.represent();
-    
+    var schedular = theObj.multiverseArray[Math.floor(Math.random() * theObj.multiverseArray.length)].teachers; //schedule[1]
+    //nothing works now
     var csvString = "Period, 1, 2, 3, 4, 5, 6, 7, 8\n";
     let teacherArray = [];
     schedular.forEach((period) => {
