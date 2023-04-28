@@ -1,4 +1,5 @@
 const { Room } = require("./room.js");
+const { Teacher } = require("./Teacher.js");
 const {Schedule} = require("./Schedule.js");
 const {Multiverse, Generation} = require("./Generation.js");
 let fs = require('fs');
@@ -44,7 +45,26 @@ class WorkingClass
     */
     rand(min, max) 
     {
-        return Math.trunc(Math.random() * (max - min + 1) + min);
+        return Math.trunc(Math.random() * (max - min) + min);
+    }
+
+    weightedRand(classArray)
+    {
+        let array = [];
+        let sum = 0;
+        for (let i = 0; i < classArray.get_possibleTeachers.length; i++)
+        {
+            sum += classArray.get_possibleTeachers[i].weights;
+        }
+        for (let i = 0; i < classArray.get_possibleTeachers.length; i++)
+        {
+            let value = Math.trunc(classArray.get_possibleTeachers[i].weights/sum * 100);
+            for(let j = 0; j < value; j++)
+            {
+                array.push(i);
+            }
+        }
+        return array[this.rand(0, array.length - 1)];
     }
 
 
@@ -60,78 +80,93 @@ class WorkingClass
     */
     initialGeneration()
     {
-        var scheduleArray1 = [];
-        var aSchedule = new Schedule([]);
+        var aSchedule = new Schedule([], []);
+        var dupRoomArray = this.roomArray.slice();
+        var dupTeacherArray = [];
+        for (let teacher = 0; teacher < this.teacherArray.length; teacher++)
+        {
+            let teachling = new Teacher(this.teacherArray[teacher].teacher_name)
+            teachling.set_weight(this.teacherArray[teacher].weights)
+            dupTeacherArray.push(teachling)
+        }
+        for(let lunch = 0; lunch < dupTeacherArray.length; lunch++) {dupTeacherArray[lunch].addLunch()};
         var dupClassArray = this.classArray.slice();
-        var dupTeacherArray = this.teacherArray.slice();
-        var randomClassIndex  = 0;
+        var randomRoomIndex  = 0;
         var randomTeacherIndex = 0;
+        var randomClassPeriod = 0;
         var myClassPeriodArray = [];
 
         this.scheduleNo++;
 
-        for (let j = 0; j < 8; j++)
+        for(let i = 0; i < dupClassArray.length; i++)
         {
-            //Making a copy that we can use of the main rooms -> due to weird reference properties
-            var dupRoomArray = this.roomArray.slice();
+            //Getting a random class period
+            randomClassPeriod = this.rand(1,8);
 
-            //Not enough classes to fill all rooms -> repeat classes
-            if (dupClassArray.length < dupRoomArray.length)
+            dupClassArray[i].set_classPeriod(randomClassPeriod);
+
+            randomRoomIndex = this.rand(0, dupClassArray[i].get_possibleRooms.length);
+
+            randomTeacherIndex = this.weightedRand(dupClassArray[i]);
+
+            //console.log(dupClassArray[i].get_possibleTeacher[randomTeacherIndex]);
+            //console.log(dupClassArray[i].get_possibleRooms[randomRoomIndex])
+            //console.log(dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod);
+            //console.log(dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod);
+            ////console.log(randomClassPeriod);
+            //console.log(!dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod.includes(randomClassPeriod));
+
+            //if class period is 
+            while(!dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod.includes(randomClassPeriod))
             {
-                dupClassArray = this.classArray.slice();
-            }
-            
-            //Not enough teachers to fill all rooms -> repeat teachers
-            if (dupTeacherArray.length < dupRoomArray.length)
-            {
-                dupTeacherArray = this.teacherArray.slice();
-            }
-            
-            
-            for (let i = 0; i < this.roomArray.length; i++)
-            {
-                //Getting a random teacher
-                randomTeacherIndex = this.rand(0, dupTeacherArray.length - 1);
-
-                //Getting a random class
-                randomClassIndex = this.rand(0, dupClassArray.length - 1);
-
-                //creating a room object -> weird reference issues
-                var THE_OTHER_ROOM = dupRoomArray.pop();
-
-                //Creating new class with each random attribute with generated earlier. 
-                var theRoom = new Room(THE_OTHER_ROOM.room_number, THE_OTHER_ROOM.classList);
-
-                //Adding the teacher to the room
-                theRoom.set_room_teacher(dupTeacherArray[randomTeacherIndex])
-
-                //Getting rid of this teacher from the list
-                dupTeacherArray.splice(randomTeacherIndex,1);
-                
-                //Adding the class to the room
-                theRoom.set_room_class(dupClassArray[randomClassIndex]);
-
-                //Removing from the array
-                dupClassArray.splice(randomClassIndex, 1);
-
-                //Adding this new room to the array
-                myClassPeriodArray.push(theRoom);
-
-                //This will print out the full schedule, although not as nice as GeneticRepresentation.represent() will. 
-                //console.log("Period " + (j+1) + ": Room: " + myClassPeriodArray[i].room_number + ", Teacher: "+ myClassPeriodArray[i].room_teacher + ",  \t" + "Class: " + myClassPeriodArray[i].room_class);
+                randomRoomIndex = this.rand(0, dupClassArray[i].get_possibleRooms.length);
+                console.log(!dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod.includes(randomClassPeriod));
+                while(!dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod.includes(randomClassPeriod));
+                {randomTeacherIndex = this.weightedRand(dupClassArray[i]);}
             }
 
-            //Reference issues
-            var copyBecauseCodeDoesntWork = myClassPeriodArray.slice();
-            scheduleArray1.push(copyBecauseCodeDoesntWork);
+            for(let room = 0; room < dupRoomArray.length; room++)
+            {
+                if(dupRoomArray[room].room_no === dupClassArray[i].get_possibleRooms[randomRoomIndex].room_no)
+                {
+                    dupClassArray[i].set_class_room(dupRoomArray[room]);
+                    dupTeacherArray[room].fill_room(dupClassArray[i].classPeriod, dupClassArray[i].get_class_room);
+                }
+            }
+            
+            // for (let j = 0; j < dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod.length; j++)
+            // {
+            //     if (dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod[j] = randomClassPeriod)
+            //     {dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod.splice(j, 1)}
+            // }
 
-            myClassPeriodArray = [];
-            copyBecauseCodeDoesntWork = [];
-            //console.log(this.scheduleArray[j]); //Backup printing method to display schedule
+            for(let teacher = 0; teacher < dupTeacherArray.length; teacher++)
+            {
+                if(dupTeacherArray[teacher].teacher_name === dupClassArray[i].get_possibleTeachers[randomTeacherIndex].teacher_name)
+                {
+                    dupClassArray[i].set_class_teacher(dupTeacherArray[teacher]);
+                    dupTeacherArray[teacher].fill_class(dupClassArray[i].classPeriod, dupClassArray[i].get_class_name);
+                    //console.log(dupClassArray[i].get_class_teacher);
+                }
+            }
+    
+            //Gets rid of empty space in the teachers' period schedule, filling it with the class.
+            // for (let j = 0; j < dupClassArray[i].get_class_teacher.classPeriod.length; j++)
+            // {
+            //     if (dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod[j] = randomClassPeriod){
+            //         dupClassArray[i].get_possibleTeachers[randomTeacherIndex].fill_class(j,dupClassArray[i].get_class_name);}
+            // }
+
+            myClassPeriodArray.push(dupClassArray[i]);
         }
 
-        aSchedule.set_schedule(scheduleArray1);
-        aSchedule.set_percentage(this.fitness(aSchedule.schedule));
+
+
+        aSchedule.set_schedule(myClassPeriodArray);
+        aSchedule.set_teachers(dupTeacherArray);
+        aSchedule.set_percentage(this.fitness(aSchedule));
+        console.log(aSchedule);
+        console.log( aSchedule.set_percentage(this.fitness(aSchedule)));
 
         //NOTE: KEEP FOR ORGANIZATION
         //console.log("\n\n========================================\n========================================\n\n");
@@ -151,71 +186,14 @@ class WorkingClass
     */
     fitness(theSchedule)
     {
-        this.fitness_value = 0;
-        this.maxfitness = 0;
-        let negate = false;
-        for (let j = 0; j < theSchedule.length; j++) //checks class period
-        {
-            for(let i = 0; i < theSchedule[j].length; i++) //rooms within each period
-            {
-                if(theSchedule[j][i].classList.includes(theSchedule[j][i].room_class.name))
-                {
-                    this.fitness_value += 10; //Technically unnesscary, given that we do not have room weights and we are negating fitness if the room is wrong
-                }
-                else
-                {
-                    negate = true;
-                }
-                if (theSchedule[j][i].room_teacher.classList.includes(theSchedule[j][i].room_class.name))
-                {
-                    let classIndex = classes.indexOf(theSchedule[j][i].room_class.name);
-                    for(let m = 8; m < csvArray.length; m++)
-                    {
-                        let taughtClasses = csvArray[i].split(',');
-                        if(taughtClasses[0] == theSchedule[j][i].room_teacher)
-                        {
-                            this.fitness_value += +taughtClasses[classIndex];
-                        }
-                    }
-                }
-                else
-                {
-                    negate = true;
-                }
-                this.maxfitness += 20; //10 for rooms and 10 for classes
-            }
-        }
-        if(negate)
-        {
-            this.fitness_value -= this.maxfitness;
-        }
+        this.fitness_value = 100;
+        this.maxfitness = 100;
+        
         this.fitness_value /= this.maxfitness;
         this.fitness_value *= 100;
         return this.fitness_value;
-        // this.fitness_value = 0;
-        // this.maxfitness = 0;
-        // for (let j = 0; j < theSchedule.length; j++) //checks class period
-        // {
-        //     for(let i = 0; i < theSchedule[j].length; i++) //rooms within each period
-        //     {
-        //         if (theSchedule[j][i].classList.includes(theSchedule[j][i].room_class.name))
-        //         {
-        //             this.fitness_value++;
-        //         }
-
-        //         this.maxfitness++;
-                
-        //         if (theSchedule[j][i].room_teacher.classList.includes(theSchedule[j][i].room_class.name))
-        //         {
-        //             this.fitness_value++;
-                    
-        //         }
-        //         this.maxfitness++;
-        //     }
-        // }
-
-        // return this.fitness_value/this.maxfitness * 100;
     }
+
 
 
 
@@ -516,7 +494,7 @@ class WorkingClass
             return 97.5; //change to algorithm
         }
     }
-
 }
+
 
 module.exports.WorkingClass = WorkingClass;
