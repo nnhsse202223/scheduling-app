@@ -18,8 +18,71 @@ app.post("/logsDownload", (req,res) => {
 
 app.post("/uploadFile", (req,res) => {
     let data = req.body.data;
-    //check file here
     let valid = true;
+    //check file here
+
+    let csvArray = data.split(/\r?\n|\r|\n/g);
+    for(let i = 0; i < csvArray.length; i++)
+    {
+        let subArray = csvArray[i].split(",");
+        switch(i) {
+            case 1:
+                for(let j = 0; j < subArray.length; j++)
+                {
+                    if(subArray[j] == "")
+                    {
+                        valid = false;
+                    }
+                    let rooms = subArray[j].split(" | ");
+                    for(let k = 0; k < rooms.length; k++)
+                    {
+                        if(!(typeOf +rooms[k] === "number"))
+                        {
+                            valid = false;
+                        }
+                    }
+                }
+                break;
+            case 3:
+                for(let j = 0; j < subArray.length; j++)
+                {
+                    if(subArray[j] == "")
+                    {
+                        valid = false;
+                    }
+                    if(!(typeOf +subArray[k] === "number"))
+                    {
+                        valid = false;
+                    }
+                    else if(subArray[k] <= 1 || subArray[k] >= 8)
+                    {
+                        valid = false;
+                    }
+                }
+                break;
+            case 4:
+                for(let j = 0; j < subArray.length; j++)
+                {
+                    if(subArray[j] == "")
+                    {
+                        valid = false;
+                    }
+                    let semesters = subArray[j].split(" | ");
+                    for(let k = 0; k < semesters.length; k++)
+                    {
+                        if(!(typeOf +semesters[k] === "number"))
+                        {
+                            valid = false;
+                        }
+                        else if(semesters[k] != 1 || semesters[k] != 2)
+                        {
+                            valid = false;
+                        }
+                    }
+                }
+                break;
+        }
+    }
     if(valid){
         fs.writeFileSync("TeacherData.csv",data,(err) => err && console.error(err));
     }
