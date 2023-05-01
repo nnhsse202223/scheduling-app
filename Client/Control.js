@@ -37,11 +37,11 @@ function verifyUpload(event) {
                 "Content-type": "application/json"
             }
         }).then(response => response.text()).then(text => {
-            if(text == "true") {
+            if(text == "0") {
                 document.getElementById("uploadDiv").innerHTML = "File Uploaded Succesfully!"
             }
             else {
-                document.getElementById("uploadDiv").innerHTML = "File Not Uploaded, Invalid Data"
+                document.getElementById("uploadDiv").innerHTML = "File Not Uploaded, Error In Row " + (+text + 1);
             }
         });
     };

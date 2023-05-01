@@ -18,75 +18,142 @@ app.post("/logsDownload", (req,res) => {
 
 app.post("/uploadFile", (req,res) => {
     let data = req.body.data;
-    let valid = true;
+    let valid = 0;
     //check file here
 
     let csvArray = data.split(/\r?\n|\r|\n/g);
     for(let i = 0; i < csvArray.length; i++)
     {
         let subArray = csvArray[i].split(",");
-        switch(i) {
-            case 1:
-                for(let j = 0; j < subArray.length; j++)
+        if(i == 1)
+        {
+            for(let j = 1; j < subArray.length; j++)
+            {
+                if(subArray[j] == "")
                 {
-                    if(subArray[j] == "")
-                    {
-                        valid = false;
-                    }
+                    valid = i;
+                }
+                else
+                {
                     let rooms = subArray[j].split(" | ");
                     for(let k = 0; k < rooms.length; k++)
                     {
-                        if(!(typeOf +rooms[k] === "number"))
+                        if(!(typeof +rooms[k] === "number" && !isNaN(+rooms[k])) && rooms[k] != "CEN")
                         {
-                            valid = false;
+                            valid = i;
                         }
                     }
                 }
-                break;
-            case 3:
-                for(let j = 0; j < subArray.length; j++)
+            }
+        }
+        if(i == 3)
+        {
+            for(let j = 1; j < subArray.length; j++)
+            {
+                if(subArray[j] == "")
                 {
-                    if(subArray[j] == "")
-                    {
-                        valid = false;
-                    }
-                    if(!(typeOf +subArray[k] === "number"))
-                    {
-                        valid = false;
-                    }
-                    else if(subArray[k] <= 1 || subArray[k] >= 8)
-                    {
-                        valid = false;
-                    }
+                    valid = i;
                 }
-                break;
-            case 4:
-                for(let j = 0; j < subArray.length; j++)
+                else if(!(typeof +subArray[j] === "number" && !isNaN(+subArray[j])))
                 {
-                    if(subArray[j] == "")
-                    {
-                        valid = false;
-                    }
+                    valid = i;
+                }
+                else if(+subArray[j] < 1 || +subArray[j] > 8)
+                {
+                    valid = i;
+                }
+            }
+        }
+        if(i == 4)
+        {
+            for(let j = 1; j < subArray.length; j++)
+            {
+                if(subArray[j] == "")
+                {
+                    valid = i;
+                }
+                else
+                {
                     let semesters = subArray[j].split(" | ");
                     for(let k = 0; k < semesters.length; k++)
                     {
-                        if(!(typeOf +semesters[k] === "number"))
+                        if(!(typeof +semesters[k] === "number" && !isNaN(+semesters[k])))
                         {
-                            valid = false;
+                            valid = i;
                         }
-                        else if(semesters[k] != 1 || semesters[k] != 2)
+                        else if(+semesters[k] != 1 && +semesters[k] != 2)
                         {
-                            valid = false;
+                            valid = i;
                         }
                     }
                 }
-                break;
+            }
+        }
+        if(i == 5)
+        {
+            for(let j = 1; j < subArray.length; j++)
+            {
+                if(subArray[j] == "")
+                {
+                    valid = i;
+                }
+                else
+                {
+                    let periods = subArray[j].split(" | ");
+                    for(let k = 0; k < periods.length; k++)
+                    {
+                        if(!(typeof +periods[k] === "number" && !isNaN(+periods[k])))
+                        {
+                            valid = i;
+                        }
+                        else if(+periods[k] < 1 || +periods[k] > 8)
+                        {
+                            valid = i;
+                        }
+                    }
+                }
+            }
+        }
+        if(i == 7)
+        {
+            for(let j = 1; j < subArray.length; j++)
+            {
+                if(subArray[j] == "")
+                {
+                    valid = i;
+                }
+            }
+        }
+        if(i >= 8)
+        {
+            for(let j = 0; j < subArray.length; j++)
+            {
+                if(j == 0)
+                {
+                    if(subArray[j] == "")
+                    {
+                        valid = i;
+                    }
+                }
+                else if(subArray[j] != "")
+                {
+                    if(!(typeof +subArray[j] === "number" && !isNaN(subArray[j])))
+                    {
+                        valid = i;
+                    }
+                    else if(+subArray[j] > 10 || +subArray[j] < 1)
+                    {
+                        valid = i;
+                    }
+                }
+            }
         }
     }
-    if(valid){
+    if(valid == 0)
+    {
         fs.writeFileSync("TeacherData.csv",data,(err) => err && console.error(err));
     }
-    res.send(valid);
+    res.send(valid + "");
 });
 
 app.get('/',(req,res)=>{
