@@ -18,142 +18,150 @@ app.post("/logsDownload", (req,res) => {
 
 app.post("/uploadFile", (req,res) => {
     let data = req.body.data;
-    let valid = 0;
-    //check file here
-
+    let invalid = -2;
     let csvArray = data.split(/\r?\n|\r|\n/g);
-    for(let i = 0; i < csvArray.length; i++)
+    if(csvArray.length < 8)
     {
-        let subArray = csvArray[i].split(",");
-        if(i == 1)
+        invalid = -1;
+    }
+    else
+    {
+        for(let i = 0; i < csvArray.length; i++)
         {
-            for(let j = 1; j < subArray.length; j++)
+            let subArray = csvArray[i].split(",");
+            if(subArray.length != csvArray[7].split(",").length)
             {
-                if(subArray[j] == "")
-                {
-                    valid = i;
-                }
-                else
-                {
-                    let rooms = subArray[j].split(" | ");
-                    for(let k = 0; k < rooms.length; k++)
-                    {
-                        if(!(typeof +rooms[k] === "number" && !isNaN(+rooms[k])) && rooms[k] != "CEN")
-                        {
-                            valid = i;
-                        }
-                    }
-                }
+                invalid = i;
+                break;
             }
-        }
-        if(i == 3)
-        {
-            for(let j = 1; j < subArray.length; j++)
+            if(i == 1)
             {
-                if(subArray[j] == "")
-                {
-                    valid = i;
-                }
-                else if(!(typeof +subArray[j] === "number" && !isNaN(+subArray[j])))
-                {
-                    valid = i;
-                }
-                else if(+subArray[j] < 1 || +subArray[j] > 8)
-                {
-                    valid = i;
-                }
-            }
-        }
-        if(i == 4)
-        {
-            for(let j = 1; j < subArray.length; j++)
-            {
-                if(subArray[j] == "")
-                {
-                    valid = i;
-                }
-                else
-                {
-                    let semesters = subArray[j].split(" | ");
-                    for(let k = 0; k < semesters.length; k++)
-                    {
-                        if(!(typeof +semesters[k] === "number" && !isNaN(+semesters[k])))
-                        {
-                            valid = i;
-                        }
-                        else if(+semesters[k] != 1 && +semesters[k] != 2)
-                        {
-                            valid = i;
-                        }
-                    }
-                }
-            }
-        }
-        if(i == 5)
-        {
-            for(let j = 1; j < subArray.length; j++)
-            {
-                if(subArray[j] == "")
-                {
-                    valid = i;
-                }
-                else
-                {
-                    let periods = subArray[j].split(" | ");
-                    for(let k = 0; k < periods.length; k++)
-                    {
-                        if(!(typeof +periods[k] === "number" && !isNaN(+periods[k])))
-                        {
-                            valid = i;
-                        }
-                        else if(+periods[k] < 1 || +periods[k] > 8)
-                        {
-                            valid = i;
-                        }
-                    }
-                }
-            }
-        }
-        if(i == 7)
-        {
-            for(let j = 1; j < subArray.length; j++)
-            {
-                if(subArray[j] == "")
-                {
-                    valid = i;
-                }
-            }
-        }
-        if(i >= 8)
-        {
-            for(let j = 0; j < subArray.length; j++)
-            {
-                if(j == 0)
+                for(let j = 1; j < subArray.length; j++)
                 {
                     if(subArray[j] == "")
                     {
-                        valid = i;
+                        invalid = i;
+                        break;
                     }
                 }
-                else if(subArray[j] != "")
+            }
+            if(i == 3)
+            {
+                for(let j = 1; j < subArray.length; j++)
                 {
-                    if(!(typeof +subArray[j] === "number" && !isNaN(subArray[j])))
+                    if(subArray[j] == "")
                     {
-                        valid = i;
+                        invalid = i;
+                        break;
                     }
-                    else if(+subArray[j] > 10 || +subArray[j] < 1)
+                    if(isNaN(+subArray[j]))
                     {
-                        valid = i;
+                        invalid = i;
+                        break;
+                    }
+                    if(+subArray[j] < 1 || +subArray[j] > 8)
+                    {
+                        invalid = i;
+                        break;
+                    }
+                }
+            }
+            if(i == 4)
+            {
+                for(let j = 1; j < subArray.length; j++)
+                {
+                    if(subArray[j] == "")
+                    {
+                        invalid = i;
+                        break;
+                    }
+                    let semesters = subArray[j].split(" | ");
+                    for(let k = 0; k < semesters.length; k++)
+                    {
+                        if(isNaN(+semesters[k]))
+                        {
+                            invalid = i;
+                            break;
+                        }
+                        if(+semesters[k] != 1 && +semesters[k] != 2)
+                        {
+                            invalid = i;
+                            break;
+                        }
+                    }
+                }
+            }
+            if(i == 5)
+            {
+                for(let j = 1; j < subArray.length; j++)
+                {
+                    if(subArray[j] == "")
+                    {
+                        invalid = i;
+                        break;
+                    }
+                    let periods = subArray[j].split(" | ");
+                    for(let k = 0; k < periods.length; k++)
+                    {
+                        if(isNaN(+periods[k]))
+                        {
+                            invalid = i;
+                            break;
+                        }
+                        if(+periods[k] < 1 || +periods[k] > 8)
+                        {
+                            invalid = i;
+                            break;
+                        }
+                    }
+                }
+            }
+            if(i == 7)
+            {
+                for(let j = 1; j < subArray.length; j++)
+                {
+                    if(subArray[j] == "")
+                    {
+                        invalid = i;
+                        break;
+                    }
+                }
+            }
+            if(i >= 8)
+            {
+                for(let j = 0; j < subArray.length; j++)
+                {
+                    if(j == 0)
+                    {
+                        if(subArray[j] == "")
+                        {
+                            invalid = i;
+                            break;
+                        }
+                    }
+                    else if(subArray[j] != "")
+                    {
+                        if(isNaN(+subArray[j]))
+                        {
+                            invalid = i;
+                            break;
+                        }
+                        if(+subArray[j] > 10 || +subArray[j] < 1)
+                        {
+                            invalid = i;
+                            break;
+                        }
                     }
                 }
             }
         }
     }
-    if(valid == 0)
+    invalid++;
+    if(invalid == -1)
     {
         fs.writeFileSync("TeacherData.csv",data,(err) => err && console.error(err));
     }
-    res.send(valid + "");
+    res.send(invalid + "");
 });
 
 app.get('/',(req,res)=>{
