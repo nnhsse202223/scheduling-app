@@ -1,13 +1,10 @@
 class Room 
 {
     //constructor
-    constructor (room_no, classLogArray)
+    constructor (room_no)
     {
         this.room_no = room_no;
-        this.classLog = classLogArray;
-        this.teacher;
-        this.class;
-        //JSON.stringify(this.type)
+        this.roomClassPeriodList = [1,2,3,4,5,6,7,8];
     }
 
     //get functions
@@ -16,34 +13,25 @@ class Room
         return this.room_no;
     }
 
-    get room_teacher()
+    get room_ClassPeriod()
     {
-        return this.teacher;
+        return this.roomClassPeriodList;
     }
 
-    get room_class()
+    set_roomClassPeriod(input)
     {
-        return this.class;
+        this.roomClassPeriodList = input;
     }
 
-    get classList()
+    reset()
     {
-        return this.classLog;
+        this.roomClassPeriodList = [1,2,3,4,5,6,7,8];
     }
 
-    set_room_teacher(new_teacher)
-    {
-        this.teacher = new_teacher;
-    }
-
-    set_room_class(new_class)
-    {
-        this.class = new_class;
-    }
 
     toString()
     {
-        return "    Room " + this.room_no + ":  Teacher: " + this.room_teacher + "  Class: " + this.room_class;
+        return "    Room " + this.room_no;
     }
 }
 
