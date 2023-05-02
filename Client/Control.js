@@ -29,7 +29,6 @@ function verifyUpload(event) {
     var reader = new FileReader();
     reader.readAsText(file);
     reader.onload = function (event) {
-        console.log(event.target.result);
         fetch("/uploadFile", {
             method: "POST",
             body: JSON.stringify({data: event.target.result}),
