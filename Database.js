@@ -108,16 +108,19 @@ function script(){
     var csvString = "Period, 1, 2, 3, 4, 5, 6, 7, 8\n";
     for(let i = 0; i < schedular.length; i++){
         csvString += schedular[i].teacher_name + ',';
+        console.log(schedular[i].teacher_name);
         // console.log(schedular[i].classPeriod);
-        for(let period = 0; period < schedular[i].classPeriod; period++){
+        for(let period = 0; period < schedular[i].classPeriod.length; period++){
             let currentClass = schedular[i].classPeriod[period];
+            console.log(schedular[i].class_room[period]);
             if(currentClass > 0 || currentClass < 9){
                 csvString += ',';
             }
             else{
-                csvString += currentClass.get_class_room + " - " + currentClass + ",";
+                csvString += schedular[i].class_room[period] + " - " + currentClass + ",";
             }
         }
+        console.log("\n");
         csvString += '\n';
     }
 
