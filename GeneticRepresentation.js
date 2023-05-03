@@ -52,12 +52,12 @@ class GeneticRepresentation
                 for(var i = 0; i < this.periodSortedClasses[period].length; i++){
                     this.class = this.periodSortedClasses[period][i]
                     if(this.class.get_class_teacher.toString().length < 15){
-                        console.log("Room: " + this.class.get_class_room +
+                        console.log("Room: " + this.class.get_class_room.room_number +
                             "\tTeacher: " + this.class.get_class_teacher +
                             "\t\tClass: " + this.class.get_class_name);
                     }
                     else{
-                        console.log("Room: " + this.class.get_class_room +
+                        console.log("Room: " + this.class.get_class_room.room_number +
                             "\tTeacher: " + this.class.get_class_teacher +
                             "\tClass: " + this.class.get_class_name);
 

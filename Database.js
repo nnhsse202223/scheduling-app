@@ -100,19 +100,16 @@ function script(){
     
     //Making multiple generations of schedules
     var gene = new GeneticRepresentation(theObj.verse);
+    console.log(theObj.verse.theMultiverseArray);
+    gene.represent();
 
-    //console.log(theObj.verse.theMultiverseArray);
-    //gene.represent();
     var schedular = theObj.multiverseArray[Math.floor(Math.random() * theObj.multiverseArray.length)].teachers; //schedule[1]
 
     var csvString = "Period, 1, 2, 3, 4, 5, 6, 7, 8\n";
     for(let i = 0; i < schedular.length; i++){
         csvString += schedular[i].teacher_name + ',';
-        console.log(schedular[i].teacher_name);
-        // console.log(schedular[i].classPeriod);
         for(let period = 0; period < schedular[i].classPeriod.length; period++){
             let currentClass = schedular[i].classPeriod[period];
-            console.log(schedular[i].class_room[period]);
             if(currentClass > 0 || currentClass < 9){
                 csvString += ',';
             }
@@ -125,35 +122,9 @@ function script(){
                 }
             }
         }
-        console.log("\n");
         csvString += '\n';
     }
-
-    //nothing works now
-    // var csvString = "Period, 1, 2, 3, 4, 5, 6, 7, 8\n";
-    // let teacherArray = [];
-    // schedular.forEach((period) => {
-    //     period.forEach((room) => {let repeatedTeacher = false;
-    //         for(let i = 0; i < teacherArray.length ; i++){
-    //         if(room.room_teacher == teacherArray[i]){
-    //             repeatedTeacher = true;
-    //         }}
-    //         if(repeatedTeacher == false) {
-    //             let teacher = room.room_teacher;
-    //             csvString += teacher + ',';
-
-    //             schedular.forEach((teacherPeriod) => {
-    //                 teacherPeriod.forEach((teacherRoom) => {if(teacherRoom.room_teacher == teacher){
-    //                     csvString += teacherRoom.room_class + " - " + teacherRoom.room_number + ',';
-    //                 }});
-    //             });
-    //             csvString += '\n';
-    //             teacherArray.push(teacher);
-    // }});
-    // });
     
-    //var gene = new GeneticRepresentation(theObj.multiverseArray);
-    //gene.represent();
     return csvString;
     /*
     //console.log(`is schedule 1 == schedule 2: ${theObj.multiverseArray[0].schedule == theObj.multiverseArray[1].schedule}`)
