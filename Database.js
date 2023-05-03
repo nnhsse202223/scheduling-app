@@ -28,20 +28,20 @@ class Database
 
         
 
-        for (let i = 0; i < /*teacherArray.length*/ this.theTeacherArray.length; i++)
+        for (let i = 0; i < this.theTeacherArray.length; i++)
         {
             //console.log(this.theTeacherArray[i]);
             var teacher = new Teacher(this.theTeacherArray[i]);
             this.myTeacherArray.push(teacher);
         }
 
-        for (let i = 0; i < /*roomArray.length*/ this.theRoomArray.length; i++)
+        for (let i = 0; i < this.theRoomArray.length; i++)
         {
             var room = new Room(this.theRoomArray[i]);
             this.myRoomArray.push(room);
         }
         
-        for (let i = 0; i < /*classArray.length*/ this.theClassArray.length; i++)
+        for (let i = 0; i < this.theClassArray.length; i++)
         {
             //console.log(this.teacherCLog[this.theClassArray[i]][0][0]);
             //for (let k = 0; k < /*teacherArray.length*/ this.myTeacherArray.length; k++) {this.myTeacherArray[k].set_weight(this.teacherCLog[this.theClassArray[i]][0][1])};
@@ -117,7 +117,12 @@ function script(){
                 csvString += ',';
             }
             else{
-                csvString += schedular[i].class_room[period] + " - " + currentClass + ",";
+                if(schedular[i].class_room[period].room_number === undefined){
+                    csvString += "N/A" + " - " + currentClass + ",";
+                }
+                else{
+                    csvString += schedular[i].class_room[period].room_number + " - " + currentClass + ",";
+                }
             }
         }
         console.log("\n");
