@@ -18,12 +18,150 @@ app.post("/logsDownload", (req,res) => {
 
 app.post("/uploadFile", (req,res) => {
     let data = req.body.data;
-    //check file here
-    let valid = true;
-    if(valid){
+    let invalid = -2;
+    let csvArray = data.split(/\r?\n|\r|\n/g);
+    if(csvArray.length < 8)
+    {
+        invalid = -1;
+    }
+    else
+    {
+        for(let i = 0; i < csvArray.length; i++)
+        {
+            let subArray = csvArray[i].split(",");
+            if(subArray.length != csvArray[7].split(",").length)
+            {
+                invalid = i;
+                break;
+            }
+            if(i == 1)
+            {
+                for(let j = 1; j < subArray.length; j++)
+                {
+                    if(subArray[j] == "")
+                    {
+                        invalid = i;
+                        break;
+                    }
+                }
+            }
+            if(i == 3)
+            {
+                for(let j = 1; j < subArray.length; j++)
+                {
+                    if(subArray[j] == "")
+                    {
+                        invalid = i;
+                        break;
+                    }
+                    if(isNaN(+subArray[j]))
+                    {
+                        invalid = i;
+                        break;
+                    }
+                    if(+subArray[j] < 1 || +subArray[j] > 8)
+                    {
+                        invalid = i;
+                        break;
+                    }
+                }
+            }
+            if(i == 4)
+            {
+                for(let j = 1; j < subArray.length; j++)
+                {
+                    if(subArray[j] == "")
+                    {
+                        invalid = i;
+                        break;
+                    }
+                    let semesters = subArray[j].split(" | ");
+                    for(let k = 0; k < semesters.length; k++)
+                    {
+                        if(isNaN(+semesters[k]))
+                        {
+                            invalid = i;
+                            break;
+                        }
+                        if(+semesters[k] != 1 && +semesters[k] != 2)
+                        {
+                            invalid = i;
+                            break;
+                        }
+                    }
+                }
+            }
+            if(i == 5)
+            {
+                for(let j = 1; j < subArray.length; j++)
+                {
+                    if(subArray[j] == "")
+                    {
+                        invalid = i;
+                        break;
+                    }
+                    let periods = subArray[j].split(" | ");
+                    for(let k = 0; k < periods.length; k++)
+                    {
+                        if(isNaN(+periods[k]))
+                        {
+                            invalid = i;
+                            break;
+                        }
+                        if(+periods[k] < 1 || +periods[k] > 8)
+                        {
+                            invalid = i;
+                            break;
+                        }
+                    }
+                }
+            }
+            if(i == 7)
+            {
+                for(let j = 1; j < subArray.length; j++)
+                {
+                    if(subArray[j] == "")
+                    {
+                        invalid = i;
+                        break;
+                    }
+                }
+            }
+            if(i >= 8)
+            {
+                for(let j = 0; j < subArray.length; j++)
+                {
+                    if(j == 0)
+                    {
+                        if(subArray[j] == "")
+                        {
+                            invalid = i;
+                            break;
+                        }
+                    }
+                    else if(subArray[j] != "")
+                    {
+                        if(isNaN(+subArray[j]))
+                        {
+                            invalid = i;
+                            break;
+                        }
+                        if(+subArray[j] > 10 || +subArray[j] < 1)
+                        {
+                            invalid = i;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    invalid++;
+    if(invalid == -1)
+    {
         fs.writeFileSync("TeacherData.csv",data,(err) => err && console.error(err));
     }
-    res.send(valid);
+    res.send(invalid + "");
 });
 
 app.get('/',(req,res)=>{

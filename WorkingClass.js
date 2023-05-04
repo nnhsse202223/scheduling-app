@@ -165,8 +165,8 @@ class WorkingClass
         aSchedule.set_schedule(myClassPeriodArray);
         aSchedule.set_teachers(dupTeacherArray);
         aSchedule.set_percentage(this.fitness(aSchedule));
-        console.log(aSchedule);
-        console.log( aSchedule.set_percentage(this.fitness(aSchedule)));
+        //console.log(aSchedule);
+        //console.log( aSchedule.set_percentage(this.fitness(aSchedule)));
 
         //NOTE: KEEP FOR ORGANIZATION
         //console.log("\n\n========================================\n========================================\n\n");

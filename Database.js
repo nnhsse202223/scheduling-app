@@ -6,7 +6,7 @@ const {Schedule} = require("./Schedule.js");
 const {run} = require("./connections_access.js");
 const {GeneticRepresentation} = require("./GeneticRepresentation.js")
 let fs = require('fs');
-const { start } = require("repl");
+// const { start } = require("repl");
 
 class Database
 {
@@ -99,10 +99,13 @@ function script(){
     let theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
     
     //Making multiple generations of schedules
-    var gene = new GeneticRepresentation(theObj.verse);
+    //var gene = new GeneticRepresentation(theObj.verse);
+    //var gene = new GeneticRepresentation(theObj.verse);
+
     //console.log(theObj.verse.theMultiverseArray);
     //gene.represent();
-    
+    var schedular = theObj.multiverseArray[Math.floor(Math.random() * theObj.multiverseArray.length)].teachers; //schedule[1]
+    //nothing works now
     var csvString = "Period, 1, 2, 3, 4, 5, 6, 7, 8\n";
     let teacherArray = [];
     schedular.forEach((period) => {
@@ -131,9 +134,9 @@ function script(){
     //console.log(`is schedule 1 == schedule 2: ${theObj.multiverseArray[0].schedule == theObj.multiverseArray[1].schedule}`)
     for (let i = 0; i < theObj.multiverseArray.length; i++)
     {
-        //theActualVerse = theObj.regenerate(theObj.verse);
-        //var gene = new GeneticRepresentation(theActualVerse);
-        //gene.represent();        
+        // theActualVerse = theObj.regenerate(theObj.verse);
+        // var gene = new GeneticRepresentation(theActualVerse);
+        // gene.represent();        
     }
     return theObj;
     */

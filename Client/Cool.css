@@ -14,6 +14,7 @@ body {
   background-size: 300vw 300vh;
   animation: gradient 60s ease infinite;
   text-align: center;
+  margin: 0;
 }
 
 button {
