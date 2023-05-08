@@ -145,7 +145,7 @@ function script(){
 
 
 /*var startTime = performance.now();*/
-script();
+//script();
 module.exports.script = script; 
 /*var endTime = performance.now();
 console.log("The time taken to run is " + ((endTime-startTime)/1000) + " seconds")*/
