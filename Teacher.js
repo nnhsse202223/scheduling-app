@@ -25,6 +25,11 @@ class Teacher
         return this.classPeriodList;
     }
 
+    get class_room()
+    {
+        return this.otherROOOMList;
+    }
+
     get weights()
     {
         return this.weight;
