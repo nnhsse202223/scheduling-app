@@ -101,9 +101,9 @@ class WorkingClass
         for(let i = 0; i < dupClassArray.length; i++)
         {
             //Getting a random class period
-            randomClassPeriod = this.rand(1,8);
+            randomClassPeriod = this.rand(0, dupClassArray[i].get_possiblePeriods.length - 1);
 
-            dupClassArray[i].set_classPeriod(randomClassPeriod);
+            dupClassArray[i].set_classPeriod(dupClassArray[i].get_possiblePeriods[randomClassPeriod]);
 
             randomRoomIndex = this.rand(0, dupClassArray[i].get_possibleRooms.length);
 

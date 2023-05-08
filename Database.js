@@ -10,7 +10,7 @@ let fs = require('fs');
 
 class Database
 {
-    constructor(roomArray, classArray, teacherArray, teacherDiction, roomDiction, classSections)
+    constructor(roomArray, classArray, teacherArray, teacherDiction, roomDiction, classSections, classPeriods)
     {
         this.theRoomArray = roomArray;
         this.theClassArray = classArray;
@@ -23,6 +23,7 @@ class Database
         this.myTeacherArray = [];
         this.myClassSections = classSections;
         this.myClassArray = [];
+        this.myClassPeriods = classPeriods;
         this.numbers_of_generations = 3000;
         this.theAlphabet = ["A","B","C","D","E","F","G","H"];
 
@@ -52,7 +53,7 @@ class Database
             var classes = [];
             for(let j = 0; j < this.myClassSections[this.theClassArray[i]]; j++)
             {
-                classes = new Classes(this.theClassArray[i] + " " + (this.theAlphabet[j]), this.teacherCLog[this.theClassArray[i]], this.roomCLog[this.theClassArray[i]]);
+                classes = new Classes(this.theClassArray[i] + " " + (this.theAlphabet[j]), this.teacherCLog[this.theClassArray[i]], this.roomCLog[this.theClassArray[i]], this.myClassPeriods[this.theClassArray[i]]);
                 this.myClassArray.push(classes);
             }
             
@@ -93,7 +94,7 @@ function script(){
     let classDictWithPeriods = returned_data["classWithPeriods"];
     let classDictWithSections = returned_data["classWithSections"];
 
-    var data = new Database(room_data, class_data, teacher_data, classDictWithTeachers, classDictWithRooms, classDictWithSections);
+    var data = new Database(room_data, class_data, teacher_data, classDictWithTeachers, classDictWithRooms, classDictWithSections, classDictWithPeriods);
     //this is a WorkingClass object that does the initiial generation within the constructor, so the initial gens of schedule are already set, you only need
     //  call the mutation and eagle_purge method when you want
     let theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
@@ -107,8 +108,8 @@ function script(){
     var schedular = theObj.multiverseArray[Math.floor(Math.random() * theObj.multiverseArray.length)].teachers; //schedule[1]
     //nothing works now
     var csvString = "Period, 1, 2, 3, 4, 5, 6, 7, 8\n";
-    let teacherArray = [];
-    schedular.forEach((period) => {
+    let teacherArray = schedular.teachers;
+    teacherArray.forEach((period) => {
         period.forEach((room) => {let repeatedTeacher = false;
             for(let i = 0; i < teacherArray.length ; i++){
             if(room.room_teacher == teacherArray[i]){

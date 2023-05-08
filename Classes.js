@@ -1,7 +1,7 @@
 class Classes
 {
     //constructor
-    constructor (name, possibleTeachersInput, possibleRoomsInput)
+    constructor (name, possibleTeachersInput, possibleRoomsInput, possiblePeriodsInput)
     {
         this.name = name;
         this.teacher;
@@ -12,6 +12,8 @@ class Classes
         this.possibleTeachers = possibleTeachersInput;
         this.possibleRooms = [];
         this.possibleRooms = possibleRoomsInput;
+        this.possiblePeriods = [];
+        this.possiblePeriods = possiblePeriodsInput;
     }
      
     //get functions
@@ -34,6 +36,11 @@ class Classes
 
     get get_possibleTeachers(){
         return this.possibleTeachers;
+    }
+
+    get get_possiblePeriods()
+    {
+        return this.possiblePeriods;
     }
 
     get get_classPeriod()
