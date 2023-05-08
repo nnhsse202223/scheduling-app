@@ -102,8 +102,12 @@ class WorkingClass
         {
             //Getting a random class period
             randomClassPeriod = this.rand(1,8);
+            
+            dupClassArray[i].set_classPeriod(randomClassPeriod)
 
-            dupClassArray[i].set_classPeriod(randomClassPeriod);
+            //eventually, we want this code
+            //preferredClassPeriodIndex = this.rand(0, dupClassArray[i].get_possiblePeriods.length - 1);
+            //dupClassArray[i].set_classPeriod(dupClassArray[i].get_possiblePeriods[preferredClassPeriodIndex]);
 
             randomRoomIndex = this.rand(0, dupClassArray[i].get_possibleRooms.length);
 
@@ -120,7 +124,7 @@ class WorkingClass
             while(!dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod.includes(randomClassPeriod))
             {
                 randomRoomIndex = this.rand(0, dupClassArray[i].get_possibleRooms.length);
-                console.log(!dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod.includes(randomClassPeriod));
+                //console.log(!dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod.includes(randomClassPeriod));
                 while(!dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod.includes(randomClassPeriod));
                 {randomTeacherIndex = this.weightedRand(dupClassArray[i]);}
             }

@@ -29,7 +29,6 @@ function verifyUpload(event) {
     var reader = new FileReader();
     reader.readAsText(file);
     reader.onload = function (event) {
-        console.log(event.target.result);
         fetch("/uploadFile", {
             method: "POST",
             body: JSON.stringify({data: event.target.result}),
@@ -37,11 +36,11 @@ function verifyUpload(event) {
                 "Content-type": "application/json"
             }
         }).then(response => response.text()).then(text => {
-            if(text == "true") {
+            if(text == "-1") {
                 document.getElementById("uploadDiv").innerHTML = "File Uploaded Succesfully!"
             }
             else {
-                document.getElementById("uploadDiv").innerHTML = "File Not Uploaded, Invalid Data"
+                document.getElementById("uploadDiv").innerHTML = "File Not Uploaded, Error In Row " + text;
             }
         });
     };
