@@ -29,20 +29,20 @@ class Database
 
         
 
-        for (let i = 0; i < /*teacherArray.length*/ this.theTeacherArray.length; i++)
+        for (let i = 0; i < this.theTeacherArray.length; i++)
         {
             //console.log(this.theTeacherArray[i]);
             var teacher = new Teacher(this.theTeacherArray[i]);
             this.myTeacherArray.push(teacher);
         }
 
-        for (let i = 0; i < /*roomArray.length*/ this.theRoomArray.length; i++)
+        for (let i = 0; i < this.theRoomArray.length; i++)
         {
             var room = new Room(this.theRoomArray[i]);
             this.myRoomArray.push(room);
         }
         
-        for (let i = 0; i < /*classArray.length*/ this.theClassArray.length; i++)
+        for (let i = 0; i < this.theClassArray.length; i++)
         {
             //console.log(this.teacherCLog[this.theClassArray[i]][0][0]);
             //for (let k = 0; k < /*teacherArray.length*/ this.myTeacherArray.length; k++) {this.myTeacherArray[k].set_weight(this.teacherCLog[this.theClassArray[i]][0][1])};
@@ -100,36 +100,32 @@ function script(){
     let theObj = new WorkingClass(data.RoomArray.sort(), data.TeacherArray, data.ClassArray);
     
     //Making multiple generations of schedules
-    //var gene = new GeneticRepresentation(theObj.verse);
-    //var gene = new GeneticRepresentation(theObj.verse);
+    var gene = new GeneticRepresentation(theObj.verse);
+    console.log(theObj.verse.theMultiverseArray);
+    gene.represent();
 
-    //console.log(theObj.verse.theMultiverseArray);
-    //gene.represent();
     var schedular = theObj.multiverseArray[Math.floor(Math.random() * theObj.multiverseArray.length)].teachers; //schedule[1]
-    //nothing works now
-    var csvString = "Period, 1, 2, 3, 4, 5, 6, 7, 8\n";
-    let teacherArray = schedular.teachers;
-    teacherArray.forEach((period) => {
-        period.forEach((room) => {let repeatedTeacher = false;
-            for(let i = 0; i < teacherArray.length ; i++){
-            if(room.room_teacher == teacherArray[i]){
-                repeatedTeacher = true;
-            }}
-            if(repeatedTeacher == false) {
-                let teacher = room.room_teacher;
-                csvString += teacher + ',';
 
-                schedular.forEach((teacherPeriod) => {
-                    teacherPeriod.forEach((teacherRoom) => {if(teacherRoom.room_teacher == teacher){
-                        csvString += teacherRoom.room_class + " - " + teacherRoom.room_number + ',';
-                    }});
-                });
-                csvString += '\n';
-                teacherArray.push(teacher);
-    }});
-    });
-    //var gene = new GeneticRepresentation(theObj.multiverseArray);
-    //gene.represent();
+    var csvString = "Period, 1, 2, 3, 4, 5, 6, 7, 8\n";
+    for(let i = 0; i < schedular.length; i++){
+        csvString += schedular[i].teacher_name + ',';
+        for(let period = 0; period < schedular[i].classPeriod.length; period++){
+            let currentClass = schedular[i].classPeriod[period];
+            if(currentClass > 0 || currentClass < 9){
+                csvString += ',';
+            }
+            else{
+                if(schedular[i].class_room[period].room_number === undefined){
+                    csvString += "N/A" + " - " + currentClass + ",";
+                }
+                else{
+                    csvString += schedular[i].class_room[period].room_number + " - " + currentClass + ",";
+                }
+            }
+        }
+        csvString += '\n';
+    }
+    
     return csvString;
     /*
     //console.log(`is schedule 1 == schedule 2: ${theObj.multiverseArray[0].schedule == theObj.multiverseArray[1].schedule}`)
@@ -142,7 +138,6 @@ function script(){
     return theObj;
     */
 }
-
 
 /*var startTime = performance.now();*/
 script();
