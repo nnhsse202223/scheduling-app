@@ -102,7 +102,7 @@ function script(){
     //Making multiple generations of schedules
     var gene = new GeneticRepresentation(theObj.verse);
     console.log(theObj.verse.theMultiverseArray);
-    gene.represent();
+    //gene.represent();
 
     var schedular = theObj.multiverseArray[Math.floor(Math.random() * theObj.multiverseArray.length)].teachers; //schedule[1]
 

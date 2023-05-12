@@ -101,9 +101,9 @@ class WorkingClass
         for(let i = 0; i < dupClassArray.length; i++)
         {
             //Getting a random class period
-            randomClassPeriod = this.rand(1,8);
+            randomClassPeriod = this.rand(0,8);
             
-            dupClassArray[i].set_classPeriod(randomClassPeriod)
+            dupClassArray[i].set_classPeriod(randomClassPeriod);
 
             //eventually, we want this code
             //preferredClassPeriodIndex = this.rand(0, dupClassArray[i].get_possiblePeriods.length - 1);
@@ -112,13 +112,6 @@ class WorkingClass
             randomRoomIndex = this.rand(0, dupClassArray[i].get_possibleRooms.length);
 
             randomTeacherIndex = this.weightedRand(dupClassArray[i]);
-
-            //console.log(dupClassArray[i].get_possibleTeacher[randomTeacherIndex]);
-            //console.log(dupClassArray[i].get_possibleRooms[randomRoomIndex])
-            //console.log(dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod);
-            //console.log(dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod);
-            ////console.log(randomClassPeriod);
-            //console.log(!dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod.includes(randomClassPeriod));
 
             //if class period is 
             while(!dupClassArray[i].get_possibleRooms[randomRoomIndex].room_ClassPeriod.includes(randomClassPeriod))
@@ -135,6 +128,7 @@ class WorkingClass
                 {
                     dupClassArray[i].set_class_room(dupRoomArray[room]);
                     dupTeacherArray[room].fill_room(dupClassArray[i].classPeriod, dupClassArray[i].get_class_room);
+                    //break;
                 }
             }
             
@@ -150,6 +144,7 @@ class WorkingClass
                 {
                     dupClassArray[i].set_class_teacher(dupTeacherArray[teacher]);
                     dupTeacherArray[teacher].fill_class(dupClassArray[i].classPeriod, dupClassArray[i].get_class_name);
+                    //break;
                     //console.log(dupClassArray[i].get_class_teacher);
                 }
             }
