@@ -7,14 +7,14 @@ let fs = require('fs');
 //the number of schedules we want to generate
 const INITIAL_GENERATION_SCHEDULE_NUMBER_OF_HOW_MANY_SCHEDULES_WE_WANT = 100;
 
-let teacherData = fs.readFileSync('TeacherData.csv',{encoding:'utf8'}, (err) => err && console.error(err));
-let csvArray = teacherData.split(/\r?\n|\r|\n/g); //I dont know how that splits it, but it worked!!!
-let classes = csvArray[7].split(',');
-
 class WorkingClass
 {
     constructor (roomArray, teacherArray, classArray)
     {
+        this.teacherData = fs.readFileSync('TeacherData.csv',{encoding:'utf8'}, (err) => err && console.error(err));
+        this.csvArray = teacherData.split(/\r?\n|\r|\n/g); //I dont know how that splits it, but it worked!!!
+        this.classes = csvArray[7].split(',');
+
         this.roomArray = roomArray;
         this.teacherArray = teacherArray;
         this.classArray = classArray;
