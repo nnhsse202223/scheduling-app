@@ -1,5 +1,4 @@
-# scheduling-app
-The repository for the scheduling app.
+# Course Scheduling App
 
 Hello! Welcome to the ReadMe file of the scheduling app!
 
@@ -16,15 +15,17 @@ Aarav Mistry, Jon Qunell, Max Nguyen, and Selina Ling
 ### The main files are:
   - (outdated?) In the folder JQStuff, is all the code for the current webpage; to run it, call npm start after following the start up doc
   - The Database.js file contains the run file for the code, the function to call is script()
+  - The TeacherData.csv
   - The WorkingClass.js file contains all the code that runs the genetic algorithm
   - The GeneticRepresenation.js file contains the code that lets you see the schedule in the terminal; this is very useful for debugging
-  - The fitness function will be your friend, it is used to determine the best schedule and rank all schedules. It takes in a lot of data and just spits out a percentage, which is very cool!
 
-### The genetic algorithm uses the following classes:
+### The genetic algorithm uses the following classes and methods:
   - The Schedule.js
   - The Classes.js
   - The Teacher.js
   - The room.js
+  - The fitness function (isn't it a method?) is used to determine the best schedule and rank all schedules, taking in a lot of data and returning a percentage based on given parameters
+  - The mutator methods
 
 Here is the naming glossary for most of the variables from the WorkingClass.js file:
 LOWEST LEVEL:
@@ -61,28 +62,8 @@ Anyways, enjoy browsing the scheduling app!
 
 From Team Members,
 Aarav Mistry, Jon Qunell, Max Nguyen, and Selina Ling
-=======
-The four Software Engineering students working on this are: Aarav Mistry, Jon Qunell, Max Nguyen, and Selina Ling
-
-In terms of what this app is supposed to do (or what it should eventually do) is:
-
-Take teacher profiles, lists of classes, and applicable rooms
-Create randomly generated schedules based on that
-Make new, better schedules after applying a genetic algorithm
-Return select best schedules
-Download the best schedule
-The main files are such:
-
-In the folder JQStuff, is all the code for the current webpage; to run it, call npm start after following the start up doc
-The Database.js file contains the run file for the code, the function to call is script()
-The WorkingClass.js file contains all the code that runs the genetic algorithm
-The GeneticRepresenation.js file contains the code that lets you see the schedule in the terminal; this is very useful for debugging
-The things.csv file just has a random schedule stored, it is just used to check if other files work properly.
-The fitness function will be your friend, it is used to determine the best schedule and rank all schedules. It takes in a lot of data and just spits out a percentage, which is very cool!
-
-(why is there two readmes???)
 
 ### Known Issues:
   - The current iteration of GeneticRepresentation has a bug that makes it not return anything in period 8, despite the output schedule having classes during this period
   - Our best schedule outputted at the end never has any classes populating period 1, despite the representation stating there are classes during this period
-  - Our current code does not always follow Javascript naming conventions or have easily understood naming schemes. Selina plans on cleaning this up before you receive this, but how far they get and understood their names are will be seen.
+  - Our current code does not always follow Javascript naming conventions or have easily understood naming schemes. Selina plans on cleaning this up before you receive this, but how far they get will be seen
