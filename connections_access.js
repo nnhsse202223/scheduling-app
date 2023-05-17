@@ -2,15 +2,15 @@ let fs = require('fs');
 const {Room} = require("./room.js");
 const {Teacher} = require("./Teacher.js");
 
-let teacherData = fs.readFileSync('TeacherData.csv',{encoding:'utf8'}, (err) => err && console.error(err));
-let csvArray = teacherData.split(/\r?\n|\r|\n/g); //I dont know how that splits it, but it worked!!!
-let classes = csvArray[7].split(',');
-let rooms = csvArray[1].split(',');
-let periods = csvArray[5].split(',');
-let sections = csvArray[3].split(',')
-let semesters = csvArray[4].split(',');;
-
 function run() {
+  let teacherData = fs.readFileSync('TeacherData.csv',{encoding:'utf8'}, (err) => err && console.error(err));
+  let csvArray = teacherData.split(/\r?\n|\r|\n/g); //I dont know how that splits it, but it worked!!!
+  let classes = csvArray[7].split(',');
+  let rooms = csvArray[1].split(',');
+  let periods = csvArray[5].split(',');
+  let sections = csvArray[3].split(',')
+  let semesters = csvArray[4].split(',');
+
   var teacher_array = [];
   var room_array = [];
   var class_array = [];
