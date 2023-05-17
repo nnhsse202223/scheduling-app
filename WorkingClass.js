@@ -118,16 +118,16 @@ class WorkingClass
             {
                 randomRoomIndex = this.rand(0, dupClassArray[i].get_possibleRooms.length);
                 //console.log(!dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod.includes(randomClassPeriod));
-                while(!dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod.includes(randomClassPeriod));
-                {randomTeacherIndex = this.weightedRand(dupClassArray[i]);}
+                while(!dupClassArray[i].get_possibleTeachers[randomTeacherIndex].classPeriod.includes(randomClassPeriod)){
+                    randomTeacherIndex = this.weightedRand(dupClassArray[i]);}
+    
             }
-
+           
             for(let room = 0; room < dupRoomArray.length; room++)
             {
                 if(dupRoomArray[room].room_no === dupClassArray[i].get_possibleRooms[randomRoomIndex].room_no)
                 {
                     dupClassArray[i].set_class_room(dupRoomArray[room]);
-                    dupTeacherArray[room].fill_room(dupClassArray[i].classPeriod, dupClassArray[i].get_class_room);
                     //break;
                 }
             }
@@ -144,6 +144,7 @@ class WorkingClass
                 {
                     dupClassArray[i].set_class_teacher(dupTeacherArray[teacher]);
                     dupTeacherArray[teacher].fill_class(dupClassArray[i].classPeriod, dupClassArray[i].get_class_name);
+                    dupTeacherArray[teacher].fill_room(dupClassArray[i].classPeriod, dupClassArray[i].get_class_room);
                     //break;
                     //console.log(dupClassArray[i].get_class_teacher);
                 }
