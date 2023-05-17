@@ -24,52 +24,17 @@ The Course Scheduling App is an app that takes in teacher profiles, lists of cla
   - The GeneticRepresenation.js file contains the code that lets you see the schedule in the terminal; this is very useful for debugging
 
 ### Genetic Algorithm Classes & Methods
-*feel free to move these around to fit with the levels listed below*
-  - The Schedule.js
-  - The Classes.js
-  - The Teacher.js
-  - The room.js
-  - The fitness method is used to determine the best schedule and rank all schedules, taking in a lot of data and returning a percentage based on given parameters
-  - The mutator methods
+The hardest part of understanding the Genetic Algorithm is the structure that it uses. To make it more comphrensive, I will attempt to organize a class hierarchy and I will include some images.
+So, there are three main "running" classes, and three "object" classes. The "running" class perform some tasks, and the "object" classes store mass amounts of data.
+The three running classes are:
+connectionsaccess.js
+Database.js
+WorkingClass.js
 
-Here is the naming glossary for most of the variables from the WorkingClass.js file:
-LOWEST LEVEL:
-Teacher
-	Class List → list of class they can teach
-	Name → their name
-
-Class
-	Class name → the rame of the class
-
-MID-LOWEST LEVEL:
-Room
-	Teacher → teacher associated with room
-	Class → class associated with room
-	Room Number → the room number
-	Class List → list of classes compatible with the room
-
-MIDDLE LEVEL:
-ClassPeriodArray
-	A array of rooms for a given period
-
-MID-HIGHEST LEVEl:
-Schedule
-	Array → array of classPeriodArrays
-	Percentage → fitness percentage
-
-HIGHEST LEVEL:
-Generation
-	MultiverseArray → array of Schedules
-	generation no → what number generation it is on
-
+connectionsaccess.js takes the data from the from the csv file and uses line-by-line analysis to collect data into different arrays and dictionaries.
+Database.js takes those array and dictionaries and creats the "object" data classes, which is what the WorkingClass.js file uses. It also runs the npm start, which runs the webpage.
 
 Anyways, enjoy browsing the scheduling app!
 
 From Team Members,
 Aarav Mistry, Jon Qunell, Max Nguyen, and Selina Ling
-
-## Known Issues:
-*(should these be moved to github issues?)*
-  - The current iteration of GeneticRepresentation has a bug that makes it not return anything in period 8, despite the output schedule having classes during this period
-  - Our best schedule outputted at the end never has any classes populating period 1, despite the representation stating there are classes during this period
-  - Our current code does not always follow Javascript naming conventions or have easily understood naming schemes. Selina plans on cleaning this up before you receive this, but how far they will get will be seen
