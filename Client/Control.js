@@ -23,6 +23,9 @@ function changeText() {
     document.getElementById("uploadDiv").innerHTML = name;
 }
 
+
+//I run thiis method to avoid a redirect caused by submitting the POST request by the form directly
+//Instead, I copy the data from the form and create a separate request, in case you were curious
 function verifyUpload(event) {
     event.preventDefault();
     let file = document.getElementById('uploadInput').files[0];
