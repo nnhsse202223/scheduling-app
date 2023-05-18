@@ -14,10 +14,6 @@ The Course Scheduling App is an app that takes in teacher profiles, lists of cla
   - Running code: if you want to test code without the sever, you'll need to uncomment the line "script()" in Database.js, then you can just type in the terminal *node Database.js*
   - Running the server: input *npm start* into the VScode terminal, and then you can control click the localhost website to see it running. To stop the server, press *Ctrl + C* and then type *Y* when it asks.
 
-
-## Configuring Project
-  - *should we give them a document for this too?*
-
 ## Project Architecture & Data Schema
 
 ### Main Files
