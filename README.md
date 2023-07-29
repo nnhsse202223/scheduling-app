@@ -60,12 +60,9 @@ Code that we started then scrapped was the actual "genetic" part: this code is f
   - Those two array are the two components of Schedule.js, which is one schedule.
   - And finally, the two parameters of Generation.js is the array of Schedules, and each of its fitness is within the Schedule.js, and it is a parameter of it.
 
-
 Please let us know if you cannot access any documents or if you need more of an explanation! 
 
 Anyways, enjoy browsing the scheduling app! 
 
-## DO NOT CHANGE THE BACKGROUND FOR THE WEBSITE!!!!! IF THERE IS ONE THING YOU DO NOT CHANGE, THAT MUST BE THE GRADIENT AND ANIMATION IN THE BACKGROUND OF THE WEBSITE!!! KEEP IT AS IS OR ELSE!!!! -Jon Q
-
-From Team Members,
+Team Members:
 Aarav Mistry, Jon Qunell, Max Nguyen, and Nox Ling
